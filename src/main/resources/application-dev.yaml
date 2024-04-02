@@ -1,0 +1,24 @@
+# 应用程序tomcat容器监听的http端口号
+server:
+  port: 8001
+
+# spring 配置
+spring:
+  # 数据源配置
+  datasource:
+    # JDBC驱动类签名
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # 连接数据库URL路径
+    url: jdbc:mysql://127.0.0.1:3306/rhythm_data?useUnicode=true&characterEncoding=utf8
+    # 数据库账户名称
+    username: root
+    # 数据库账户密码
+    password: 123456
+    # 获取Connection连接对象的类签名
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+# mybatis配置
+mybatis:
+  # 映射文件表达式
+  mapper-locations: classpath:mapper/*Mapper.xml
