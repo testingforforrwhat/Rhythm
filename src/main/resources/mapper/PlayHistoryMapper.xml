@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.PlayHistoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.test.bean.po.PlayHistory">
+            <id property="historyId" column="history_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="songId" column="song_id" jdbcType="INTEGER"/>
+            <result property="playDate" column="play_date" jdbcType="TIMESTAMP"/>
+            <result property="platform" column="platform" jdbcType="VARCHAR"/>
+            <result property="durationSeconds" column="duration_seconds" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        history_id,user_id,song_id,
+        play_date,platform,duration_seconds
+    </sql>
+</mapper>
