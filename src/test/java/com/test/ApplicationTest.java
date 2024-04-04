@@ -20,11 +20,9 @@ public class ApplicationTest {
 	@Test
 	public void selectAdList(){
 
-		List<Advertisements> advertisementsList = advertisementsMapper.selectListByAdId(10);
+		Advertisements advertisements = advertisementsMapper.selectListByAdId(10);
 
-		for (Advertisements advertisements : advertisementsList) {
-			System.out.println(advertisements);
-		}
+		System.out.println(advertisements);
 
 	}
 
