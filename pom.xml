@@ -73,6 +73,12 @@
             <version>5.8.23</version>
         </dependency>
 
+        <!--  SpringSecurity 依赖  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!--  打包配置  -->
