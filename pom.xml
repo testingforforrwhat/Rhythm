@@ -90,6 +90,7 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
+        <!--  http://localhost:8001/swagger-ui/index.html  -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
