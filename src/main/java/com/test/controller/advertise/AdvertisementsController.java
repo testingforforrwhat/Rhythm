@@ -30,8 +30,8 @@ public class AdvertisementsController {
     @ResponseBody
     @ApiOperation("发布广告")
     @GetMapping("/postAds/{ad_id}")
-    public String index( @ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") String ad_id){
-        return advertisementsService.selectAdList( Integer.valueOf(ad_id) ).toString();
+    public String index( @ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") Integer ad_id){
+        return advertisementsService.selectAdList( ad_id ).toString();
     }
 
 }
