@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @Api(tags = "广告模块")
 @RequestMapping("/api/ads")
@@ -27,8 +30,18 @@ public class AdvertisementsController {
     @ResponseBody
     @ApiOperation("发布广告")
     @GetMapping("/postAds/{ad_id}")
-    public Advertisements index(@ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") Integer ad_id){
-        return advertisementsService.selectAdList( ad_id );
+    public Object index(@ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") Integer ad_id){
+        // 实例化 响应报文体
+        Map<String,Object> responseBody = new HashMap<>();
+        // 设置 响应报文体 参数
+        responseBody.put( "code" , 200 );
+        responseBody.put( "message" , "OK" );
+        Map<String,Object> data = new HashMap<>();
+        // 根据rhythm.advertisements表的字段查询rhythm.advertisements表
+        // 载荷 系统中的相关数据
+        data.put( "ad" , advertisementsService.selectAdList(ad_id) );
+        responseBody.put( "data" , data );
+        return responseBody;
     }
 
 }
