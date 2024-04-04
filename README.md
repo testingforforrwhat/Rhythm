@@ -128,52 +128,52 @@
 
 ### **3.1 用户管理**
 
-- 注册：`POST /api/users`
-- 登录：`POST /api/users/login`
-- 获取用户信息：`GET /api/users/{user_id}`
-- 更新用户信息：`PUT /api/users/{user_id}`
-- 上传头像：`POST /api/users/{user_id}/avatar`
+- - [ ] 注册：`POST /api/users`
+- - [ ] 登录：`POST /api/users/login`
+- - [ ] 获取用户信息：`GET /api/users/{user_id}`
+- - [ ] 更新用户信息：`PUT /api/users/{user_id}`
+- - [ ] 上传头像：`POST /api/users/{user_id}/avatar`
 
 ### **3.2 音乐管理**
 
-- 创建音乐分类：`POST /api/categories`
-- 编辑音乐分类：`PUT /api/categories/{category_id}`
-- 删除音乐分类：`DELETE /api/categories/{category_id}`
-- 上传音乐：`POST /api/music`
-- 编辑音乐信息：`PUT /api/music/{music_id}`
-- 删除音乐：`DELETE /api/music/{music_id}`
+- - [ ] 创建音乐分类：`POST /api/categories`
+- - [ ] 编辑音乐分类：`PUT /api/categories/{category_id}`
+- - [ ] 删除音乐分类：`DELETE /api/categories/{category_id}`
+- - [ ] 上传音乐：`POST /api/music`
+- - [ ] 编辑音乐信息：`PUT /api/music/{music_id}`
+- - [ ] 删除音乐：`DELETE /api/music/{music_id}`
 
 ### **3.3 音乐流媒体播放**
 
-- 获取音乐播放地址：`GET /api/music/{music_id}/play`
-- 随机播放音乐：`GET /api/music/random`
-- 单曲循环播放音乐：`GET /api/music/{music_id}/loop`
-- 列表循环播放音乐：`GET /api/music/list/loop`
+- - [ ] 获取音乐播放地址：`GET /api/music/{music_id}/play`
+- - [ ] 随机播放音乐：`GET /api/music/random`
+- - [ ] 单曲循环播放音乐：`GET /api/music/{music_id}/loop`
+- - [ ] 列表循环播放音乐：`GET /api/music/list/loop`
 
 ### **3.4 音乐搜索**
 
-- 按关键词搜索音乐：`GET /api/music/search?keyword={keyword}`
+- - [ ] 按关键词搜索音乐：`GET /api/music/search?keyword={keyword}`
 
 ### **3.5 音乐推荐**
 
-- 获取个性化音乐推荐：`GET /api/music/recommendations`
+- - [ ] 获取个性化音乐推荐：`GET /api/music/recommendations`
 
 ### **3.6 收藏和分享**
 
-- 收藏音乐：`POST /api/favorites`
-- 取消收藏音乐：`DELETE /api/favorites/{favorite_id}`
-- 获取用户收藏的音乐：`GET /api/favorites/user/{user_id}`
+- - [ ] 收藏音乐：`POST /api/favorites`
+- - [ ] 取消收藏音乐：`DELETE /api/favorites/{favorite_id}`
+- - [ ] 获取用户收藏的音乐：`GET /api/favorites/user/{user_id}`
 
 ### **3.7 广告管理**
 
-- 发布广告：`POST /api/ads`
-- 编辑广告：`PUT /api/ads/{ad_id}`
-- 删除广告：`DELETE /api/ads/{ad_id}`
+- - [ ] 发布广告：`POST /api/ads`
+- - [ ] 编辑广告：`PUT /api/ads/{ad_id}`
+- - [ ] 删除广告：`DELETE /api/ads/{ad_id}`
 
 ### **3.8 安全和权限**
 
-- 用户身份验证：`POST /api/auth/login`
-- 获取当前登录用户信息：`GET /api/auth/me`
+- - [ ] 用户身份验证：`POST /api/auth/login`
+- - [ ] 获取当前登录用户信息：`GET /api/auth/me`
 
 ## **4. 相关模块**
 
