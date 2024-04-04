@@ -3,8 +3,6 @@ package com.test.mapper;
 import com.test.bean.po.Advertisements;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-import java.util.List;
-
 /**
 * @author 23194
 * @description 针对表【advertisements】的数据库操作Mapper
@@ -13,7 +11,7 @@ import java.util.List;
 */
 public interface AdvertisementsMapper extends BaseMapper<Advertisements> {
 
-    Advertisements selectListByAdId(Integer adId);
+    Advertisements selectByAdId(Integer adId);
 }
 
 

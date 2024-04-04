@@ -39,7 +39,7 @@ public class AdvertisementsController {
         Map<String,Object> data = new HashMap<>();
         // 根据rhythm.advertisements表的字段查询rhythm.advertisements表
         // 载荷 系统中的相关数据
-        data.put( "ad" , advertisementsService.selectAdList(ad_id) );
+        data.put( "ad" , advertisementsService.selectByAdId(ad_id) );
         responseBody.put( "data" , data );
         return responseBody;
     }

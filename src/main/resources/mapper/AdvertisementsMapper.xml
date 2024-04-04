@@ -21,7 +21,7 @@
         start_date,end_date,created_at,
         updated_at,platform,target_audience
     </sql>
-    <select id="selectListByAdId" resultType="com.test.bean.po.Advertisements">
+    <select id="selectByAdId" resultType="com.test.bean.po.Advertisements">
         select *
         from rhythm.advertisements
         where advertisements.ad_id = #{adId}
