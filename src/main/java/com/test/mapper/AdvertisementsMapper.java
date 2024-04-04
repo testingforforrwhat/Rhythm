@@ -13,7 +13,7 @@ import java.util.List;
 */
 public interface AdvertisementsMapper extends BaseMapper<Advertisements> {
 
-    List<Advertisements> selectListByAdId(Integer adId);
+    Advertisements selectListByAdId(Integer adId);
 }
 
 

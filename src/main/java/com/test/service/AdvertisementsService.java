@@ -12,6 +12,6 @@ import java.util.List;
 */
 public interface AdvertisementsService extends IService<Advertisements> {
 
-    List<Advertisements> selectAdList(Integer ad_id);
+    Advertisements selectAdList(Integer ad_id);
 
 }

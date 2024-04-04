@@ -28,7 +28,7 @@ public class AdvertisementsServiceImpl extends ServiceImpl<AdvertisementsMapper,
      *
      */
     @Override
-    public List<Advertisements> selectAdList(Integer ad_id) {
+    public Advertisements selectAdList(Integer ad_id) {
 
         // 根据rhythm.advertisements表的字段查询rhythm.advertisements表
         return advertisementsMapper.selectListByAdId(ad_id);
