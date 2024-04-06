@@ -2,6 +2,7 @@ package com.test.mapper;
 
 import com.test.bean.po.Advertisements;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author 23194
@@ -11,7 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface AdvertisementsMapper extends BaseMapper<Advertisements> {
 
-    Advertisements selectByAdId(Integer adId);
+    Advertisements selectByAdId( @Param("ad_id") Integer ad_id);
 }
 
 
