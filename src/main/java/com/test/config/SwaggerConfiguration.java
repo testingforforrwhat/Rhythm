@@ -19,7 +19,7 @@ public class SwaggerConfiguration {
 
 
     @Bean
-    public Docket orderDoc(){
+    public Docket advertisementsDoc(){
         return new Docket(DocumentationType.OAS_30)
                 .groupName("广告模块")
                 .pathMapping("/")
@@ -31,7 +31,18 @@ public class SwaggerConfiguration {
                 .build();
     }
 
-
+    @Bean
+    public Docket musicCategoriesDoc(){
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("音乐管理模块")
+                .pathMapping("/")
+                .enable(true)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.test"))
+                .paths(PathSelectors.ant("/api/**"))
+                .build();
+    }
 
 
 
