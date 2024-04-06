@@ -60,7 +60,7 @@ public class MusicCategoriesController {
         responseBody.put( "message" , "OK" );
         Map<String,Object> data = new HashMap<>();
         // 载荷 系统中的所有音乐分类数据
-        data.put( "brandList" , musicCategoriesService.listAll() );
+        data.put( "musicCategoriesList" , musicCategoriesService.listAll() );
         responseBody.put( "data" , data );
         // 返回 响应报文体
         return responseBody;

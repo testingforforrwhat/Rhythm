@@ -24,4 +24,5 @@ public interface MusicCategoriesService extends IService<MusicCategories> {
      * @return
      */
     List<MusicCategories> listAll();
+
 }
