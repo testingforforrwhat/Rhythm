@@ -10,4 +10,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface MusicCategoriesService extends IService<MusicCategories> {
 
+    /**
+     * 根据分类ID，从数据库查询该分类数据
+     * @param categoryId
+     * @return
+     */
+    MusicCategories selectByCategoryId(Integer categoryId);
 }
