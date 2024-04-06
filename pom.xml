@@ -73,11 +73,11 @@
             <version>5.8.23</version>
         </dependency>
 
-        <!--  SpringSecurity 依赖  -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+<!--        &lt;!&ndash;  SpringSecurity 依赖  &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
 
         <!--  SpringBoot 单元测试、热部署、swaggerUi  -->
         <dependency>

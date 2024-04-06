@@ -17,6 +17,9 @@ spring:
     # 获取Connection连接对象的类签名
     type: com.alibaba.druid.pool.DruidDataSource
 
+logging:
+  level:
+    com.test: trace
 
 # mybatis配置
 mybatis:

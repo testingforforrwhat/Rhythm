@@ -25,4 +25,10 @@ public interface MusicCategoriesService extends IService<MusicCategories> {
      */
     List<MusicCategories> listAll();
 
+    /**
+     * 添加音乐分类
+     * @param categoryName
+     * @return
+     */
+    boolean add(String categoryName);
 }

@@ -3,6 +3,7 @@ package com.test.controller.musicCategories;
 
 import com.test.service.AdvertisementsService;
 import com.test.service.MusicCategoriesService;
+import com.test.bean.bo.MusicCategoriesAddBo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -66,4 +67,31 @@ public class MusicCategoriesController {
         return responseBody;
     }
 
+    /**
+     * 添加音乐分类
+     * Post http://127.0.0.1:8001/api/categories
+     * @param musicCategoriesAddBo
+     * @return
+     */
+    @PostMapping("/categories")
+    @ApiOperation("添加音乐分类")
+    public Object addMusicCategoriesAddBo(@ApiParam(value = "分类名称",required = true) MusicCategoriesAddBo musicCategoriesAddBo){
+        // 实例化 响应报文体
+        Map<String,Object> responseBody = new HashMap<>();
+        // 设置 响应报文体 参数
+        responseBody.put( "code" , 200 );
+        responseBody.put( "message" , "OK" );
+        Map<String,Object> data = new HashMap<>();
+        // 载荷 系统中的所有音乐分类数据
+        // 调用业务逻辑层 执行 添加音乐分类
+        if( musicCategoriesService.add(String.valueOf(musicCategoriesAddBo)) ) {
+            responseBody.put( "code" , 200 );
+            responseBody.put( "message" , "添加音乐分类成功" );
+        }else{
+            responseBody.put( "code" , 500 );
+            responseBody.put( "message" , "添加音乐分类失败" );
+        }
+        // 返回 响应报文体
+        return responseBody;
+    }
 }
