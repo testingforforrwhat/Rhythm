@@ -32,4 +32,19 @@
                 #{musicCategoriesAddBo.updatedAt}
             )
     </insert>
+
+<!--    可自动填充字段-->
+<!--    <insert id="add">-->
+<!--        insert into `music_categories`-->
+<!--        (-->
+<!--            `category_id`,-->
+<!--            `category_name`-->
+<!--        )-->
+<!--        values-->
+<!--            (-->
+<!--                #{musicCategoriesAddBo.categoryId},-->
+<!--                #{musicCategoriesAddBo.categoryName}-->
+<!--            )-->
+<!--    </insert>-->
+
 </mapper>
