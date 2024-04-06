@@ -9,6 +9,7 @@ import com.test.mapper.MusicCategoriesMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,8 +65,10 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
         musicCategoriesAddBo.setCategoryId( musicCategoriesAddBo.getCategoryId() );
         musicCategoriesAddBo.setCategoryName( musicCategoriesAddBo.getCategoryName() );
         System.out.println( musicCategoriesAddBo.getCreatedAt() );
-//        musicCategoriesAddBo.setCreatedAt( musicCategoriesAddBo.getCreatedAt() );
-//        musicCategoriesAddBo.setUpdatedAt( musicCategoriesAddBo.getUpdatedAt() );
+
+        Date now = new Date();
+        musicCategoriesAddBo.setCreatedAt( now );
+        musicCategoriesAddBo.setUpdatedAt( now );
         return musicCategoriesMapper.add( musicCategoriesAddBo ) > 0 ? true : false;
     }
 }
