@@ -7,6 +7,7 @@ import com.test.mapper.MusicCategoriesMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 23194
@@ -32,6 +33,16 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
     @Override
     public MusicCategories selectByCategoryId(Integer categoryId) {
         return musicCategoriesMapper.selectById( categoryId );
+    }
+
+    /**
+     * 查询当前所有音乐分类
+     *
+     * @return
+     */
+    @Override
+    public List<MusicCategories> listAll() {
+        return musicCategoriesMapper.selectList( null );
     }
 }
 

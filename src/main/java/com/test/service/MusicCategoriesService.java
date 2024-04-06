@@ -3,6 +3,8 @@ package com.test.service;
 import com.test.bean.po.MusicCategories;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author 23194
 * @description 针对表【music_categories】的数据库操作Service
@@ -16,4 +18,10 @@ public interface MusicCategoriesService extends IService<MusicCategories> {
      * @return
      */
     MusicCategories selectByCategoryId(Integer categoryId);
+
+    /**
+     * 查询当前所有音乐分类
+     * @return
+     */
+    List<MusicCategories> listAll();
 }
