@@ -63,8 +63,9 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
 //        System.out.println( musicCategories );
         musicCategoriesAddBo.setCategoryId( musicCategoriesAddBo.getCategoryId() );
         musicCategoriesAddBo.setCategoryName( musicCategoriesAddBo.getCategoryName() );
-        musicCategoriesAddBo.setCreatedAt( musicCategoriesAddBo.getCreatedAt() );
-        musicCategoriesAddBo.setUpdatedAt( musicCategoriesAddBo.getUpdatedAt() );
+        System.out.println( musicCategoriesAddBo.getCreatedAt() );
+//        musicCategoriesAddBo.setCreatedAt( musicCategoriesAddBo.getCreatedAt() );
+//        musicCategoriesAddBo.setUpdatedAt( musicCategoriesAddBo.getUpdatedAt() );
         return musicCategoriesMapper.add( musicCategoriesAddBo ) > 0 ? true : false;
     }
 }
