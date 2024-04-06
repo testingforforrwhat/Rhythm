@@ -73,9 +73,11 @@ public class MusicCategoriesController {
      * @param musicCategoriesAddBo
      * @return
      */
+    @ResponseBody
     @PostMapping("/categories")
     @ApiOperation("添加音乐分类")
-    public Object addMusicCategoriesAddBo(@ApiParam(value = "分类名称",required = true) MusicCategoriesAddBo musicCategoriesAddBo){
+    public Object addMusicCategoriesAddBo( MusicCategoriesAddBo musicCategoriesAddBo){
+        System.out.println( musicCategoriesAddBo );
         // 实例化 响应报文体
         Map<String,Object> responseBody = new HashMap<>();
         // 设置 响应报文体 参数
@@ -84,7 +86,7 @@ public class MusicCategoriesController {
         Map<String,Object> data = new HashMap<>();
         // 载荷 系统中的所有音乐分类数据
         // 调用业务逻辑层 执行 添加音乐分类
-        if( musicCategoriesService.add(String.valueOf(musicCategoriesAddBo)) ) {
+        if( musicCategoriesService.add(musicCategoriesAddBo) ) {
             responseBody.put( "code" , 200 );
             responseBody.put( "message" , "添加音乐分类成功" );
         }else{

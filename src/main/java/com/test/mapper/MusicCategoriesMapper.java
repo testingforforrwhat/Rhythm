@@ -1,7 +1,9 @@
 package com.test.mapper;
 
+import com.test.bean.bo.MusicCategoriesAddBo;
 import com.test.bean.po.MusicCategories;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author 23194
@@ -10,6 +12,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.test.bean.po.MusicCategories
 */
 public interface MusicCategoriesMapper extends BaseMapper<MusicCategories> {
+
+    /**
+     * 添加
+     * @param musicCategoriesAddBo
+     * @return
+     */
+    int add( @Param( "musicCategoriesAddBo" ) MusicCategoriesAddBo musicCategoriesAddBo);
 
 }
 

@@ -2,6 +2,7 @@ package com.test.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.test.bean.bo.MusicCategoriesAddBo;
 import com.test.bean.po.MusicCategories;
 import com.test.service.MusicCategoriesService;
 import com.test.mapper.MusicCategoriesMapper;
@@ -49,16 +50,22 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
     /**
      * 添加音乐分类
      *
-     * @param categoryName
+     * @param musicCategoriesAddBo
      * @return
      */
     @Override
-    public boolean add(String categoryName) {
-        // 创建用于添加的MusicCategories对象
-        MusicCategories musicCategories = new MusicCategories();
-        // 借组属性拷贝工具将dto中的同名的属性值 赋给 musicCategories
-        BeanUtil.copyProperties(categoryName,musicCategories);
-        return musicCategoriesMapper.insert( musicCategories ) > 0 ? true : false;
+    public boolean add(MusicCategoriesAddBo musicCategoriesAddBo) {
+//        // 创建用于添加的MusicCategories对象
+//        MusicCategories musicCategories = new MusicCategories();
+//        // 借组属性拷贝工具将dto中的同名的属性值 赋给 musicCategories
+//        BeanUtil.copyProperties(musicCategoriesAddBo,musicCategories);
+//        System.out.println( musicCategoriesAddBo );
+//        System.out.println( musicCategories );
+        musicCategoriesAddBo.setCategoryId( musicCategoriesAddBo.getCategoryId() );
+        musicCategoriesAddBo.setCategoryName( musicCategoriesAddBo.getCategoryName() );
+        musicCategoriesAddBo.setCreatedAt( musicCategoriesAddBo.getCreatedAt() );
+        musicCategoriesAddBo.setUpdatedAt( musicCategoriesAddBo.getUpdatedAt() );
+        return musicCategoriesMapper.add( musicCategoriesAddBo ) > 0 ? true : false;
     }
 }
 

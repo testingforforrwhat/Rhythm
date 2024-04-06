@@ -1,7 +1,9 @@
 package com.test.service;
 
+import com.test.bean.bo.MusicCategoriesAddBo;
 import com.test.bean.po.MusicCategories;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,8 +29,9 @@ public interface MusicCategoriesService extends IService<MusicCategories> {
 
     /**
      * 添加音乐分类
-     * @param categoryName
+     * @param musicCategoriesAddBo
      * @return
      */
-    boolean add(String categoryName);
+    boolean add( @Param( "musicCategoriesAddBo" ) MusicCategoriesAddBo musicCategoriesAddBo);
+
 }

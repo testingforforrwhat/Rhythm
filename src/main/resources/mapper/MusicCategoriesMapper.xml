@@ -15,4 +15,21 @@
         category_id,category_name,created_at,
         updated_at
     </sql>
+
+    <insert id="add">
+        insert into `music_categories`
+        (
+         `category_id`,
+         `category_name`,
+         `created_at`,
+         `updated_at`
+        )
+        values
+            (
+                #{musicCategoriesAddBo.categoryId},
+                #{musicCategoriesAddBo.categoryName},
+                #{musicCategoriesAddBo.createdAt},
+                #{musicCategoriesAddBo.updatedAt}
+            )
+    </insert>
 </mapper>

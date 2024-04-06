@@ -25,3 +25,10 @@ logging:
 mybatis:
   # 映射文件表达式
   mapper-locations: classpath:mapper/*Mapper.xml
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

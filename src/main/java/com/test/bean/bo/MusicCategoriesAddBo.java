@@ -1,12 +1,10 @@
 package com.test.bean.bo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -30,57 +28,59 @@ public class MusicCategoriesAddBo implements Serializable {
     /**
      * 创建时间
      */
-    private Date createdAt;
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createdAt;
 
     /**
      * 更新时间
      */
-    private Date updatedAt;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updatedAt;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        MusicCategoriesAddBo other = (MusicCategoriesAddBo) that;
-        return (this.getCategoryId() == null ? other.getCategoryId() == null : this.getCategoryId().equals(other.getCategoryId()))
-            && (this.getCategoryName() == null ? other.getCategoryName() == null : this.getCategoryName().equals(other.getCategoryName()))
-            && (this.getCreatedAt() == null ? other.getCreatedAt() == null : this.getCreatedAt().equals(other.getCreatedAt()))
-            && (this.getUpdatedAt() == null ? other.getUpdatedAt() == null : this.getUpdatedAt().equals(other.getUpdatedAt()));
-    }
+//    @Override
+//    public boolean equals(Object that) {
+//        if (this == that) {
+//            return true;
+//        }
+//        if (that == null) {
+//            return false;
+//        }
+//        if (getClass() != that.getClass()) {
+//            return false;
+//        }
+//        MusicCategoriesAddBo other = (MusicCategoriesAddBo) that;
+//        return (this.getCategoryId() == null ? other.getCategoryId() == null : this.getCategoryId().equals(other.getCategoryId()))
+//            && (this.getCategoryName() == null ? other.getCategoryName() == null : this.getCategoryName().equals(other.getCategoryName()))
+//            && (this.getCreatedAt() == null ? other.getCreatedAt() == null : this.getCreatedAt().equals(other.getCreatedAt()))
+//            && (this.getUpdatedAt() == null ? other.getUpdatedAt() == null : this.getUpdatedAt().equals(other.getUpdatedAt()));
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        final int prime = 31;
+//        int result = 1;
+//        result = prime * result + ((getCategoryId() == null) ? 0 : getCategoryId().hashCode());
+//        result = prime * result + ((getCategoryName() == null) ? 0 : getCategoryName().hashCode());
+//        result = prime * result + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
+//        result = prime * result + ((getUpdatedAt() == null) ? 0 : getUpdatedAt().hashCode());
+//        return result;
+//    }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getCategoryId() == null) ? 0 : getCategoryId().hashCode());
-        result = prime * result + ((getCategoryName() == null) ? 0 : getCategoryName().hashCode());
-        result = prime * result + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
-        result = prime * result + ((getUpdatedAt() == null) ? 0 : getUpdatedAt().hashCode());
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", categoryId=").append(categoryId);
-        sb.append(", categoryName=").append(categoryName);
-        sb.append(", createdAt=").append(createdAt);
-        sb.append(", updatedAt=").append(updatedAt);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(getClass().getSimpleName());
+//        sb.append(" [");
+//        sb.append("Hash = ").append(hashCode());
+//        sb.append(", categoryId=").append(categoryId);
+//        sb.append(", categoryName=").append(categoryName);
+//        sb.append(", createdAt=").append(createdAt);
+//        sb.append(", updatedAt=").append(updatedAt);
+//        sb.append(", serialVersionUID=").append(serialVersionUID);
+//        sb.append("]");
+//        return sb.toString();
+//    }
 }
