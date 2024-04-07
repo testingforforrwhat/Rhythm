@@ -17,6 +17,7 @@ import java.util.Map;
 @Controller
 @Api(tags = "音乐管理模块")
 @RequestMapping("/api")
+@CrossOrigin		// 可以在支持跨域的方法或者类添加该注解
 public class MusicCategoriesController {
 
 
@@ -76,7 +77,7 @@ public class MusicCategoriesController {
     @ResponseBody
     @PostMapping("/categories")
     @ApiOperation("添加音乐分类")
-    public Object addMusicCategoriesAddBo( MusicCategoriesAddBo musicCategoriesAddBo){
+    public Object addMusicCategoriesAddBo( @RequestBody MusicCategoriesAddBo musicCategoriesAddBo){
         System.out.println( musicCategoriesAddBo );
         // 实例化 响应报文体
         Map<String,Object> responseBody = new HashMap<>();
