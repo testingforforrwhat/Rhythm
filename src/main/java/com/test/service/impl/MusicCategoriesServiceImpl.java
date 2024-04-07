@@ -56,8 +56,8 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
      */
     @Override
     public boolean add(MusicCategoriesAddBo musicCategoriesAddBo) {
-//        // 创建用于添加的MusicCategories对象
-//        MusicCategories musicCategories = new MusicCategories();
+        // 创建用于添加的MusicCategories对象
+        MusicCategories musicCategories = new MusicCategories();
 //        // 借组属性拷贝工具将dto中的同名的属性值 赋给 musicCategories
 //        BeanUtil.copyProperties(musicCategoriesAddBo,musicCategories);
 //        System.out.println( musicCategoriesAddBo );
@@ -69,7 +69,9 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
         Date now = new Date();
         musicCategoriesAddBo.setCreatedAt( now );
         musicCategoriesAddBo.setUpdatedAt( now );
-        return musicCategoriesMapper.add( musicCategoriesAddBo ) > 0 ? true : false;
+        BeanUtil.copyProperties(musicCategoriesAddBo,musicCategories);
+        System.out.println( musicCategories );
+        return musicCategoriesMapper.insert( musicCategories ) > 0 ? true : false;
     }
 }
 
