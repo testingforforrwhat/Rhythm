@@ -32,6 +32,6 @@ public interface MusicCategoriesService extends IService<MusicCategories> {
      * @param musicCategoriesAddBo
      * @return
      */
-    boolean add( @Param( "musicCategoriesAddBo" ) MusicCategoriesAddBo musicCategoriesAddBo);
+    boolean add( MusicCategoriesAddBo musicCategoriesAddBo );
 
 }
