@@ -1,8 +1,10 @@
 package com.test.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.test.bean.bo.MusicCategoriesAddBo;
+import com.test.bean.bo.MusicCategoriesUpdateBo;
 import com.test.bean.po.MusicCategories;
 import com.test.service.MusicCategoriesService;
 import com.test.mapper.MusicCategoriesMapper;
@@ -72,6 +74,32 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
         BeanUtil.copyProperties(musicCategoriesAddBo,musicCategories);
         System.out.println( musicCategories );
         return musicCategoriesMapper.insert( musicCategories ) > 0 ? true : false;
+    }
+
+    /**
+     * 编辑音乐分类
+     *
+     * @param musicCategoriesUpdateBo
+     * @return
+     */
+    @Override
+    public boolean updateMusicCategories(MusicCategoriesUpdateBo musicCategoriesUpdateBo) {
+
+        System.out.println( musicCategoriesUpdateBo );
+        // 创建用于更新的UpdateWapper
+        UpdateWrapper<MusicCategories> updateWrapper = new UpdateWrapper<>();
+        // 设置需要更新的字段 和更新条件
+        Date now = new Date();
+        updateWrapper.set("category_name",musicCategoriesUpdateBo.getCategoryName())
+                .set("updated_at",now)
+                .eq("category_id",musicCategoriesUpdateBo.getCategoryId());
+        System.out.println( "updateWrapper:" + updateWrapper );
+        int update = musicCategoriesMapper.update(new MusicCategories(), updateWrapper);
+        System.out.println( "musicCategoriesUpdateBo:" + musicCategoriesUpdateBo );
+        // 因为这个方法需要将更新过后的数据返回 所以可以再次查询数据库
+        MusicCategories musicCategories = musicCategoriesMapper.selectById(musicCategoriesUpdateBo.getCategoryId());
+        return update > 0 ? true : false;
+
     }
 }
 

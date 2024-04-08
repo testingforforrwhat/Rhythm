@@ -1,6 +1,7 @@
 package com.test.controller.musicCategories;
 
 
+import com.test.bean.bo.MusicCategoriesUpdateBo;
 import com.test.service.AdvertisementsService;
 import com.test.service.MusicCategoriesService;
 import com.test.bean.bo.MusicCategoriesAddBo;
@@ -77,7 +78,7 @@ public class MusicCategoriesController {
     @ResponseBody
     @PostMapping("/categories")
     @ApiOperation("添加音乐分类")
-    public Object addMusicCategoriesAddBo( @RequestBody MusicCategoriesAddBo musicCategoriesAddBo){
+    public Object addMusicCategoriesAddBo( MusicCategoriesAddBo musicCategoriesAddBo){
         System.out.println( musicCategoriesAddBo );
         // 实例化 响应报文体
         Map<String,Object> responseBody = new HashMap<>();
@@ -97,4 +98,36 @@ public class MusicCategoriesController {
         // 返回 响应报文体
         return responseBody;
     }
+
+
+    /**
+     * 编辑音乐分类
+     * Patch http://127.0.0.1:8001/api/categories
+     * @param musicCategoriesUpdateBo
+     * @return
+     */
+    @ResponseBody
+    @PatchMapping("/categories")
+    @ApiOperation("编辑音乐分类")
+    public Object editMusicCategoriesAddBo( MusicCategoriesUpdateBo musicCategoriesUpdateBo){
+        System.out.println( musicCategoriesUpdateBo );
+        // 实例化 响应报文体
+        Map<String,Object> responseBody = new HashMap<>();
+        // 设置 响应报文体 参数
+        responseBody.put( "code" , 200 );
+        responseBody.put( "message" , "OK" );
+        Map<String,Object> data = new HashMap<>();
+        // 载荷 系统中的所有音乐分类数据
+        // 调用业务逻辑层 执行 添加音乐分类
+        if( musicCategoriesService.updateMusicCategories( musicCategoriesUpdateBo ) ) {
+            responseBody.put( "code" , 200 );
+            responseBody.put( "message" , "编辑音乐分类成功" );
+        }else{
+            responseBody.put( "code" , 500 );
+            responseBody.put( "message" , "编辑音乐分类失败" );
+        }
+        // 返回 响应报文体
+        return responseBody;
+    }
+
 }
