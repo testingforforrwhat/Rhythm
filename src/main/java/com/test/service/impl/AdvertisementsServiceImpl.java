@@ -7,6 +7,8 @@ import com.test.mapper.AdvertisementsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
 * @author 23194
 * @description 针对表【advertisements】的数据库操作Service实现
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class AdvertisementsServiceImpl extends ServiceImpl<AdvertisementsMapper, Advertisements>
     implements AdvertisementsService{
 
-    @Autowired
+    @Resource
     private AdvertisementsMapper advertisementsMapper;
 
     /**
