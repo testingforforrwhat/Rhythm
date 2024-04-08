@@ -42,4 +42,11 @@ public interface MusicCategoriesService extends IService<MusicCategories> {
      */
     boolean updateMusicCategories(MusicCategoriesUpdateBo musicCategoriesUpdateBo);
 
+    /**
+     * 删除音乐分类
+     * @param categoryId
+     * @return
+     */
+    boolean deleteMusicCategory(Integer categoryId);
+
 }

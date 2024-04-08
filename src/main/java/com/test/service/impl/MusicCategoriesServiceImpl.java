@@ -101,6 +101,17 @@ public class MusicCategoriesServiceImpl extends ServiceImpl<MusicCategoriesMappe
         return update > 0 ? true : false;
 
     }
+
+    /**
+     * 删除音乐分类
+     *
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public boolean deleteMusicCategory(Integer categoryId) {
+        return musicCategoriesMapper.deleteById( categoryId ) > 0 ? true : false;
+    }
 }
 
 

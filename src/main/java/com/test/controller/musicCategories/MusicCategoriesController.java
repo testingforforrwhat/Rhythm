@@ -118,13 +118,42 @@ public class MusicCategoriesController {
         responseBody.put( "message" , "OK" );
         Map<String,Object> data = new HashMap<>();
         // 载荷 系统中的所有音乐分类数据
-        // 调用业务逻辑层 执行 添加音乐分类
+        // 调用业务逻辑层 执行 编辑音乐分类
         if( musicCategoriesService.updateMusicCategories( musicCategoriesUpdateBo ) ) {
             responseBody.put( "code" , 200 );
             responseBody.put( "message" , "编辑音乐分类成功" );
         }else{
             responseBody.put( "code" , 500 );
             responseBody.put( "message" , "编辑音乐分类失败" );
+        }
+        // 返回 响应报文体
+        return responseBody;
+    }
+
+
+    /**
+     * 删除音乐分类
+     * Delete http://127.0.0.1:8001/api/categories/{category_id}
+     * @param category_id
+     * @return
+     */
+    @ResponseBody
+    @DeleteMapping("/categories/{category_id}")
+    @ApiOperation("删除音乐分类")
+    public Object deleteMusicCategory( @ApiParam(value = "分类ID",required = true)  @PathVariable("category_id") Integer category_id){
+        // 实例化 响应报文体
+        Map<String,Object> responseBody = new HashMap<>();
+        // 设置 响应报文体 参数
+        responseBody.put( "code" , 200 );
+        responseBody.put( "message" , "OK" );
+        Map<String,Object> data = new HashMap<>();
+        // 调用业务逻辑层 执行 编辑音乐分类
+        if( musicCategoriesService.deleteMusicCategory(category_id) ) {
+            responseBody.put( "code" , 200 );
+            responseBody.put( "message" , "删除音乐分类成功" );
+        }else{
+            responseBody.put( "code" , 500 );
+            responseBody.put( "message" , "删除音乐分类失败" );
         }
         // 返回 响应报文体
         return responseBody;
