@@ -47,7 +47,7 @@ public class FileController {
         // 指定 转移目标文件
         File target = new File(
                 ResourceUtils.getURL("classpath:").getPath() +
-                        "uploads/" +
+                        "static/uploads/" +
                         filename );
 
         // 将 上传文件 从临时目录 转移到 目标文件夹
@@ -62,7 +62,7 @@ public class FileController {
         // 指定要下载的文件
         File file = new File(
                 ResourceUtils.getURL("classpath:").getPath() +
-                        "downloads/" + filename
+                        "static/downloads/" + filename
         );
 
         // 实例化 响应报文头 对象
