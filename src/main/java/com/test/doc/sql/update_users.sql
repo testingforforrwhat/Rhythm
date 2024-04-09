@@ -8,13 +8,13 @@
 
  */
 ALTER TABLE rhythm.users
-ADD COLUMN phone VARCHAR(20),
-ADD COLUMN salt VARCHAR(50);
+ADD COLUMN phone VARCHAR(20) COMMENT 'phone',
+ADD COLUMN salt VARCHAR(50) COMMENT 'salt';
 
 
-TRUNCATE TABLE users;
+TRUNCATE TABLE rhythm.users;
 
-INSERT INTO users (username, password, email, avatar, created_at, updated_at, phone, salt) VALUES
+INSERT INTO rhythm.users (username, password, email, avatar, created_at, updated_at, phone, salt) VALUES
 ('user1', 'password1', 'user1@example.com', 'avatar1.jpg', NOW(), NOW(), '1234567890', 'salt1'),
 ('user2', 'password2', 'user2@example.com', 'avatar2.jpg', NOW(), NOW(), '2345678901', 'salt2'),
 ('user3', 'password3', 'user3@example.com', 'avatar3.jpg', NOW(), NOW(), '3456789012', 'salt3'),
