@@ -18,7 +18,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   web:
     resources:
-      static-locations: classpath:/static/ # 覆盖默认的静态资源存放目录
+      static-locations: classpath:/static/uploads # 覆盖默认的静态资源存放目录
 
 logging:
   level:
