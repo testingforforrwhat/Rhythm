@@ -1,8 +1,10 @@
 package com.test.controller.music;
 
 
+import com.test.bean.bo.MusicAddBo;
 import com.test.bean.bo.MusicCategoriesAddBo;
 import com.test.bean.bo.MusicCategoriesUpdateBo;
+import com.test.bean.bo.MusicUpdateBo;
 import com.test.service.MusicCategoriesService;
 import com.test.service.MusicService;
 import io.swagger.annotations.Api;
