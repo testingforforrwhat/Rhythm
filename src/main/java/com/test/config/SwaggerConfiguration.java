@@ -26,7 +26,7 @@ public class SwaggerConfiguration {
                 .enable(true)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.test"))
+                .apis(RequestHandlerSelectors.basePackage("com.test.controller.advertise"))
                 .paths(PathSelectors.ant("/api/**"))
                 .build();
     }
@@ -39,11 +39,23 @@ public class SwaggerConfiguration {
                 .enable(true)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.test"))
+                .apis(RequestHandlerSelectors.basePackage("com.test.controller.musicCategories"))
                 .paths(PathSelectors.ant("/api/**"))
                 .build();
     }
 
+    @Bean
+    public Docket musicCDoc(){
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("音乐模块")
+                .pathMapping("/")
+                .enable(true)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.test.controller.music"))
+                .paths(PathSelectors.ant("/api/**"))
+                .build();
+    }
 
 
     /*api信息*/
