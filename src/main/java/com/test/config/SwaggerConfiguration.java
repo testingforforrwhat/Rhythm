@@ -26,7 +26,7 @@ public class SwaggerConfiguration {
                 .enable(true)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.test.controller.advertise"))
+                .apis(RequestHandlerSelectors.basePackage("com.test"))
                 .paths(PathSelectors.ant("/api/**"))
                 .build();
     }
@@ -39,7 +39,7 @@ public class SwaggerConfiguration {
                 .enable(true)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.test.controller.musicCategories"))
+                .apis(RequestHandlerSelectors.basePackage("com.test"))
                 .paths(PathSelectors.ant("/api/**"))
                 .build();
     }
@@ -52,7 +52,7 @@ public class SwaggerConfiguration {
                 .enable(true)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.test.controller.music"))
+                .apis(RequestHandlerSelectors.basePackage("com.test"))
                 .paths(PathSelectors.ant("/api/**"))
                 .build();
     }
