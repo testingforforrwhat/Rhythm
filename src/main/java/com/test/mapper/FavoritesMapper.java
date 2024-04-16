@@ -4,6 +4,8 @@ import com.test.bean.po.Favorites;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
 * @author 23194
 * @description 针对表【favorites】的数据库操作Mapper
@@ -13,6 +15,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FavoritesMapper extends BaseMapper<Favorites> {
 
+    List<Favorites> selectByUserId(Integer userId);
 }
 
 

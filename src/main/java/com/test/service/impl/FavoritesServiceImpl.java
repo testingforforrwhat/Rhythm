@@ -12,6 +12,7 @@ import com.test.mapper.FavoritesMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 23194
@@ -35,8 +36,8 @@ public class FavoritesServiceImpl extends ServiceImpl<FavoritesMapper, Favorites
      * @return
      */
     @Override
-    public Object selectByUserId(Integer userId) {
-        return favoritesMapper.selectById( userId );
+    public List<Favorites> selectByUserId(Integer userId) {
+        return favoritesMapper.selectByUserId( userId );
     }
 
     /**
@@ -67,7 +68,7 @@ public class FavoritesServiceImpl extends ServiceImpl<FavoritesMapper, Favorites
      * @return
      */
     @Override
-    public boolean deleteMusic(Integer favoriteId) {
+    public boolean deleteFavorites(Integer favoriteId) {
         return favoritesMapper.deleteById(favoriteId) > 0 ? true : false;
     }
 

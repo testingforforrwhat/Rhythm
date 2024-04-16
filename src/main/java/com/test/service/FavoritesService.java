@@ -5,6 +5,8 @@ import com.test.bean.bo.MusicAddBo;
 import com.test.bean.po.Favorites;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author 23194
 * @description 针对表【favorites】的数据库操作Service
@@ -25,11 +27,11 @@ public interface FavoritesService extends IService<Favorites> {
      * @param favoriteId
      * @return
      */
-    boolean deleteMusic(Integer favoriteId);
+    boolean deleteFavorites(Integer favoriteId);
 
     /**
      * 查询获取当前用户收藏的音乐
      * @return
      */
-    Object selectByUserId(Integer userId);
+    List<Favorites> selectByUserId(Integer userId);
 }

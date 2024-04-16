@@ -16,4 +16,10 @@
         favorite_id,user_id,music_id,
         created_at,updated_at
     </sql>
+    <select id="selectByUserId" resultType="com.test.bean.po.Favorites">
+        select *
+        from rhythm.favorites
+        where favorites.user_id = #{user_id}
+    </select>
+
 </mapper>

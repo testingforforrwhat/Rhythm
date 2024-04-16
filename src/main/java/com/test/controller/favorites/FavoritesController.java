@@ -96,7 +96,7 @@ public class FavoritesController {
         responseBody.put( "message" , "OK" );
         Map<String,Object> data = new HashMap<>();
         // 调用业务逻辑层 执行 删除音乐
-        if( favoritesService.deleteMusic(favorite_id) ) {
+        if( favoritesService.deleteFavorites(favorite_id) ) {
             responseBody.put( "code" , 200 );
             responseBody.put( "message" , "取消收藏音乐成功" );
         }else{
