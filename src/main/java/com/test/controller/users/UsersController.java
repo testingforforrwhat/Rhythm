@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 客户模块 控制器
  * */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/users")
 public class UsersController {
 
     // 依赖项
@@ -49,7 +49,7 @@ public class UsersController {
 
     /**
      * 客户登录接口
-     * post http://127.0.0.1:8001/customer/login
+     * post http://127.0.0.1:8001/users/login
      * @param usersLoginBo 客户登录业务模型对象
      * @return 响应报文体
      * */
