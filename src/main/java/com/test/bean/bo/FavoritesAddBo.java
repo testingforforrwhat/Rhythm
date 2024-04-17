@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * @TableName favorites
  */
-@TableName(value ="favorites")
+
 @Data
 public class FavoritesAddBo implements Serializable {
 

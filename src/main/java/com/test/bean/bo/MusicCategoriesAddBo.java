@@ -11,7 +11,7 @@ import java.util.Date;
  * 音乐分类添加业务模型对象
  * @TableName music_categories
  */
-@TableName(value ="music_categories")
+
 @Data
 public class MusicCategoriesAddBo implements Serializable {
     /**
