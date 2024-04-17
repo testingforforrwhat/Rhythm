@@ -70,6 +70,19 @@ public class SwaggerConfiguration {
                 .build();
     }
 
+    @Bean
+    public Docket UsersCDoc(){
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("用户管理模块")
+                .pathMapping("/")
+                .enable(true)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.test"))
+                .paths(PathSelectors.ant("/users/**"))
+                .build();
+    }
+
 
     /*api信息*/
     private ApiInfo apiInfo(){

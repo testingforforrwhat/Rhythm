@@ -6,7 +6,10 @@ import com.test.bean.bo.UsersRegistBo;
 import com.test.bean.dto.BaseDTO;
 import com.test.bean.dto.DTO;
 import com.test.service.UsersService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  * 客户模块 控制器
  * */
 @RestController
+@Api(tags = "用户管理模块")
 @RequestMapping("/users")
+@CrossOrigin        // 可以在支持跨域的方法或者类添加该注解
 public class UsersController {
 
     // 依赖项
@@ -29,6 +34,7 @@ public class UsersController {
      * @return 响应报文体
      * */
     @PostMapping("/regist")
+    @ApiOperation("客户注册接口")
     public BaseDTO regist(UsersRegistBo usersRegistBo ){
         // 调用业务逻辑层 的 客户注册功能
         int result = usersService.regist( usersRegistBo );
@@ -54,6 +60,7 @@ public class UsersController {
      * @return 响应报文体
      * */
     @PostMapping("/login")
+    @ApiOperation("客户登录接口")
     public DTO login(UsersLoginBo usersLoginBo ){
         // 调用业务逻辑层的 客户登录功能
         String token = usersService.login( usersLoginBo );
