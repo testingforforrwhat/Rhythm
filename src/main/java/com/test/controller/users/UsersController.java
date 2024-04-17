@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * */
 @RestController
 @Api(tags = "用户管理模块")
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @CrossOrigin        // 可以在支持跨域的方法或者类添加该注解
 public class UsersController {
 
@@ -29,7 +29,7 @@ public class UsersController {
 
     /**
      * 客户注册接口
-     * post http://127.0.0.1:8001/customer/regist
+     * post http://127.0.0.1:8001/api/users/regist
      * @param usersRegistBo 客户注册业务模型对象
      * @return 响应报文体
      * */
@@ -55,7 +55,7 @@ public class UsersController {
 
     /**
      * 客户登录接口
-     * post http://127.0.0.1:8001/users/login
+     * post http://127.0.0.1:8001/api/users/login
      * @param usersLoginBo 客户登录业务模型对象
      * @return 响应报文体
      * */
