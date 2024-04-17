@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * */
 @RestController
 @Api(tags = "用户管理模块")
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 @CrossOrigin        // 可以在支持跨域的方法或者类添加该注解
 public class UsersController {
 
@@ -33,7 +33,7 @@ public class UsersController {
      * @param usersRegistBo 客户注册业务模型对象
      * @return 响应报文体
      * */
-    @PostMapping("/regist")
+    @PostMapping("/users/regist")
     @ApiOperation("客户注册接口")
     public BaseDTO regist(UsersRegistBo usersRegistBo ){
         // 调用业务逻辑层 的 客户注册功能
@@ -59,7 +59,7 @@ public class UsersController {
      * @param usersLoginBo 客户登录业务模型对象
      * @return 响应报文体
      * */
-    @PostMapping("/login")
+    @PostMapping("/users/login")
     @ApiOperation("客户登录接口")
     public DTO login(UsersLoginBo usersLoginBo ){
         // 调用业务逻辑层的 客户登录功能
