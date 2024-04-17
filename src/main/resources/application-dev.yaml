@@ -19,6 +19,14 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/uploads # 覆盖默认的静态资源存放目录
+  # Redis配置
+  redis:
+    # Redis部署Ip地址
+    host: 127.0.0.1
+    # Redis监听端口
+    port: 6379
+    # Redis登录密码
+    password:
 
 logging:
   level:

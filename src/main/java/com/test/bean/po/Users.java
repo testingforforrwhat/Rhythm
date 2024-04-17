@@ -51,6 +51,16 @@ public class Users implements Serializable {
      */
     private Date updatedAt;
 
+    /**
+     * phone
+     */
+    private String phone;
+
+    /**
+     * salt
+     */
+    private String salt;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
