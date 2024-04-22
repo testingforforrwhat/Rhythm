@@ -37,16 +37,16 @@ public class FavoritesController {
     @ApiOperation("查询获取当前用户收藏的音乐")
     @GetMapping("/user/{user_id}")
     public Object getFavoritesById(@ApiParam(value = "用户ID",required = true)  @PathVariable("user_id") Integer user_id){
-        // 实例化 响应报文体
-        Map<String,Object> responseBody = new HashMap<>();
-        // 设置 响应报文体 参数
-        responseBody.put( "code" , 200 );
-        responseBody.put( "message" , "OK" );
-        Map<String,Object> data = new HashMap<>();
-        // 载荷 系统中的相关数据
-        data.put( "user_id" , favoritesService.selectByUserId(user_id) );
-        responseBody.put( "data" , data );
-        return responseBody;
+//        // 实例化 响应报文体
+//        Map<String,Object> responseBody = new HashMap<>();
+//        // 设置 响应报文体 参数
+//        responseBody.put( "code" , 200 );
+//        responseBody.put( "message" , "OK" );
+//        Map<String,Object> data = new HashMap<>();
+//        // 载荷 系统中的相关数据
+//        data.put( "user_id" , favoritesService.selectByUserId(user_id) );
+//        responseBody.put( "data" , data );
+        return favoritesService.selectByUserId(user_id);
     }
 
     /**
@@ -60,23 +60,23 @@ public class FavoritesController {
     @ApiOperation("收藏音乐")
     public Object addMusicAddBo( FavoritesAddBo favoritesAddBo){
         System.out.println( favoritesAddBo );
-        // 实例化 响应报文体
-        Map<String,Object> responseBody = new HashMap<>();
-        // 设置 响应报文体 参数
-        responseBody.put( "code" , 200 );
-        responseBody.put( "message" , "OK" );
-        Map<String,Object> data = new HashMap<>();
-        // 载荷 系统中的所有音乐分类数据
-        // 调用业务逻辑层 执行 添加音乐分类
-        if( favoritesService.add(favoritesAddBo) ) {
-            responseBody.put( "code" , 200 );
-            responseBody.put( "message" , "收藏音乐成功" );
-        }else{
-            responseBody.put( "code" , 500 );
-            responseBody.put( "message" , "收藏音乐失败" );
-        }
+//        // 实例化 响应报文体
+//        Map<String,Object> responseBody = new HashMap<>();
+//        // 设置 响应报文体 参数
+//        responseBody.put( "code" , 200 );
+//        responseBody.put( "message" , "OK" );
+//        Map<String,Object> data = new HashMap<>();
+//        // 载荷 系统中的所有音乐分类数据
+//        // 调用业务逻辑层 执行 添加音乐分类
+//        if( favoritesService.add(favoritesAddBo) ) {
+//            responseBody.put( "code" , 200 );
+//            responseBody.put( "message" , "收藏音乐成功" );
+//        }else{
+//            responseBody.put( "code" , 500 );
+//            responseBody.put( "message" , "收藏音乐失败" );
+//        }
         // 返回 响应报文体
-        return responseBody;
+        return favoritesService.add(favoritesAddBo);
     }
 
     /**

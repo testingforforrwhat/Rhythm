@@ -25,16 +25,16 @@ public class FavoritesAddBo implements Serializable {
      */
     private Integer musicId;
 
-    /**
-     * 创建时间
-     */
-    @TableField(fill = FieldFill.INSERT)
-    private Date createdAt;
-
-    /**
-     * 更新时间
-     */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updatedAt;
+//    /**
+//     * 创建时间
+//     */
+//    @TableField(fill = FieldFill.INSERT)
+//    private Date createdAt;
+//
+//    /**
+//     * 更新时间
+//     */
+//    @TableField(fill = FieldFill.INSERT_UPDATE)
+//    private Date updatedAt;
 
 }
