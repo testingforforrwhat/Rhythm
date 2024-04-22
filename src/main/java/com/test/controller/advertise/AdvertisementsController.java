@@ -31,17 +31,17 @@ public class AdvertisementsController {
     @ApiOperation("根据ad_id查询对应信息")
     @GetMapping("/ads/postAds/{ad_id}")
     public Object getPostAdsById(@ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") Integer ad_id){
-        // 实例化 响应报文体
-        Map<String,Object> responseBody = new HashMap<>();
-        // 设置 响应报文体 参数
-        responseBody.put( "code" , 200 );
-        responseBody.put( "message" , "OK" );
-        Map<String,Object> data = new HashMap<>();
-        // 根据rhythm.advertisements表的字段查询rhythm.advertisements表
-        // 载荷 系统中的相关数据
-        data.put( "ad" , advertisementsService.selectByAdId(ad_id) );
-        responseBody.put( "data" , data );
-        return responseBody;
+//        // 实例化 响应报文体
+//        Map<String,Object> responseBody = new HashMap<>();
+//        // 设置 响应报文体 参数
+//        responseBody.put( "code" , 200 );
+//        responseBody.put( "message" , "OK" );
+//        Map<String,Object> data = new HashMap<>();
+//        // 根据rhythm.advertisements表的字段查询rhythm.advertisements表
+//        // 载荷 系统中的相关数据
+//        data.put( "ad" , advertisementsService.selectByAdId(ad_id) );
+//        responseBody.put( "data" , data );
+        return advertisementsService.selectByAdId(ad_id);
     }
 
 }
