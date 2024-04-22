@@ -48,8 +48,8 @@ CREATE TABLE music (
 -- 创建收藏表
 CREATE TABLE favorites (
     favorite_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '收藏ID',
-    user_id INT COMMENT '用户ID',
-    music_id INT COMMENT '音乐ID',
+    user_id INT NOT NULL COMMENT '用户ID',
+    music_id INT NOT NULL COMMENT '音乐ID',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 );
