@@ -34,7 +34,7 @@ public class MusicCategoriesController {
     @ResponseBody
     @ApiOperation("查询每个音乐分类")
     @GetMapping("/categories/{category_id}")
-    public Object index(@ApiParam(value = "分类ID",required = true)  @PathVariable("category_id") Integer category_id){
+    public Object getMusicCategoriesById(@ApiParam(value = "分类ID",required = true)  @PathVariable("category_id") Integer category_id){
         // 实例化 响应报文体
         Map<String,Object> responseBody = new HashMap<>();
         // 设置 响应报文体 参数

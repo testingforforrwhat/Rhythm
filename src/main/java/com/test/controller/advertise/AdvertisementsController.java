@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Controller
 @Api(tags = "广告模块")
-@RequestMapping("/api/ads")
+@RequestMapping("/api")
 public class AdvertisementsController {
 
 
@@ -28,9 +28,9 @@ public class AdvertisementsController {
      * 根据ad_id查询对应信息
      */
     @ResponseBody
-    @ApiOperation("发布广告")
-    @GetMapping("/postAds/{ad_id}")
-    public Object index(@ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") Integer ad_id){
+    @ApiOperation("根据ad_id查询对应信息")
+    @GetMapping("/ads/postAds/{ad_id}")
+    public Object getPostAdsById(@ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") Integer ad_id){
         // 实例化 响应报文体
         Map<String,Object> responseBody = new HashMap<>();
         // 设置 响应报文体 参数

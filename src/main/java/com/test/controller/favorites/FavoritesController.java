@@ -36,7 +36,7 @@ public class FavoritesController {
     @ResponseBody
     @ApiOperation("查询获取当前用户收藏的音乐")
     @GetMapping("/user/{user_id}")
-    public Object index(@ApiParam(value = "用户ID",required = true)  @PathVariable("user_id") Integer user_id){
+    public Object getFavoritesById(@ApiParam(value = "用户ID",required = true)  @PathVariable("user_id") Integer user_id){
         // 实例化 响应报文体
         Map<String,Object> responseBody = new HashMap<>();
         // 设置 响应报文体 参数

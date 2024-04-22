@@ -36,7 +36,7 @@ public class MusicController {
     @ResponseBody
     @ApiOperation("查询每个音乐")
     @GetMapping("/music/{music_id}")
-    public Object index(@ApiParam(value = "音乐ID",required = true)  @PathVariable("music_id") Integer music_id){
+    public Object getMusicById(@ApiParam(value = "音乐ID",required = true)  @PathVariable("music_id") Integer music_id){
         // 实例化 响应报文体
         Map<String,Object> responseBody = new HashMap<>();
         // 设置 响应报文体 参数
