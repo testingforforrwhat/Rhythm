@@ -36,7 +36,7 @@ CREATE TABLE music_categories (
 -- 创建音乐表
 CREATE TABLE music (
     music_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '音乐ID',
-    title VARCHAR(255) COMMENT '歌曲名称',
+    title VARCHAR(255) NOT NULL COMMENT '歌曲名称',
     artist VARCHAR(255) COMMENT '歌手',
     album VARCHAR(255) COMMENT '专辑',
     category_id INT COMMENT '分类ID',
