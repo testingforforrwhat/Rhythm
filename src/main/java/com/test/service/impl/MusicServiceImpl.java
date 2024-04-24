@@ -127,12 +127,12 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
         // 使用PageHelper进行分页
         PageHelper.startPage( musicSearchBo.getPage(),musicSearchBo.getPageSize() );
-        List<Music> musicList = musicMapper.selectAll();
-        PageInfo<Music> pageInfo = new PageInfo<Music>(musicList);
-        System.out.println(musicList);
-        System.out.println(pageInfo);
+//        List<Music> musicList = musicMapper.selectAll();
+//        PageInfo<Music> pageInfo = new PageInfo<Music>(musicList);
+//        System.out.println(musicList);
+//        System.out.println(pageInfo);
 
-        return musicList;
+        return musicMapper.selectList(null);
     }
 
 }
