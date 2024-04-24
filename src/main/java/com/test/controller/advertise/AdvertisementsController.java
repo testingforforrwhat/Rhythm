@@ -25,11 +25,11 @@ public class AdvertisementsController {
     /**
      * @param ad_id
      * @return GET http://127.0.0.1:8001/api/ads/postAds/{ad_id}
-     * 根据ad_id查询对应信息
+     * 根据ad_id查询广告信息
      */
     @ResponseBody
     @ApiOperation("根据ad_id查询对应信息")
-    @GetMapping("/ads/postAds/{ad_id}")
+    @GetMapping("/ads/{ad_id}")
     public Object getPostAdsById(@ApiParam(value = "广告ID",required = true)  @PathVariable("ad_id") Integer ad_id){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
