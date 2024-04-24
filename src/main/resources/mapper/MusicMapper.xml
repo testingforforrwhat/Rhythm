@@ -27,6 +27,11 @@
     <select id="listByBo" resultType="com.test.bean.po.Music">
         select *
         from rhythm.music
-        where title = #{title}
+        <where>
+            <if test="title != null and title.length>0">
+                title = #{title}
+            </if>
+
+        </where>
     </select>
 </mapper>
