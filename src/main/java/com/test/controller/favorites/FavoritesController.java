@@ -89,22 +89,22 @@ public class FavoritesController {
     @DeleteMapping("favorites/{favorite_id}")
     @ApiOperation("取消收藏音乐")
     public Object deleteMusicCategory( @ApiParam(value = "收藏ID",required = true)  @PathVariable("favorite_id") Integer favorite_id){
-        // 实例化 响应报文体
-        Map<String,Object> responseBody = new HashMap<>();
-        // 设置 响应报文体 参数
-        responseBody.put( "code" , 200 );
-        responseBody.put( "message" , "OK" );
-        Map<String,Object> data = new HashMap<>();
-        // 调用业务逻辑层 执行 删除音乐
-        if( favoritesService.deleteFavorites(favorite_id) ) {
-            responseBody.put( "code" , 200 );
-            responseBody.put( "message" , "取消收藏音乐成功" );
-        }else{
-            responseBody.put( "code" , 500 );
-            responseBody.put( "message" , "取消收藏音乐失败" );
-        }
+//        // 实例化 响应报文体
+//        Map<String,Object> responseBody = new HashMap<>();
+//        // 设置 响应报文体 参数
+//        responseBody.put( "code" , 200 );
+//        responseBody.put( "message" , "OK" );
+//        Map<String,Object> data = new HashMap<>();
+//        // 调用业务逻辑层 执行 删除音乐
+//        if( favoritesService.deleteFavorites(favorite_id) ) {
+//            responseBody.put( "code" , 200 );
+//            responseBody.put( "message" , "取消收藏音乐成功" );
+//        }else{
+//            responseBody.put( "code" , 500 );
+//            responseBody.put( "message" , "取消收藏音乐失败" );
+//        }
         // 返回 响应报文体
-        return responseBody;
+        return favoritesService.deleteFavorites(favorite_id);
     }
 
 }
