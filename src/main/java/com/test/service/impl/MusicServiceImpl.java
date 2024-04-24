@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.test.bean.bo.MusicAddBo;
+import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.test.bean.po.MusicCategories;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
 * @author 23194
@@ -111,6 +113,18 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     public boolean deleteMusic(Integer musicId) {
         return musicMapper.deleteById( musicId ) > 0 ? true : false;
     }
+
+    /**
+     * 根据 帅选条件、分页条件、排序条件，查询满足条件的音乐数据
+     *
+     * @param musicSearchBo 音乐搜索业务模型对象
+     * @return 满足条件的音乐实体模型对象的集合
+     */
+    @Override
+    public List<Music> listByBo(MusicSearchBo musicSearchBo) {
+        return null;
+    }
+
 }
 
 

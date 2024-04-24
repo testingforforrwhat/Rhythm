@@ -1,9 +1,12 @@
 package com.test.service;
 
 import com.test.bean.bo.MusicAddBo;
+import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author 23194
@@ -45,4 +48,12 @@ public interface MusicService extends IService<Music> {
      * @return
      */
     boolean deleteMusic(Integer musicId);
+
+    /**
+     * 根据 帅选条件、分页条件、排序条件，查询满足条件的音乐数据
+     * @param musicSearchBo 音乐搜索业务模型对象
+     * @return 满足条件的音乐实体模型对象的集合
+     * */
+    List<Music> listByBo(MusicSearchBo musicSearchBo);
+
 }

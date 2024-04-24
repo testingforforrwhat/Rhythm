@@ -1,10 +1,7 @@
 package com.test.controller.music;
 
 
-import com.test.bean.bo.MusicAddBo;
-import com.test.bean.bo.MusicCategoriesAddBo;
-import com.test.bean.bo.MusicCategoriesUpdateBo;
-import com.test.bean.bo.MusicUpdateBo;
+import com.test.bean.bo.*;
 import com.test.service.MusicCategoriesService;
 import com.test.service.MusicService;
 import io.swagger.annotations.Api;
@@ -69,6 +66,28 @@ public class MusicController {
 //        responseBody.put( "data" , data );
         // 返回 响应报文体
         return musicService.listAll();
+    }
+
+    /**
+     * 查询满足条件的所有音乐
+     * GET http://127.0.0.1:8001/api/music
+     * @return
+     */
+    @ResponseBody
+    @ApiOperation("查询当前所有音乐")
+    @GetMapping("/music")
+    public Object listByBo(MusicSearchBo musicSearchBo){
+//        // 实例化 响应报文体
+//        Map<String,Object> responseBody = new HashMap<>();
+//        // 设置 响应报文体 参数
+//        responseBody.put( "code" , 200 );
+//        responseBody.put( "message" , "OK" );
+//        Map<String,Object> data = new HashMap<>();
+//        // 载荷 系统中的所有音乐数据
+//        data.put( "musicList" , musicService.listAll() );
+//        responseBody.put( "data" , data );
+        // 返回 响应报文体
+        return musicService.listByBo( musicSearchBo );
     }
 
     /**
