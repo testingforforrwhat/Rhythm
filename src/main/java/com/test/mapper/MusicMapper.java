@@ -1,5 +1,6 @@
 package com.test.mapper;
 
+import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,6 +17,8 @@ import java.util.List;
 public interface MusicMapper extends BaseMapper<Music> {
 
     List<Music> selectAll();
+
+    List<Music> listByBo(MusicSearchBo musicSearchBo);
 }
 
 

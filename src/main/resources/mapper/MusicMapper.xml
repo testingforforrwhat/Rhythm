@@ -24,4 +24,9 @@
         select *
         from rhythm.music
     </select>
+    <select id="listByBo" resultType="com.test.bean.po.Music">
+        select *
+        from rhythm.music
+        where title = #{title}
+    </select>
 </mapper>

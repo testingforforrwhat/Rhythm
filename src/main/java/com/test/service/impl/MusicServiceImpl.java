@@ -132,7 +132,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 //        System.out.println(musicList);
 //        System.out.println(pageInfo);
 
-        return musicMapper.selectList(null);
+        return musicMapper.listByBo(musicSearchBo);
     }
 
 }
