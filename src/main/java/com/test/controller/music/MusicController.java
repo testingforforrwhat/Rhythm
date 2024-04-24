@@ -74,8 +74,8 @@ public class MusicController {
      * @return
      */
     @ResponseBody
-    @ApiOperation("查询当前所有音乐")
-    @GetMapping("/music")
+    @ApiOperation("根据 帅选条件、分页条件、排序条件，查询满足条件的音乐数据")
+    @PostMapping("/music/search")
     public Object listByBo(MusicSearchBo musicSearchBo){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();

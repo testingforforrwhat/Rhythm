@@ -20,4 +20,8 @@
         album,category_id,music_file,
         created_at,updated_at
     </sql>
+    <select id="selectAll" resultType="com.test.bean.po.Music">
+        select *
+        from rhythm.music
+    </select>
 </mapper>

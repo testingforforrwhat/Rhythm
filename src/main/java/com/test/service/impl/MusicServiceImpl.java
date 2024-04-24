@@ -3,6 +3,8 @@ package com.test.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.test.bean.bo.MusicAddBo;
 import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
@@ -122,7 +124,15 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      */
     @Override
     public List<Music> listByBo(MusicSearchBo musicSearchBo) {
-        return null;
+
+        // 使用PageHelper进行分页
+        PageHelper.startPage( musicSearchBo.getPage(),musicSearchBo.getPageSize() );
+        List<Music> musicList = musicMapper.selectAll();
+        PageInfo<Music> pageInfo = new PageInfo<Music>(musicList);
+        System.out.println(musicList);
+        System.out.println(pageInfo);
+
+        return musicList;
     }
 
 }
