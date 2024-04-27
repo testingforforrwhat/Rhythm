@@ -36,7 +36,9 @@ public class FavoritesController {
     @ResponseBody
     @ApiOperation("查询获取当前用户收藏的音乐")
     @GetMapping("/user/{user_id}")
-    public Object getFavoritesById(@ApiParam(value = "用户ID",required = true)  @PathVariable("user_id") Integer user_id){
+    public Object getFavoritesById(
+            @ApiParam("用户登录token令牌") @RequestHeader String authorization,
+            @ApiParam(value = "用户ID",required = true)  @PathVariable("user_id") Integer user_id){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
 //        // 设置 响应报文体 参数
@@ -58,7 +60,9 @@ public class FavoritesController {
     @ResponseBody
     @PostMapping("/favorites")
     @ApiOperation("收藏音乐")
-    public Object addMusicAddBo( FavoritesAddBo favoritesAddBo){
+    public Object addMusicAddBo(
+            @ApiParam("用户登录token令牌") @RequestHeader String authorization,
+            FavoritesAddBo favoritesAddBo){
         System.out.println( favoritesAddBo );
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
@@ -88,7 +92,9 @@ public class FavoritesController {
     @ResponseBody
     @DeleteMapping("favorites/{favorite_id}")
     @ApiOperation("取消收藏音乐")
-    public Object deleteMusicCategory( @ApiParam(value = "收藏ID",required = true)  @PathVariable("favorite_id") Integer favorite_id){
+    public Object deleteMusicCategory(
+            @ApiParam("用户登录token令牌") @RequestHeader String authorization,
+            @ApiParam(value = "收藏ID",required = true)  @PathVariable("favorite_id") Integer favorite_id){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
 //        // 设置 响应报文体 参数
