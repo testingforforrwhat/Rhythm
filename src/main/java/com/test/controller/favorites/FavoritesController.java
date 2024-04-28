@@ -2,9 +2,9 @@ package com.test.controller.favorites;
 
 
 import com.test.bean.bo.FavoritesAddBo;
-import com.test.bean.bo.MusicAddBo;
+import com.test.exception.ResultData;
+import com.test.exception.ReturnCode;
 import com.test.service.FavoritesService;
-import com.test.service.MusicService;
 import com.test.utils.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,8 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @Api(tags = "收藏和分享模块")
@@ -36,12 +34,13 @@ public class FavoritesController {
     /**
      * 查询获取当前用户收藏的音乐
      * GET http://127.0.0.1:8001/api/user/{user_id}
+     *
      * @return
      */
     @ResponseBody
     @ApiOperation("查询获取当前用户收藏的音乐")
     @GetMapping("/user/{user_id}")
-    public Object getFavoritesById(
+    public ResultData getFavoritesById(
             @ApiParam("用户登录token令牌") @RequestHeader String authorization,
             @ApiParam(value = "用户ID",required = true)  @PathVariable("user_id") Integer user_id){
 //        // 实例化 响应报文体
@@ -54,9 +53,9 @@ public class FavoritesController {
 //        data.put( "user_id" , favoritesService.selectByUserId(user_id) );
 //        responseBody.put( "data" , data );
         if (redisUtil.hashKey( authorization ) ) {
-            return favoritesService.selectByUserId(user_id);
+            return ResultData.success(favoritesService.selectByUserId(user_id));
         } else {
-            return null;
+            return ResultData.fail(500,"请登录");
         }
     }
 
