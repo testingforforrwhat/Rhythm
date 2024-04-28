@@ -5,6 +5,7 @@ import com.test.bean.bo.FavoritesAddBo;
 import com.test.bean.bo.MusicAddBo;
 import com.test.service.FavoritesService;
 import com.test.service.MusicService;
+import com.test.utils.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +27,9 @@ public class FavoritesController {
     // 依赖项
     @Autowired
     private FavoritesService favoritesService;
+
+    @Resource
+    private RedisUtil redisUtil;
 
 
 
@@ -48,7 +53,11 @@ public class FavoritesController {
 //        // 载荷 系统中的相关数据
 //        data.put( "user_id" , favoritesService.selectByUserId(user_id) );
 //        responseBody.put( "data" , data );
-        return favoritesService.selectByUserId(user_id);
+        if (redisUtil.hashKey( authorization ) ) {
+            return favoritesService.selectByUserId(user_id);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -80,7 +89,11 @@ public class FavoritesController {
 //            responseBody.put( "message" , "收藏音乐失败" );
 //        }
         // 返回 响应报文体
-        return favoritesService.add(favoritesAddBo);
+        if (redisUtil.hashKey( authorization ) ) {
+            return favoritesService.add(favoritesAddBo);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -110,7 +123,11 @@ public class FavoritesController {
 //            responseBody.put( "message" , "取消收藏音乐失败" );
 //        }
         // 返回 响应报文体
-        return favoritesService.deleteFavorites(favorite_id);
+            if (redisUtil.hashKey( authorization ) ) {
+                return favoritesService.deleteFavorites(favorite_id);
+            } else {
+                return null;
+            }
     }
 
 }
