@@ -91,7 +91,7 @@ public class FavoritesController {
         if (redisUtil.hashKey( authorization ) ) {
             return favoritesService.add(favoritesAddBo);
         } else {
-            return null;
+            return ResultData.fail(500,"请登录");
         }
     }
 
@@ -125,7 +125,7 @@ public class FavoritesController {
             if (redisUtil.hashKey( authorization ) ) {
                 return favoritesService.deleteFavorites(favorite_id);
             } else {
-                return null;
+                return ResultData.fail(500,"请登录");
             }
     }
 
