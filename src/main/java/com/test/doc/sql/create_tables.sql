@@ -35,14 +35,15 @@ CREATE TABLE music_categories (
 
 -- 创建音乐表
 CREATE TABLE music (
-    music_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '音乐ID',
-    title VARCHAR(255) NOT NULL COMMENT '歌曲名称',
-    artist VARCHAR(255) COMMENT '歌手',
-    album VARCHAR(255) COMMENT '专辑',
-    category_id INT COMMENT '分类ID',
-    music_file VARCHAR(255) COMMENT '音乐文件路径',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+    `music_id` INT PRIMARY KEY AUTO_INCREMENT COMMENT '音乐ID',
+    `title` VARCHAR(255) NOT NULL COMMENT '歌曲名称',
+    `artist` VARCHAR(255) COMMENT '歌手',
+    `album` VARCHAR(255) COMMENT '专辑',
+    `category_id` INT COMMENT '分类ID',
+    `music_file` VARCHAR(255) COMMENT '音乐文件路径',
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `music_play_count` int DEFAULT NULL COMMENT '播放次数统计'
 );
 
 -- 创建收藏表
