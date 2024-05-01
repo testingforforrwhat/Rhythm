@@ -26,6 +26,8 @@ public class AliSMSClient {
         List<Map<String, Object>> readAll = reader.readAll();
         System.out.println(readAll);
         System.out.println(ExcelUtil.getReader(FileUtil.file("E:\\Downloads\\sms.xls"), 0).readColumn(2,1).toString());
+        String AccessKeyId = ExcelUtil.getReader(FileUtil.file("E:\\Downloads\\sms.xls"), 0).readColumn(2,1).toString();
+
         for (Map<String, Object> readMap:readAll
              ) {
 
@@ -48,13 +50,16 @@ public class AliSMSClient {
 
         Map.Entry<String, Object> readTheKey = readAll.iterator().next().entrySet().iterator().next();
         System.out.println(readTheKey.getValue());
+        String AccessKeySecret = FourthEntry.getValue().toString();
 
+        System.out.println("AccessKeyId: " + AccessKeyId);
+        System.out.println("AccessKeySecret: " + AccessKeySecret);
 
         Config config = new Config()
                 // 您的 AccessKey ID
-                .setAccessKeyId(ExcelUtil.getReader(FileUtil.file("E:\\Downloads\\sms.xls"), 0).readColumn(2,1).toString())
+                .setAccessKeyId(AccessKeyId)
                 // 您的 AccessKey Secret
-                .setAccessKeySecret(FourthEntry.getValue().toString());
+                .setAccessKeySecret(AccessKeySecret);
         // 访问的域名
         config.endpoint = "dysmsapi.aliyuncs.com";
         Client client = new Client(config);
