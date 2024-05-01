@@ -26,7 +26,7 @@ public class AliSMSClient {
         List<Map<String, Object>> readAll = reader.readAll();
         System.out.println(readAll);
         System.out.println(ExcelUtil.getReader(FileUtil.file("E:\\Downloads\\sms.xls"), 0).readColumn(2,1).toString());
-        String AccessKeyId = ExcelUtil.getReader(FileUtil.file("E:\\Downloads\\sms.xls"), 0).readColumn(2,1).toString();
+        String AccessKeyId = ExcelUtil.getReader(FileUtil.file("E:\\Downloads\\sms.xls"), 0).readColumn(2,1).iterator().next().toString();
 
         for (Map<String, Object> readMap:readAll
              ) {
