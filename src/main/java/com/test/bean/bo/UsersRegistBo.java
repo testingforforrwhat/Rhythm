@@ -10,6 +10,16 @@ public class UsersRegistBo {
     private String userNickName;    // 客户昵称
     private String userValidate;    // 用户填写的手机验证码
 
+    private String userPhone;
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
     // getters and setters
     public String getUserLoginName() {
         return userLoginName;
