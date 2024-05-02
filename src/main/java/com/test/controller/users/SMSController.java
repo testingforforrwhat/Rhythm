@@ -1,18 +1,17 @@
 package com.test.controller.users;
 
 
+import com.test.exception.ResultData;
 import com.test.service.SMSService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/sms")
+@CrossOrigin        // 可以在支持跨域的方法或者类添加该注解
 public class SMSController {
 
     // 依赖项
@@ -40,13 +39,14 @@ public class SMSController {
             // 发送短信 业务成功
             responseBody.put( "code" , 200 );
             responseBody.put( "message" , "短信验证码发送成功" );
+            return ResultData.success(smsService.sendValidateSMS( phone ));
         }else{
             // 发送短信 业务失败
             responseBody.put( "code" , 500 );
             responseBody.put( "message" , "短信验证码发送失败" );
+            return ResultData.fail(500,"短信验证码发送失败");
         }
 
-        return responseBody;
     }
 
 }
