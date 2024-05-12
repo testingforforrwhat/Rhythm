@@ -45,7 +45,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
     public int regist(UsersRegistBo usersRegistBo) {
         // 步骤一：短信验证码 校验
         // 1.1 从 Redis中存放的 正确短信验证码
-        Object validate = redisUtil.get( "SMS-Validate-" + usersRegistBo.getUserLoginName() );
+        Object validate = redisUtil.get( "SMS-Validate-" + usersRegistBo.getUserPhone() );
         // 1.2 判断 正确短信验证码 是否和 用户填写的验证码 一致
         if( validate == null || !usersRegistBo.getUserValidate().equals( validate.toString() ) ){
             // 短信验证码 校验失败
@@ -75,7 +75,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
                 //          MD5加密        (              用户填写的密码明文          + 密码盐值            )
                 DigestUtils.md5DigestAsHex( ( usersRegistBo.getUserLoginPass() + salt ).getBytes() )
         );
-        userInfo.setPhone( usersRegistBo.getUserLoginName() );
+        userInfo.setPhone( usersRegistBo.getUserPhone() );
         userInfo.setSalt( salt );
         // 3.3 将 用户实体模型对象 添加到数据库
         usersMapper.insert( userInfo );
