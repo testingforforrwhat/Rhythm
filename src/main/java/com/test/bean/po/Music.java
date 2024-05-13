@@ -56,8 +56,11 @@ public class Music implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updatedAt;
 
+    /**
+     * 播放次数统计
+     */
+    private Integer musicPlayCount;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-
 }
