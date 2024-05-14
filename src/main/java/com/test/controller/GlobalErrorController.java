@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GlobalErrorController implements ErrorController {
 
+    /**
+     *
+     * 返回自定义的错误消息或页面
+     *
+     * @return
+     */
     @RequestMapping("/error")
     public ResultData<Object> handleError() {
         return ResultData.fail(500,"An error occurred. Please try again later.");
