@@ -173,7 +173,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     public void updatePlayCounts() {
         // 获取与指定模式匹配的所有键
         // 假设所有相关的键都以 "audio:playcount:" 开头
-        Set<String> keys = redisUtil.keys("audio:playcountByMusicIdByWeek:*");
+        Set<String> keys = redisUtil.keys("audio:playcountByWeekByMusicId:*");
         if (keys != null) {
             for (String key : keys) {
                 // 从 Redis 获取播放次数
