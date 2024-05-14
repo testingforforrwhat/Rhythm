@@ -178,6 +178,36 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             for (String key : keys) {
                 // 从 Redis 获取播放次数
                 Integer playCountCurrentWeek = (Integer) redisUtil.get(key);
+                if (playCountCurrentWeek != null) {
+                    // 从 key 中提取 filename
+                    String music_id = key.replace("audio:playcountByWeekByMusicId:", "");
+                    System.out.println(music_id);
+
+                    // 更新数据库
+                    Music audioFile = musicMapper.selectById(music_id);
+                    if (audioFile != null) {
+                        audioFile.setMusicPlayCountWeek(playCountCurrentWeek);
+                        musicMapper.updateById(audioFile);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * 每周定时清除redis相关key,数据累加到sum
+     */
+    @Scheduled(cron = "0 0 0 * * MON") // 每周一凌晨执行
+    @Transactional
+    public void PlayCountByWeekCleanupTask() {
+        // 获取与指定模式匹配的所有键
+        // 假设所有相关的键都以 "audio:playcount:" 开头
+        Set<String> keysToDelete = redisUtil.keys("audio:playcountByWeekByMusicId:*");
+        if (!keysToDelete.isEmpty()) {
+            for (String key : keysToDelete) {
+                // 从 Redis 获取播放次数
+                Integer playCountCurrentWeek = (Integer) redisUtil.get(key);
                 Integer playCount = null;
                 if (playCountCurrentWeek != null) {
                     // 从 key 中提取 filename
@@ -192,8 +222,14 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                         audioFile.setMusicPlayCount(playCount);
                         musicMapper.updateById(audioFile);
                     }
+                    // delete key
+                    redisUtil.del(key);
+                    System.out.println("Cleared Redis keys: " + key);
                 }
             }
+        }
+        else {
+            System.out.println("No keys found to clear.");
         }
     }
 
