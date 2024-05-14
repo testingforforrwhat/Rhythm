@@ -24,6 +24,14 @@ public class ResultData<T> {
     return resultData;
   }
 
+  public static <T> ResultData<T> successSms(T data) {
+    ResultData<T> resultData = new ResultData<>();
+    resultData.setStatus(ReturnCode.RC999.getCode());
+    resultData.setMessage(ReturnCode.RC999.getMessage());
+    resultData.setData(data);
+    return resultData;
+  }
+
   public static <T> ResultData<T> fail(int code, String message) {
     ResultData<T> resultData = new ResultData<>();
     resultData.setStatus(code);
