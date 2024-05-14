@@ -4,24 +4,20 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.test.bean.bo.MusicAddBo;
 import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
+import com.test.bean.po.MusicCategories;
+import com.test.mapper.MusicCategoriesMapper;
 import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
-import com.test.utils.RedisUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ResourceUtils;
 
 import javax.annotation.Resource;
-import java.io.File;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
 * @author 23194
@@ -36,10 +32,6 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     // 依赖项
     @Resource
     private MusicMapper musicMapper;
-
-    @Resource
-    private RedisUtil redisUtil;
-
 
     /**
      * 根据music_id查询对应信息
@@ -141,56 +133,6 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 //        System.out.println(pageInfo);
 
         return musicMapper.listByBo(musicSearchBo);
-    }
-
-    @Override
-    public File loadAudioAsResource(String music_id) {
-        String filename = null;
-        try {
-            // 指定要播放的音频文件
-            filename = musicMapper.selectById(music_id).getMusicFile();
-            System.out.println(filename);
-            File file = new File(
-                    ResourceUtils.getURL("classpath:").getPath() +
-                            "static/audio/" + filename
-            );
-            if (file.exists()) {
-                incrementPlayCount(filename);
-                return file;
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Error loading file " + filename, e);
-        }
-        return null;
-    }
-
-    private void incrementPlayCount(String filename) {
-        redisUtil.incr("audio:playcount:" + filename,1);
-    }
-
-    @Scheduled(fixedRate = 60000) // 每分钟运行一次
-    @Transactional
-    public void updatePlayCounts() {
-        // 获取与指定模式匹配的所有键
-        // 假设所有相关的键都以 "audio:playcount:" 开头
-        Set<String> keys = redisUtil.keys("audio:playcount:*");
-        if (keys != null) {
-            for (String key : keys) {
-                // 从 Redis 获取播放次数
-                Integer playCount = (Integer) redisUtil.get(key);
-                if (playCount != null) {
-                    // 从 key 中提取 filename
-                    String filename = key.replace("audio:playcount:", "");
-
-                    // 更新数据库
-                    Music audioFile = musicMapper.selectById(filename);
-                    if (audioFile != null) {
-                        audioFile.setMusicPlayCount(playCount);
-                        musicMapper.updateById(audioFile);
-                    }
-                }
-            }
-        }
     }
 
 }

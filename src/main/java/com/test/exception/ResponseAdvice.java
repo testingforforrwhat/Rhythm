@@ -2,11 +2,9 @@ package com.test.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -56,9 +54,6 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
         }
         if(o instanceof ResultData){
             return o;
-        }
-        if(o instanceof byte[] ){
-            return objectMapper.writeValueAsBytes(ResultData.success(o));
         }
         return ResultData.success(o);
     }

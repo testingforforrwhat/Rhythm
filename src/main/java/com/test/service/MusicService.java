@@ -6,7 +6,6 @@ import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -57,5 +56,4 @@ public interface MusicService extends IService<Music> {
      * */
     List<Music> listByBo(MusicSearchBo musicSearchBo);
 
-    File loadAudioAsResource(String music_id);
 }
