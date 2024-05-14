@@ -177,15 +177,18 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         if (keys != null) {
             for (String key : keys) {
                 // 从 Redis 获取播放次数
-                Integer playCount = (Integer) redisUtil.get(key);
-                if (playCount != null) {
+                Integer playCountCurrentWeek = (Integer) redisUtil.get(key);
+                Integer playCount = null;
+                if (playCountCurrentWeek != null) {
                     // 从 key 中提取 filename
-                    String music_id = key.replace("audio:playcountByMusicId:", "");
+                    String music_id = key.replace("audio:playcountByMusicIdByWeek:", "");
                     System.out.println(music_id);
 
                     // 更新数据库
                     Music audioFile = musicMapper.selectById(music_id);
+                    playCount = playCountCurrentWeek + audioFile.getMusicPlayCount();
                     if (audioFile != null) {
+                        audioFile.setMusicPlayCountWeek(playCountCurrentWeek);
                         audioFile.setMusicPlayCount(playCount);
                         musicMapper.updateById(audioFile);
                     }
