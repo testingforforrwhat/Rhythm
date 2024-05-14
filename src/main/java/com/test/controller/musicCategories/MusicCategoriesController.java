@@ -78,7 +78,7 @@ public class MusicCategoriesController {
     @ResponseBody
     @PostMapping("/categories")
     @ApiOperation("添加音乐分类")
-    public Object addMusicCategoriesAddBo( MusicCategoriesAddBo musicCategoriesAddBo){
+    public Object addMusicCategoriesAddBo( @RequestBody MusicCategoriesAddBo musicCategoriesAddBo){
         System.out.println( musicCategoriesAddBo );
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();

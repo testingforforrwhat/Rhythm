@@ -636,4 +636,6 @@ public final class RedisUtil {
         redisTemplate.opsForHyperLogLog().union(key1, key2);
     }
 
+    public Set<String> keys(String s) { return redisTemplate.keys(s);
+    }
 }
