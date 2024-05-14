@@ -155,7 +155,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                             "static/audio/" + filename
             );
             if (file.exists()) {
-                incrementPlayCount(filename);
+                incrementPlayCount(music_id);
                 return file;
             }
         } catch (Exception e) {
@@ -164,8 +164,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         return null;
     }
 
-    private void incrementPlayCount(String filename) {
-        redisUtil.incr("audio:playcount:" + filename,1);
+    private void incrementPlayCount(String music_id) {
+        redisUtil.incr("audio:playcountByMusicId:" + music_id,1);
     }
 
     @Scheduled(fixedRate = 60000) // 每分钟运行一次
@@ -173,17 +173,18 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     public void updatePlayCounts() {
         // 获取与指定模式匹配的所有键
         // 假设所有相关的键都以 "audio:playcount:" 开头
-        Set<String> keys = redisUtil.keys("audio:playcount:*");
+        Set<String> keys = redisUtil.keys("audio:playcountByMusicId:*");
         if (keys != null) {
             for (String key : keys) {
                 // 从 Redis 获取播放次数
                 Integer playCount = (Integer) redisUtil.get(key);
                 if (playCount != null) {
                     // 从 key 中提取 filename
-                    String filename = key.replace("audio:playcount:", "");
+                    String music_id = key.replace("audio:playcountByMusicId:", "");
+                    System.out.println(music_id);
 
                     // 更新数据库
-                    Music audioFile = musicMapper.selectById(filename);
+                    Music audioFile = musicMapper.selectById(music_id);
                     if (audioFile != null) {
                         audioFile.setMusicPlayCount(playCount);
                         musicMapper.updateById(audioFile);
