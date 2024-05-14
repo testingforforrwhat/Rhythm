@@ -61,6 +61,11 @@ public class Music implements Serializable {
      */
     private Integer musicPlayCount;
 
+    /**
+     * 本周播放次数统计
+     */
+    private Integer musicPlayCountWeek;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
