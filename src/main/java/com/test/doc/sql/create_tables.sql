@@ -107,15 +107,15 @@ INSERT INTO music_categories (category_name) VALUES
 
 -- 向 music 表格插入10个测试数据
 INSERT INTO music (title, artist, album, category_id, music_file) VALUES
-                                                                      ('Song1', 'Artist1', 'Album1', 1, 'song1.mp3'),
-                                                                      ('Song2', 'Artist2', 'Album2', 2, 'song2.mp3'),
-                                                                      ('Song3', 'Artist3', 'Album3', 1, 'song3.mp3'),
-                                                                      ('Song4', 'Artist4', 'Album4', 3, 'song4.mp3'),
-                                                                      ('Song5', 'Artist5', 'Album5', 2, 'song5.mp3'),
-                                                                      ('Song6', 'Artist6', 'Album6', 4, 'song6.mp3'),
-                                                                      ('Song7', 'Artist7', 'Album7', 3, 'song7.mp3'),
-                                                                      ('Song8', 'Artist8', 'Album8', 5, 'song8.mp3'),
-                                                                      ('Song9', 'Artist9', 'Album9', 4, 'song9.mp3'),
+                                                                      ('Song1', 'Artist1', 'Album1', 1, 'song01.mp3'),
+                                                                      ('Song2', 'Artist2', 'Album2', 2, 'song02.mp3'),
+                                                                      ('Song3', 'Artist3', 'Album3', 1, 'song03.mp3'),
+                                                                      ('Song4', 'Artist4', 'Album4', 3, 'song04.mp3'),
+                                                                      ('Song5', 'Artist5', 'Album5', 2, 'song05.mp3'),
+                                                                      ('Song6', 'Artist6', 'Album6', 4, 'song06.mp3'),
+                                                                      ('Song7', 'Artist7', 'Album7', 3, 'song07.mp3'),
+                                                                      ('Song8', 'Artist8', 'Album8', 5, 'song08.mp3'),
+                                                                      ('Song9', 'Artist9', 'Album9', 4, 'song09.mp3'),
                                                                       ('Song10', 'Artist10', 'Album10', 5, 'song10.mp3');
 
 -- 向 favorites 表格插入10个测试数据
