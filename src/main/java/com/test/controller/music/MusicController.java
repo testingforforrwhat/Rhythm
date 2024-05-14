@@ -202,7 +202,7 @@ public class MusicController {
 
             // 返回响应报文
             return new ResponseEntity<>(
-                   audioBlob,  // 响应报文体
+                   FileUtils.readFileToByteArray(file),  // 响应报文体
                     headers,                              // 响应报文头
                     HttpStatus.OK                          // 响应状态
             );
