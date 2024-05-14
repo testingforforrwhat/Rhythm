@@ -43,7 +43,8 @@ CREATE TABLE music (
     `music_file` VARCHAR(255) COMMENT '音乐文件路径',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `music_play_count` int DEFAULT NULL COMMENT '播放次数统计'
+    `music_play_count` int DEFAULT NULL COMMENT '播放次数统计',
+    `music_play_count_week` int DEFAULT NULL COMMENT '本周播放次数统计'
 );
 
 -- 创建收藏表
