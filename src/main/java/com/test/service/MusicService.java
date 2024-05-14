@@ -5,6 +5,7 @@ import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.http.ResponseEntity;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public interface MusicService extends IService<Music> {
      * */
     List<Music> listByBo(MusicSearchBo musicSearchBo);
 
-    File loadAudioAsResource(String music_id);
+    ResponseEntity<byte[]> loadAudioAsResource(String music_id);
 
     byte[] convertAudioToBlob(File file) throws IOException;
 }

@@ -11,8 +11,11 @@ import com.test.bean.po.Music;
 import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
 import com.test.utils.RedisUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -147,7 +150,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     }
 
     @Override
-    public File loadAudioAsResource(String music_id) {
+    public ResponseEntity<byte[]> loadAudioAsResource(String music_id) {
         String filename = null;
         try {
             // 指定要播放的音频文件
@@ -160,12 +163,24 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             System.out.println(file);
             if (file.exists()) {
                 incrementPlayCount(music_id);
-                return file;
+                // 实例化响应报文头对象
+                HttpHeaders headers = new HttpHeaders();
+                // 设置响应报文头，指示浏览器以流式方式播放音频
+                headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+                System.out.println(headers);
+                System.out.println(HttpStatus.OK);
+
+                // 返回响应报文
+                return new ResponseEntity<>(
+                        FileUtils.readFileToByteArray(file),  // 响应报文体
+                        headers,                              // 响应报文头
+                        HttpStatus.OK                          // 响应状态
+                );
             }
         } catch (Exception e) {
             throw new RuntimeException("Error loading file " + filename, e);
         }
-        return null;
+        return ResponseEntity.notFound().build();
     }
 
     @Override
