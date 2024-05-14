@@ -1,7 +1,7 @@
 package com.test.controller;
 
+import com.test.exception.ResultData;
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class GlobalErrorController implements ErrorController {
 
     @RequestMapping("/error")
-    public String handleError() {
-        return "An error occurred. Please try again later.";
+    public ResultData<Object> handleError() {
+        return ResultData.fail(500,"An error occurred. Please try again later.");
     }
 
     @Override
