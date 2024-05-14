@@ -19,7 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import javax.annotation.Resource;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -154,6 +157,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                     ResourceUtils.getURL("classpath:").getPath() +
                             "static/audio/" + filename
             );
+            System.out.println(file);
             if (file.exists()) {
                 incrementPlayCount(music_id);
                 return file;
@@ -162,6 +166,24 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             throw new RuntimeException("Error loading file " + filename, e);
         }
         return null;
+    }
+
+    @Override
+    public byte[] convertAudioToBlob(File file) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+
+        while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+            byteArrayOutputStream.write(buffer, 0, bytesRead);
+        }
+
+        fileInputStream.close();
+        byteArrayOutputStream.close();
+
+        return byteArrayOutputStream.toByteArray();
     }
 
     private void incrementPlayCount(String music_id) {

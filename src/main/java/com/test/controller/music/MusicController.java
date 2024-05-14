@@ -184,19 +184,25 @@ public class MusicController {
         return musicService.deleteMusic(music_id);
     }
 
+    @ResponseBody
     @GetMapping("/audio/{music_id}")
     public ResponseEntity<byte[]> getAudio(@PathVariable String music_id) throws IOException {
         File file = musicService.loadAudioAsResource(music_id);
         System.out.println(file);
         if (file != null) {
+
+            byte[] audioBlob = musicService.convertAudioToBlob(file);
+
             // 实例化响应报文头对象
             HttpHeaders headers = new HttpHeaders();
             // 设置响应报文头，指示浏览器以流式方式播放音频
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+            System.out.println(headers);
+            System.out.println(HttpStatus.OK);
 
             // 返回响应报文
             return new ResponseEntity<>(
-                    FileUtils.readFileToByteArray(file),  // 响应报文体
+                   audioBlob,  // 响应报文体
                     headers,                              // 响应报文头
                     HttpStatus.OK                          // 响应状态
             );

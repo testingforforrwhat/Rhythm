@@ -7,6 +7,7 @@ import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -58,4 +59,6 @@ public interface MusicService extends IService<Music> {
     List<Music> listByBo(MusicSearchBo musicSearchBo);
 
     File loadAudioAsResource(String music_id);
+
+    byte[] convertAudioToBlob(File file) throws IOException;
 }
