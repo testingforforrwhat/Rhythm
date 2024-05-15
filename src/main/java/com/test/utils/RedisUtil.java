@@ -2,6 +2,7 @@ package com.test.utils;
 
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -637,5 +638,13 @@ public final class RedisUtil {
     }
 
     public Set<String> keys(String s) { return redisTemplate.keys(s);
+    }
+
+    public Set<ZSetOperations.TypedTuple<Object>> reverseRangeWithScores(String s, int i, int i1) {
+        return redisTemplate.opsForZSet().reverseRangeWithScores(s,i,i1);
+    }
+
+    public ZSetOperations<String, Object> zSet() {
+        return redisTemplate.opsForZSet();
     }
 }

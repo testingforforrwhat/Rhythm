@@ -12,6 +12,7 @@ import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
 import com.test.utils.RedisUtil;
 import org.apache.commons.io.FileUtils;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -162,7 +163,29 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             );
             System.out.println(file);
             if (file.exists()) {
+
+
                 incrementPlayCount(music_id);
+
+                ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
+                zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
+                // 查询有序集合中计数最高的前十个元素（歌曲）
+                Set<ZSetOperations.TypedTuple<Object>> topTenSongs = redisUtil.reverseRangeWithScores("audio:topSongsByPlaycount", 0, 1);
+
+                System.out.println(topTenSongs);
+
+                // 处理每首歌曲
+                for (ZSetOperations.TypedTuple<Object> tuple : topTenSongs) {
+                    String songName = new String(String.valueOf(tuple.getValue()));
+                    System.out.println("Storing song: " + songName + ", Count: " + tuple.getScore());
+
+                    byte[] bytes = FileUtils.readFileToByteArray(file);
+                    redisUtil.set("audio:file:playcountByWeekByMusicId:" + songName, bytes);
+
+
+
+                }
+
                 // 实例化响应报文头对象
                 HttpHeaders headers = new HttpHeaders();
                 // 设置响应报文头，指示浏览器以流式方式播放音频
@@ -269,6 +292,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             System.out.println("No keys found to clear.");
         }
     }
+
+
 
 }
 
