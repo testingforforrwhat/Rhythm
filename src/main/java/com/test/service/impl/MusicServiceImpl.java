@@ -236,7 +236,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         }
     }
 
-    @Scheduled(fixedRate = 300000) // 每分钟运行一次
+    @Scheduled(cron = "0 0 0 * * *") // 每天凌晨执行
     @Transactional
     public void setTopTenPlayCache() throws IOException {
 
@@ -303,6 +303,38 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         }
         else {
             System.out.println("No keys found to clear.");
+        }
+
+        // 获取与指定模式匹配的所有键
+        // 假设所有相关的键都以 "audio:file:playcountByWeekByMusicId:" 开头
+        Set<String> keysTopTenCacheToDelete = redisUtil.keys("audio:file:playcountByWeekByMusicId:*");
+        if (!keysTopTenCacheToDelete.isEmpty()) {
+            for (String key : keysTopTenCacheToDelete) {
+
+                // delete key
+                redisUtil.del(key);
+                System.out.println("Cleared TopTenCache Redis keys: " + key);
+
+                }
+            }
+        else {
+            System.out.println("No TopTenCache keys found to clear.");
+        }
+
+        // 获取与指定模式匹配的所有键
+        // 假设所有相关的键都以 "audio:topSongsByPlaycount" 开头
+        Set<String> keysTopSongsByPlaycountToDelete = redisUtil.keys("audio:topSongsByPlaycount");
+        if (!keysTopSongsByPlaycountToDelete.isEmpty()) {
+            for (String key : keysTopSongsByPlaycountToDelete) {
+
+                // delete key
+                redisUtil.del(key);
+                System.out.println("Cleared TopSongsByPlaycount Redis keys: " + key);
+
+            }
+        }
+        else {
+            System.out.println("No TopSongsByPlaycount keys found to clear.");
         }
     }
 
