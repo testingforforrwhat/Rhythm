@@ -23,10 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import javax.annotation.Resource;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.Set;
 
@@ -169,22 +166,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
                 ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
                 zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
-                // 查询有序集合中计数最高的前十个元素（歌曲）
-                Set<ZSetOperations.TypedTuple<Object>> topTenSongs = redisUtil.reverseRangeWithScores("audio:topSongsByPlaycount", 0, 1);
 
-                System.out.println(topTenSongs);
-
-                // 处理每首歌曲
-                for (ZSetOperations.TypedTuple<Object> tuple : topTenSongs) {
-                    String songName = new String(String.valueOf(tuple.getValue()));
-                    System.out.println("Storing song: " + songName + ", Count: " + tuple.getScore());
-
-                    byte[] bytes = FileUtils.readFileToByteArray(file);
-                    redisUtil.set("audio:file:playcountByWeekByMusicId:" + songName, bytes);
-
-
-
-                }
 
                 // 实例化响应报文头对象
                 HttpHeaders headers = new HttpHeaders();
@@ -251,6 +233,37 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                     }
                 }
             }
+        }
+    }
+
+    @Scheduled(fixedRate = 300000) // 每分钟运行一次
+    @Transactional
+    public void setTopTenPlayCache() throws IOException {
+
+        // 查询有序集合中计数最高的前十个元素（歌曲）
+        Set<ZSetOperations.TypedTuple<Object>> topTenSongs = redisUtil.reverseRangeWithScores("audio:topSongsByPlaycount", 0, 1);
+
+        System.out.println(topTenSongs);
+
+        // 处理每首歌曲
+        for (ZSetOperations.TypedTuple<Object> tuple : topTenSongs) {
+            String songName = new String(String.valueOf(tuple.getValue()));
+            System.out.println("Storing song: " + songName + ", Count: " + tuple.getScore());
+
+            // 指定要播放的音频文件
+            String filename = songName;
+            System.out.println(filename);
+            File file = new File(
+                    ResourceUtils.getURL("classpath:").getPath() +
+                            "static/audio/" + filename
+            );
+            System.out.println(file);
+
+            byte[] bytes = FileUtils.readFileToByteArray(file);
+            redisUtil.set("audio:file:playcountByWeekByMusicId:" + songName, bytes);
+
+
+
         }
     }
 
