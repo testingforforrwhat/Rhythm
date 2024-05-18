@@ -18,7 +18,7 @@ public class LoginWebConfig implements WebMvcConfigurer {
 
 		// 创建List 添加需要放行的路径
 		ArrayList<String> clearancePaths = new ArrayList<>();
-
+		clearancePaths.add("/**");
 
 
 		// 添加一个拦截器
