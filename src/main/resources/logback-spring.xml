@@ -6,7 +6,7 @@
 
     <!--日志格式-->
     <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%thread] %-5level %c %M %L %m%n"/>
-    <property name="log_path" value="E:/Downloads/Rhythm/src/main/java/com/test/log" />
+    <property name="log_path" value="${user.dir}/src/main/java/com/test/log" />
 
 <!--    class="ch.qos.logback.core.ConsoleAppender"                    <appender-->
 <!--    class="ch.qos.logback.core.FileAppender"                       <appender-->
