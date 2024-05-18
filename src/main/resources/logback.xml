@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration >
+
+
+    <!--日志输出到控制台-->
+
+    <!--日志格式-->
+    <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%thread] %-5level %c %M %L %m%n"/>
+    <property name="log_path" value="E:/Downloads/Rhythm/src/main/java/com/test/log" />
+
+<!--    class="ch.qos.logback.core.ConsoleAppender"                    <appender-->
+<!--    class="ch.qos.logback.core.FileAppender"                       <appender-->
+<!--    class="ch.qos.logback.core.rolling.RollingFileAppender"        <appender-->
+<!--    class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"    <encoder-->
+<!--    class="ch.qos.logback.classic.filter.LevelFilter"              <filter-->
+
+<!--    <root level="ALL">-->
+<!--        <appender-ref ref="_consoleAppender"></appender-ref>-->
+<!--        &lt;!&ndash;        <appender-ref ref="_fileAppender"></appender-ref>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <appender-ref ref="_rollFileAppender"></appender-ref>&ndash;&gt;-->
+<!--        <appender-ref ref="_log_info"></appender-ref>-->
+<!--    </root>-->
+
+    <!--日志信息输出到控制台-->
+    <appender name="_consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!--指定日志输出格式-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--日志输出到文件-->
+    <appender name="_fileAppender" class="ch.qos.logback.core.FileAppender">
+        <!--指定日志输出格式-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+        <!--指定这个日志记录到哪个文件中-->
+        <file>${log_path}/test.log</file>
+    </appender>
+
+    <!--再添加一个appender，指定日志的拆分规则-->
+    <appender name="_rollFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--指定日志输出格式-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+        <!--指定日志输出位置-->
+        <file>${log_path}/logback.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <!--设置高于这个级别的打印-->
+            <onMatch>ACCEPT</onMatch>
+            <!--低于这个级别不显示-->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--指定拆分规则-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--指定拆分之后的日志文件的名字 以及压缩格式-->
+            <fileNamePattern>${log_path}/logback.%d{yyyy-MM-dd}.log%i.gz</fileNamePattern>
+            <!--指定拆分大小-->
+            <maxFileSize>100KB</maxFileSize>
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
+    <!--需求：要求info级别的信息输出到d:/log/login.log文件中-->
+    <appender name="_log_info" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+        <file>${log_path}/info.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <!--设置高于这个级别的打印-->
+            <onMatch>ACCEPT</onMatch>
+            <!--低于这个级别不显示-->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!--根日志记录器 可以配置多个Appender
+        ALL: 表示所有级别的日志全部输出
+    -->
+    <root level="ALL">
+        <appender-ref ref="_consoleAppender"></appender-ref>
+<!--        <appender-ref ref="_fileAppender"></appender-ref>-->
+<!--        <appender-ref ref="_rollFileAppender"></appender-ref>-->
+        <appender-ref ref="_log_info"></appender-ref>
+    </root>
+</configuration>
