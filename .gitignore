@@ -43,3 +43,4 @@ build/
 /.idea
 /.idea
 !/src/main/resources/application-dev.yaml
+/src/main/java/com/test/log/
