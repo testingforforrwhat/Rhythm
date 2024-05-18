@@ -121,7 +121,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
                 .sign( Algorithm.HMAC256( user.getUserId().toString() ) );  // 签发令牌
 
         System.out.println("解析token 获取到 userId: " + JSON.parseObject(JWT.decode( token).getAudience().get(0).toString()));
-        System.out.println("解析token 获取到 userId: " + JSON.parseObject(JWT.decode( token).getAudience().get(0).toString()).get("username"));
+        System.out.println("解析token 获取到 userId: " + JSON.parseObject(JWT.decode( token).getAudience().get(0).toString()).get("userId"));
         System.out.println("解析token 获取到 withIssuedAt: " + JWT.decode( token).getIssuedAt());
         // 步骤四：将签发的令牌，存入Redis中。拼接上Authorization的策略（Bearer Token）前缀。
         redisUtil.set( "Bearer " + token , user , 60 * 24 );
