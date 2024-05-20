@@ -23,6 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import javax.annotation.Resource;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.io.*;
 import java.util.List;
 import java.util.Set;
@@ -168,6 +171,12 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                 zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
 
 
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+                System.out.println("audioInputStream: " + audioInputStream);
+//                Clip clip = AudioSystem.getClip();
+//                clip.open(audioInputStream);
+//                clip.start();
+
                 // 实例化响应报文头对象
                 HttpHeaders headers = new HttpHeaders();
                 // 设置响应报文头，指示浏览器以流式方式播放音频
@@ -177,7 +186,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
                 // 返回响应报文
                 return new ResponseEntity<>(
-                        FileUtils.readFileToByteArray(file),  // 响应报文体
+                        audioInputStream.readAllBytes(),  // 响应报文体
                         headers,                              // 响应报文头
                         HttpStatus.OK                          // 响应状态
                 );
