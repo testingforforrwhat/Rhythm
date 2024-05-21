@@ -6,6 +6,7 @@ import com.test.utils.RedisUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
@@ -14,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
+@Component
 public class MusicTasks {
 
 
