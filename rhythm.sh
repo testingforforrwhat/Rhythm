@@ -9,3 +9,5 @@ kill -9 <PID>
 
 lsof -i :8001
 
+tail -f -n 10 out.log
+
