@@ -15,6 +15,19 @@
 - 广告管理
 - 安全和权限
 
+**开发文档：**  [doc]()
+
+**演示地址：**  [demo]()
+
+**账号密码：** `admin / 123456`
+
+#### 项目源码
+
+|     |   后端源码  |   前端源码  |
+|---  |--- | --- |
+|  github   |  https://github.com/testingforforrwhat/Rhythm.git   |  https://github.com/testingforforrwhat/rhythm-vue.git   |
+
+
 ## **2. 系统架构设计**
 
 ### **2.1 技术选型**
