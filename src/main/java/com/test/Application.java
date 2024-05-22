@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import static com.test.task.DbDocCreat.createDbDoc;
+
 @EnableScheduling
 @EnableWebMvc
 @SpringBootApplication
@@ -28,6 +30,8 @@ public class Application {
         log.info("这是默认级别的信息");  // logback默认 (故.log.console只记录 展示 .info.warn.error)
         log.warn("这是警告信息");
         log.error("这是错误信息");
+
+        createDbDoc("${user.dir}/src/main/java/com/test/doc/sql");
 
     }
 }
