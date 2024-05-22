@@ -31,7 +31,8 @@ public class Application {
         log.warn("这是警告信息");
         log.error("这是错误信息");
 
-        createDbDoc("${user.dir}/src/main/java/com/test/doc/sql");
+        String currentDirectory = System.getProperty("user.dir");
+        createDbDoc(currentDirectory + "/src/main/java/com/test/doc/sql");
 
     }
 }
