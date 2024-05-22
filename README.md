@@ -126,8 +126,53 @@
 
 ## **4. 相关模块**
 
-
-
+```
+Rhythm
+├─src
+│  ├─main
+│  │  ├─java
+│  │  │  └─com
+│  │  │      └─test
+│  │  │          ├─bean
+│  │  │          │  ├─bo
+│  │  │          │  ├─dto
+│  │  │          │  ├─po
+│  │  │          │  └─vo
+│  │  │          ├─config
+│  │  │          ├─controller
+│  │  │          │  ├─advertise
+│  │  │          │  ├─favorites
+│  │  │          │  ├─music
+│  │  │          │  ├─musicCategories
+│  │  │          │  └─users
+│  │  │          ├─doc
+│  │  │          │  └─sql
+│  │  │          ├─exception
+│  │  │          ├─handler
+│  │  │          ├─interceptor
+│  │  │          ├─log
+│  │  │          ├─mapper
+│  │  │          ├─security
+│  │  │          ├─service
+│  │  │          │  └─impl
+│  │  │          ├─task
+│  │  │          └─utils
+│  │  └─resources
+│  │      ├─com
+│  │      │  └─test
+│  │      │      └─mapper
+│  │      ├─db
+│  │      │  └─migration
+│  │      ├─mapper
+│  │      └─static
+│  │          ├─audio
+│  │          ├─downloads
+│  │          └─uploads
+│  └─test
+│      └─java
+│          └─com
+│              └─test
+```
 
 
 
