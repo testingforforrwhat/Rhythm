@@ -6,17 +6,9 @@ import com.test.service.MusicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.File;
-import java.io.IOException;
 
 @Controller
 @Api(tags = "音乐模块")
@@ -186,11 +178,27 @@ public class MusicController {
 
     @ResponseBody
     @GetMapping("/audio/{music_id}")
-    public ResponseEntity<byte[]> getAudio(@PathVariable String music_id) throws IOException {
-        ResponseEntity<byte[]> file = musicService.loadAudioAsResource(music_id);
-        System.out.println(file);
+    public byte[] getAudio(@PathVariable String music_id) {
+        byte[] audioStream = musicService.loadAudioAsResource(music_id);
+        System.out.println("audioStream.readAllBytes(): " + audioStream);
+        System.out.println("audioStream.readAllBytes(): " + audioStream.toString());
 
-        return file;
+//        // 实例化响应报文头对象
+//        HttpHeaders headers = new HttpHeaders();
+//        // 设置响应报文头，指示浏览器以流式方式播放音频
+//        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+//        System.out.println(headers);
+//        System.out.println(HttpStatus.OK);
+//
+//        // 返回响应报文
+//        return new ResponseEntity<>(
+//                audioStream.readAllBytes(),  // 响应报文体
+//                headers,                              // 响应报文头
+//                HttpStatus.OK                          // 响应状态
+//        );
+
+        return audioStream;
+
     }
 
 }

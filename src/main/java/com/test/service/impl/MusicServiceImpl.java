@@ -11,24 +11,15 @@ import com.test.bean.po.Music;
 import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
 import com.test.utils.RedisUtil;
-import org.apache.commons.io.FileUtils;
 import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import javax.annotation.Resource;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.io.*;
 import java.util.List;
-import java.util.Set;
 
 /**
 * @author 23194
@@ -37,7 +28,7 @@ import java.util.Set;
 */
 @Service
 public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
-    implements MusicService{
+    implements MusicService {
 
 
     // 依赖项
@@ -56,7 +47,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      */
     @Override
     public Object selectByMusicId(Integer musicId) {
-        return musicMapper.selectById( musicId );
+        return musicMapper.selectById(musicId);
     }
 
     /**
@@ -66,7 +57,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      */
     @Override
     public Object listAll() {
-        return musicMapper.selectList( null );
+        return musicMapper.selectList(null);
     }
 
     /**
@@ -80,16 +71,16 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         // 创建用于添加的Music对象
         Music music = new Music();
         // 借组属性拷贝工具将bo中的同名的属性值 赋给 music
-        musicAddBo.setTitle( musicAddBo.getTitle() );
-        musicAddBo.setArtist( musicAddBo.getArtist() );
-        musicAddBo.setAlbum( musicAddBo.getAlbum() );
-        musicAddBo.setCategoryId( musicAddBo.getCategoryId() );
-        System.out.println( musicAddBo.getTitle() );
+        musicAddBo.setTitle(musicAddBo.getTitle());
+        musicAddBo.setArtist(musicAddBo.getArtist());
+        musicAddBo.setAlbum(musicAddBo.getAlbum());
+        musicAddBo.setCategoryId(musicAddBo.getCategoryId());
+        System.out.println(musicAddBo.getTitle());
 
 
-        BeanUtil.copyProperties(musicAddBo,music);
-        System.out.println( music );
-        return musicMapper.insert( music ) > 0 ? true : false;
+        BeanUtil.copyProperties(musicAddBo, music);
+        System.out.println(music);
+        return musicMapper.insert(music) > 0 ? true : false;
     }
 
     /**
@@ -101,19 +92,19 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     @Override
     public boolean updateMusic(MusicUpdateBo musicUpdateBo) {
 
-        System.out.println( musicUpdateBo );
+        System.out.println(musicUpdateBo);
         // 创建用于更新的UpdateWapper
         UpdateWrapper<Music> updateWrapper = new UpdateWrapper<>();
         // 设置需要更新的字段 和更新条件
-        updateWrapper.set("title",musicUpdateBo.getTitle())
-                .set("artist",musicUpdateBo.getArtist())
-                .set("album",musicUpdateBo.getAlbum())
-                .set("category_id",musicUpdateBo.getCategoryId())
-                .eq("music_id",musicUpdateBo.getMusicId());
+        updateWrapper.set("title", musicUpdateBo.getTitle())
+                .set("artist", musicUpdateBo.getArtist())
+                .set("album", musicUpdateBo.getAlbum())
+                .set("category_id", musicUpdateBo.getCategoryId())
+                .eq("music_id", musicUpdateBo.getMusicId());
 
-        System.out.println( "updateWrapper:" + updateWrapper );
+        System.out.println("updateWrapper:" + updateWrapper);
         int update = musicMapper.update(new Music(), updateWrapper);
-        System.out.println( "musicUpdateBo:" + musicUpdateBo );
+        System.out.println("musicUpdateBo:" + musicUpdateBo);
         // 因为这个方法需要将更新过后的数据返回 所以可以再次查询数据库
         Music music = musicMapper.selectById(musicUpdateBo.getCategoryId());
         return update > 0 ? true : false;
@@ -128,7 +119,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      */
     @Override
     public boolean deleteMusic(Integer musicId) {
-        return musicMapper.deleteById( musicId ) > 0 ? true : false;
+        return musicMapper.deleteById(musicId) > 0 ? true : false;
     }
 
     /**
@@ -141,7 +132,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     public List<Music> listByBo(MusicSearchBo musicSearchBo) {
 
         // 使用PageHelper进行分页
-        PageHelper.startPage( musicSearchBo.getPage(),musicSearchBo.getPageSize() );
+        PageHelper.startPage(musicSearchBo.getPage(), musicSearchBo.getPageSize());
 //        List<Music> musicList = musicMapper.selectAll();
 //        PageInfo<Music> pageInfo = new PageInfo<Music>(musicList);
 //        System.out.println(musicList);
@@ -151,7 +142,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     }
 
     @Override
-    public ResponseEntity<byte[]> loadAudioAsResource(String music_id) {
+    public byte[] loadAudioAsResource(String music_id) {
         String filename = null;
         try {
             // 指定要播放的音频文件
@@ -171,30 +162,18 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                 zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
 
 
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                System.out.println("audioInputStream: " + audioInputStream);
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+                System.out.println("audioStream: " + audioStream);
 //                Clip clip = AudioSystem.getClip();
 //                clip.open(audioInputStream);
 //                clip.start();
 
-                // 实例化响应报文头对象
-                HttpHeaders headers = new HttpHeaders();
-                // 设置响应报文头，指示浏览器以流式方式播放音频
-                headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-                System.out.println(headers);
-                System.out.println(HttpStatus.OK);
-
-                // 返回响应报文
-                return new ResponseEntity<>(
-                        audioInputStream.readAllBytes(),  // 响应报文体
-                        headers,                              // 响应报文头
-                        HttpStatus.OK                          // 响应状态
-                );
+                return audioStream.readAllBytes();
             }
         } catch (Exception e) {
             throw new RuntimeException("Error loading file " + filename, e);
         }
-        return ResponseEntity.notFound().build();
+        return null;
     }
 
     @Override
@@ -216,12 +195,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     }
 
     private void incrementPlayCount(String music_id) {
-        redisUtil.incr("audio:playcountByWeekByMusicId:" + music_id,1);
+        redisUtil.incr("audio:playcountByWeekByMusicId:" + music_id, 1);
     }
-
-
-
-
 
 }
 
