@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 @Controller
 @Api(tags = "音乐模块")
 @RequestMapping("/api")
@@ -178,10 +180,11 @@ public class MusicController {
 
     @ResponseBody
     @GetMapping("/audio/{music_id}")
-    public byte[] getAudio(@PathVariable String music_id) {
+    public String getAudio(@PathVariable String music_id) {
         byte[] audioBytes = musicService.loadAudioAsResource(music_id);
         System.out.println("audioStream.readAllBytes(): " + audioBytes);
-        System.out.println("audioStream.readAllBytes(): " + audioBytes.toString());
+        // 打印读取的音频数组
+        System.out.println("audioStream.readAllBytes(): " + Arrays.toString(audioBytes));
         System.out.println("读取音频文件成功，字节数组长度：" + audioBytes.length);
 
 //        // 实例化响应报文头对象
@@ -198,7 +201,7 @@ public class MusicController {
 //                HttpStatus.OK                          // 响应状态
 //        );
 
-        return audioBytes;
+        return Arrays.toString(audioBytes);
 
     }
 
