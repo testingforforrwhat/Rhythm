@@ -179,9 +179,10 @@ public class MusicController {
     @ResponseBody
     @GetMapping("/audio/{music_id}")
     public byte[] getAudio(@PathVariable String music_id) {
-        byte[] audioStream = musicService.loadAudioAsResource(music_id);
-        System.out.println("audioStream.readAllBytes(): " + audioStream);
-        System.out.println("audioStream.readAllBytes(): " + audioStream.toString());
+        byte[] audioBytes = musicService.loadAudioAsResource(music_id);
+        System.out.println("audioStream.readAllBytes(): " + audioBytes);
+        System.out.println("audioStream.readAllBytes(): " + audioBytes.toString());
+        System.out.println("读取音频文件成功，字节数组长度：" + audioBytes.length);
 
 //        // 实例化响应报文头对象
 //        HttpHeaders headers = new HttpHeaders();
@@ -197,7 +198,7 @@ public class MusicController {
 //                HttpStatus.OK                          // 响应状态
 //        );
 
-        return audioStream;
+        return audioBytes;
 
     }
 
