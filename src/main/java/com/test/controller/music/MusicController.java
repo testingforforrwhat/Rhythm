@@ -2,14 +2,22 @@ package com.test.controller.music;
 
 
 import com.test.bean.bo.*;
+import com.test.mapper.MusicMapper;
 import com.test.service.MusicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 @Controller
@@ -205,4 +213,23 @@ public class MusicController {
 
     }
 
+
+    // 依赖项
+    @Resource
+    private MusicMapper musicMapper;
+
+    @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @ResponseBody
+    public byte[] playAudio(@PathVariable String music_id) throws IOException {
+
+        // 指定要播放的音频文件
+        String filename = musicMapper.selectById(music_id).getMusicFile();
+        System.out.println(filename);
+
+        String filePath = "src/main/resources/" +
+                "static/audio/" + filename;
+        System.out.println("filePath: " + filePath);
+        Path audioFilePath = Paths.get( filePath );
+        return Files.readAllBytes(audioFilePath);
+    }
 }
