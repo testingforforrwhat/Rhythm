@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -225,10 +226,11 @@ public class MusicController {
         String filename = musicMapper.selectById(music_id).getMusicFile();
         System.out.println(filename);
 
-        String filePath = "src/main/resources/" +
+        String filePath = ResourceUtils.getURL("classpath:").getPath() +
                 "static/audio/" + filename;
-        System.out.println("filePath: " + filePath);
-        Path audioFilePath = Paths.get( filePath );
+        String fileNewPath = filePath.substring(1);
+        System.out.println("fileNewPath: " + fileNewPath);
+        Path audioFilePath = Paths.get( fileNewPath );
         return Arrays.toString(Files.readAllBytes(audioFilePath));
     }
 }
