@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -220,7 +219,7 @@ public class MusicController {
 
     @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
-    public byte[] playAudio(@PathVariable String music_id) throws IOException {
+    public String playAudio(@PathVariable String music_id) throws IOException {
 
         // 指定要播放的音频文件
         String filename = musicMapper.selectById(music_id).getMusicFile();
@@ -230,6 +229,6 @@ public class MusicController {
                 "static/audio/" + filename;
         System.out.println("filePath: " + filePath);
         Path audioFilePath = Paths.get( filePath );
-        return Files.readAllBytes(audioFilePath);
+        return Arrays.toString(Files.readAllBytes(audioFilePath));
     }
 }
