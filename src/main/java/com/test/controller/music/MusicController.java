@@ -1,6 +1,7 @@
 package com.test.controller.music;
 
 
+import com.test.annotation.RedisCache;
 import com.test.bean.bo.*;
 import com.test.mapper.MusicMapper;
 import com.test.service.MusicService;
@@ -227,6 +228,7 @@ public class MusicController {
     @Resource
     private RedisUtil redisUtil;
 
+    @RedisCache( duration = 60 * 60 )
     @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
     public String playAudio(@PathVariable String music_id) throws IOException {
