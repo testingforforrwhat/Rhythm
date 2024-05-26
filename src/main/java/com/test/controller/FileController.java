@@ -44,11 +44,15 @@ public class FileController {
         String filename = UUID.randomUUID().toString() +
                 multipartFile.getOriginalFilename().substring( multipartFile.getOriginalFilename().lastIndexOf(".") );
 
+
+        String filePath = ResourceUtils.getURL("classpath:").getPath() +
+                "static/uploads/" + filename;
+        // 绝对路径前面多了一个/ 去除
+        String fileNewPath = filePath.substring(1);
+        System.out.println("fileNewPath: " + fileNewPath);
+
         // 指定 转移目标文件
-        File target = new File(
-                ResourceUtils.getURL("classpath:").getPath() +
-                        "static/uploads/" +
-                        filename );
+        File target = new File( filePath );
 
         // 将 上传文件 从临时目录 转移到 目标文件夹
         multipartFile.transferTo( target );
