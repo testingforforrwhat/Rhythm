@@ -1,6 +1,8 @@
 package com.test.aop;
 
 import com.test.annotation.RedisCache;
+import com.test.mapper.MusicMapper;
+import com.test.utils.AudioParserUtils;
 import com.test.utils.RedisUtil;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -10,9 +12,11 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +32,13 @@ public class RedisAspect {
 
     // 依赖项
     @Resource
+    private MusicMapper musicMapper;
+
+    @Resource
     private RedisUtil redisUtil;
+
+    @Resource
+    private AudioParserUtils audioParserUtils;
 
     /**
      *
@@ -73,6 +83,15 @@ public class RedisAspect {
                 // 2.1 缓存命中，直接返回缓存数据
                 System.out.println("Redis ==> 缓存命中，直接返回缓存数据！ ");
                 logger.info("Redis ==> 缓存命中，直接返回缓存数据！ ");
+
+                audioParserUtils.incrementPlayCount(Arrays.stream(joinPoint.getArgs()).iterator().next().toString());
+
+                String filename = musicMapper.selectById(Arrays.stream(joinPoint.getArgs()).iterator().next().toString()).getMusicFile();
+                System.out.println(filename);
+                logger.info("filename ==> " + filename);
+                ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
+                zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + Arrays.stream(joinPoint.getArgs()).iterator().next().toString()));
+
                 // ==> 缓存穿透 => 判断Redis中查询到的缓存数据是否是 "null"
                 return "null".equals(cacheData) ? null : cacheData;
             }
