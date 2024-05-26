@@ -65,7 +65,7 @@
     </appender>
 
 
-    <!--需求：要求info级别的信息输出到d:/log/login.log文件中-->
+    <!--需求：要求info级别的信息输出到d:/log/info.log文件中-->
     <appender name="_log_info" class="ch.qos.logback.core.FileAppender">
         <encoder>
             <pattern>${log_pattern}</pattern>
@@ -80,13 +80,30 @@
         </filter>
     </appender>
 
+    <!--需求：要求warn级别的信息输出到d:/log/warn.log文件中-->
+    <appender name="_log_warn" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+        <file>${log_path}/warn.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <!--设置高于这个级别的打印-->
+            <onMatch>ACCEPT</onMatch>
+            <!--低于这个级别不显示-->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+
     <!--根日志记录器 可以配置多个Appender
         ALL: 表示所有级别的日志全部输出
     -->
     <root level="ALL">
         <appender-ref ref="_consoleAppender"></appender-ref>  <!--日志信息输出到控制台-->
-        <appender-ref ref="_fileAppender"></appender-ref>  <!--日志输出到文件-->
+        <appender-ref ref="_fileAppender"></appender-ref>  <!--日志输出到文件 test.log-->
         <appender-ref ref="_rollFileAppender"></appender-ref>  <!--再添加一个appender，指定日志的拆分规则-->
         <appender-ref ref="_log_info"></appender-ref>  <!--需求：要求info级别的信息输出到d:/log/login.log文件中-->
+        <appender-ref ref="_log_warn"></appender-ref>  <!--需求：要求info级别的信息输出到d:/log/warn.log文件中-->
     </root>
 </configuration>
