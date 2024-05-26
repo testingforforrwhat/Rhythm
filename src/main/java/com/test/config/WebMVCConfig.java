@@ -40,6 +40,14 @@ public class WebMVCConfig implements WebMvcConfigurer {
          *
          * 如果json字符串经过两次序列化，会在各个属性前多一个\
          *
+         * @RedisCache( duration = 60 * 60 )
+         *     @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+         *     @ResponseBody
+         *     public String playAudio(@PathVariable String music_id) throws IOException {
+         *
+         *     该接口返回的是String, 是json格式的String
+         *
+         *
          */
         converters.clear();
         StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
