@@ -4,10 +4,13 @@ package com.test.controller.music;
 import com.test.bean.bo.*;
 import com.test.mapper.MusicMapper;
 import com.test.service.MusicService;
+import com.test.utils.AudioParserUtils;
+import com.test.utils.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
@@ -218,6 +221,12 @@ public class MusicController {
     @Resource
     private MusicMapper musicMapper;
 
+    @Resource
+    private AudioParserUtils audioParserUtils;
+
+    @Resource
+    private RedisUtil redisUtil;
+
     @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
     public String playAudio(@PathVariable String music_id) throws IOException {
@@ -231,6 +240,12 @@ public class MusicController {
         String fileNewPath = filePath.substring(1);
         System.out.println("fileNewPath: " + fileNewPath);
         Path audioFilePath = Paths.get( fileNewPath );
+
+        audioParserUtils.incrementPlayCount(music_id);
+
+        ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
+        zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
+
         return Arrays.toString(Files.readAllBytes(audioFilePath));
     }
 }
