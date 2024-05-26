@@ -85,7 +85,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
 /**
  *
  *
- * List<HttpMessageConverter<?>> converters 是一个用于存储 HTTP 消息转换器的列表。在 Spring MVC 中，HTTP 消息转换器被用来将 Java 对象 (接口返回的是一个对象/String/List/Map，但是SpringMVC会将它转成JSON，但是前提是引入jsonson依赖并开启了mvc的注解驱动;
+ * List<HttpMessageConverter<?>> converters 是一个用于存储 HTTP 消息转换器的列表。在 Spring MVC 中，HTTP 消息转换器被用来将 Java 对象 (接口返回的是一个对象/String/List/Map，但是SpringMVC会将它转成JSON，但是前提是引入json依赖并开启了mvc的注解驱动;
  *                                                                                                                                                              springboot 默认添加jackson-databind作为json处理器，此时不需要添加额外的json处理器就能自动以之返回一段json) 转换为 HTTP 请求或响应的内容，如 JSON、XML 等，并且负责处理请求和响应之间的格式转换。
  *
  * 在您的 Spring MVC 应用程序中，您可以通过配置 converters 列表来添加或配置不同类型的 HTTP 消息转换器，以满足您的需求。例如，您可以添加一个用于处理 JSON 数据的转换器、一个用于处理 XML 数据的转换器等。
