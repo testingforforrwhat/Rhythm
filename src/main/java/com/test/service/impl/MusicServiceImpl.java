@@ -164,7 +164,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             if (file.exists()) {
 
 
-                incrementPlayCount(music_id);
+                audioParserUtils.incrementPlayCount(music_id);
 
                 ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
                 zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
@@ -220,10 +220,6 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         byteArrayOutputStream.close();
 
         return byteArrayOutputStream.toByteArray();
-    }
-
-    private void incrementPlayCount(String music_id) {
-        redisUtil.incr("audio:playcountByWeekByMusicId:" + music_id, 1);
     }
 
 }
