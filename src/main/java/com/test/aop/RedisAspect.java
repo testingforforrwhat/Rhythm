@@ -34,11 +34,11 @@ public class RedisAspect {
      *
      * 常见的切点表达式包括：
      *
-     * execution(* com.example.service.*.*(..))：匹配 com.example.service 包下的所有方法。
+     * "execution(* com.example.service.*.*(..))"：匹配 com.example.service 包下的所有方法。
      *
-     * within(com.example.service..*)：匹配 com.example.service 包及其子包下的所有类的所有方法。
+     * "within(com.example.service..*)"：匹配 com.example.service 包及其子包下的所有类的所有方法。
      *
-     * @annotation(org.springframework.transaction.annotation.Transactional)：匹配所有带有 @Transactional 注解的方法。
+     * "@annotation(org.springframework.transaction.annotation.Transactional)"：匹配所有带有 @Transactional 注解的方法。
      *
      *
      */
