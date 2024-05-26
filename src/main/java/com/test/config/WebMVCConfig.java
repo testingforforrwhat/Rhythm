@@ -46,6 +46,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
          *     public String playAudio(@PathVariable String music_id) throws IOException {
          *
          *     该接口返回的是String, 是json格式的String
+         *                        是SpringRest自动生成返回的 json格式的String
          *
          *
          */
