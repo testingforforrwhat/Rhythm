@@ -57,7 +57,7 @@
         <!--指定拆分规则-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--指定拆分之后的日志文件的名字 以及压缩格式-->
-            <fileNamePattern>${log_path}/logback.%d{yyyy-MM-dd}.log%i.gz</fileNamePattern>
+            <fileNamePattern>${log_path}/logback/logback.%d{yyyy-MM-dd}.log%i.gz</fileNamePattern>
             <!--指定拆分大小-->
             <maxFileSize>100KB</maxFileSize>
             <maxHistory>60</maxHistory>
