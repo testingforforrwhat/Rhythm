@@ -40,19 +40,19 @@ public class WebMVCConfig implements WebMvcConfigurer {
         StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
         converters.add(converter);
 
-        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
-        List<MediaType> supportMediaTypeList = new ArrayList<>();
-        supportMediaTypeList.add(MediaType.APPLICATION_JSON);
-        supportMediaTypeList.add(MediaType.APPLICATION_OCTET_STREAM);
-        FastJsonConfig config = new FastJsonConfig();
-        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
-        config.setCharset(Charset.forName("UTF-8"));
-        config.setSerializerFeatures(
-                SerializerFeature.DisableCircularReferenceDetect,
-                SerializerFeature.PrettyFormat);
-        fastJsonHttpMessageConverter.setFastJsonConfig(config);
-        fastJsonHttpMessageConverter.setSupportedMediaTypes(supportMediaTypeList);
-        converters.add(fastJsonHttpMessageConverter);
+//        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+//        List<MediaType> supportMediaTypeList = new ArrayList<>();
+//        supportMediaTypeList.add(MediaType.APPLICATION_JSON);
+//        supportMediaTypeList.add(MediaType.APPLICATION_OCTET_STREAM);
+//        FastJsonConfig config = new FastJsonConfig();
+//        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
+//        config.setCharset(Charset.forName("UTF-8"));
+//        config.setSerializerFeatures(
+//                SerializerFeature.DisableCircularReferenceDetect,
+//                SerializerFeature.PrettyFormat);
+//        fastJsonHttpMessageConverter.setFastJsonConfig(config);
+//        fastJsonHttpMessageConverter.setSupportedMediaTypes(supportMediaTypeList);
+//        converters.add(fastJsonHttpMessageConverter);
 
     }
 }
