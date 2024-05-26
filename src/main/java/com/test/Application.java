@@ -7,6 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import oshi.SystemInfo;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.GlobalMemory;
+import oshi.software.os.OperatingSystem;
 
 import static com.test.task.DbDocCreat.createDbDoc;
 
@@ -33,6 +37,16 @@ public class Application {
 
         String currentDirectory = System.getProperty("user.dir");
         createDbDoc(currentDirectory + "/src/main/java/com/test/doc/sql");
+
+        SystemInfo si = new SystemInfo();
+        OperatingSystem os = si.getOperatingSystem();
+        CentralProcessor cpu = si.getHardware().getProcessor();
+        GlobalMemory memory = si.getHardware().getMemory();
+
+        log.info("Operating System: " + os.toString());
+        log.info("Processor: " + cpu.toString());
+        log.info("Total Memory: " + memory.getTotal());
+        log.info("Available Memory: " + memory.getAvailable());
 
     }
 }
