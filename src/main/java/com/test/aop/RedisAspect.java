@@ -39,7 +39,7 @@ public class RedisAspect {
     public Object around(ProceedingJoinPoint joinPoint , RedisCache redisCache) throws Throwable {
 
         System.out.println( "Redis ==> 开启缓存策略！ " );
-        System.out.println( "Redis ==> 开启缓存策略！ " );
+        log.info( "Redis ==> 开启缓存策略！ " );
 
         // 步骤一：去Redis中读取缓存数据
         // Redis Key 生成规则：方法签名+实参数据
