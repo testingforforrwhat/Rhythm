@@ -122,7 +122,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
  * RssChannelHttpMessageConverter
  * SourceHttpMessageConverter
  * StringHttpMessageConverter
- * XmlBeamHttpMessageConverter
+ * XmlBeamHttpMessageConverter  https://www.cnblogs.com/xuruiming/p/13283288.html
  *
  */
 
