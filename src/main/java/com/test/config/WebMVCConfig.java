@@ -36,6 +36,11 @@ public class WebMVCConfig implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 使用 fastjson 序列化，会导致 @JsonIgnore 失效，可以使用 @JSONField(serialize = false) 替换
 
+        /**
+         *
+         * 如果json字符串经过两次序列化，会在各个属性前多一个\
+         *
+         */
         converters.clear();
         StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
         converters.add(converter);
