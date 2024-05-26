@@ -85,8 +85,8 @@
     -->
     <root level="ALL">
         <appender-ref ref="_consoleAppender"></appender-ref>
-<!--        <appender-ref ref="_fileAppender"></appender-ref>-->
-<!--        <appender-ref ref="_rollFileAppender"></appender-ref>-->
+        <appender-ref ref="_fileAppender"></appender-ref>
+        <appender-ref ref="_rollFileAppender"></appender-ref>
         <appender-ref ref="_log_info"></appender-ref>
     </root>
 </configuration>
