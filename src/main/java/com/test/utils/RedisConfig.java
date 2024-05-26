@@ -34,6 +34,12 @@ public class RedisConfig {
         return redisTemplate;
     }
 
+    /**
+     * 如果容器中不存在对应类型的 Bean，那么当前的 Bean 才会被注册
+     * @param connectionFactory
+     * @return
+     * @throws UnknownHostException
+     */
     @Bean
     @ConditionalOnMissingBean
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory connectionFactory) throws UnknownHostException {
