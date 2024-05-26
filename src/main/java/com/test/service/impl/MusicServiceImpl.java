@@ -10,6 +10,7 @@ import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
+import com.test.utils.AudioParserUtils;
 import com.test.utils.RedisUtil;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ import javax.annotation.Resource;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,6 +42,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
     @Resource
     private RedisUtil redisUtil;
+
+    @Resource
+    private AudioParserUtils audioParserUtils;
 
 
     /**
@@ -174,6 +182,26 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             throw new RuntimeException("Error loading file " + filename, e);
         }
         return null;
+    }
+
+    @Override
+    public String plyaAudio(String music_id) throws IOException {
+        // 指定要播放的音频文件
+        String filename = musicMapper.selectById(music_id).getMusicFile();
+        System.out.println(filename);
+
+        String filePath = ResourceUtils.getURL("classpath:").getPath() +
+                "static/audio/" + filename;
+        String fileNewPath = filePath.substring(1);
+        System.out.println("fileNewPath: " + fileNewPath);
+        Path audioFilePath = Paths.get( fileNewPath );
+
+        audioParserUtils.incrementPlayCount(music_id);
+
+        ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
+        zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
+
+        return Arrays.toString(Files.readAllBytes(audioFilePath));
     }
 
     @Override

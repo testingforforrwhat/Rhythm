@@ -218,36 +218,11 @@ public class MusicController {
     }
 
 
-    // 依赖项
-    @Resource
-    private MusicMapper musicMapper;
-
-    @Resource
-    private AudioParserUtils audioParserUtils;
-
-    @Resource
-    private RedisUtil redisUtil;
-
     @RedisCache( duration = 60 * 60 )
     @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
     public String playAudio(@PathVariable String music_id) throws IOException {
 
-        // 指定要播放的音频文件
-        String filename = musicMapper.selectById(music_id).getMusicFile();
-        System.out.println(filename);
-
-        String filePath = ResourceUtils.getURL("classpath:").getPath() +
-                "static/audio/" + filename;
-        String fileNewPath = filePath.substring(1);
-        System.out.println("fileNewPath: " + fileNewPath);
-        Path audioFilePath = Paths.get( fileNewPath );
-
-        audioParserUtils.incrementPlayCount(music_id);
-
-        ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
-        zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
-
-        return Arrays.toString(Files.readAllBytes(audioFilePath));
+        return musicService.plyaAudio(music_id);
     }
 }
