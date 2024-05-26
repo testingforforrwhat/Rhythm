@@ -48,6 +48,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
          *     该接口返回的是String, 是json格式的String
          *                        是SpringRest自动生成返回的 json格式的String
          *
+         *      如果此处直接 FastJsonMessageConverter, 或者 StringMessageConverter 在之后运行, 则接口返回的 String, 会再次序列化, 这就
          *
          */
         converters.clear();
@@ -69,4 +70,5 @@ public class WebMVCConfig implements WebMvcConfigurer {
 //        converters.add(fastJsonHttpMessageConverter);
 
     }
+
 }
