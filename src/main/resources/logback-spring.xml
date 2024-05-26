@@ -84,9 +84,9 @@
         ALL: 表示所有级别的日志全部输出
     -->
     <root level="ALL">
-        <appender-ref ref="_consoleAppender"></appender-ref>
-        <appender-ref ref="_fileAppender"></appender-ref>
-        <appender-ref ref="_rollFileAppender"></appender-ref>
-        <appender-ref ref="_log_info"></appender-ref>
+        <appender-ref ref="_consoleAppender"></appender-ref>  <!--日志信息输出到控制台-->
+        <appender-ref ref="_fileAppender"></appender-ref>  <!--日志输出到文件-->
+        <appender-ref ref="_rollFileAppender"></appender-ref>  <!--再添加一个appender，指定日志的拆分规则-->
+        <appender-ref ref="_log_info"></appender-ref>  <!--需求：要求info级别的信息输出到d:/log/login.log文件中-->
     </root>
 </configuration>
