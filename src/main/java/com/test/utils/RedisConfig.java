@@ -15,6 +15,13 @@ import java.net.UnknownHostException;
 @Configuration
 public class RedisConfig {
 
+    /**
+     *
+     * 如果容器中不存在名为 "redisTemplate" 的 Bean，那么当前的 Bean 就会被自动配置
+     *
+     * @param connectionFactory
+     * @return
+     */
     @Bean
     @ConditionalOnMissingBean(
             name = { "redisTemplate" }
