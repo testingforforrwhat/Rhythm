@@ -223,6 +223,6 @@ public class MusicController {
     @ResponseBody
     public String playAudio(@PathVariable String music_id) throws IOException {
 
-        return musicService.plyaAudio(music_id);
+        return musicService.playAudio(music_id);
     }
 }

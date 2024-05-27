@@ -185,7 +185,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     }
 
     @Override
-    public String plyaAudio(String music_id) throws IOException {
+    public String playAudio(String music_id) throws IOException {
         // 指定要播放的音频文件
         String filename = musicMapper.selectById(music_id).getMusicFile();
         System.out.println(filename);
