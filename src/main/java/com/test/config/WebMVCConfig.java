@@ -59,13 +59,14 @@ public class WebMVCConfig implements WebMvcConfigurer {
          *
          *
          */
-        converters.clear();
+//        converters.clear();
         StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
         converters.add(converter);
 
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         List<MediaType> supportMediaTypeList = new ArrayList<>();
         supportMediaTypeList.add(MediaType.APPLICATION_JSON);
+        supportMediaTypeList.add(MediaType.ALL);
         supportMediaTypeList.add(MediaType.APPLICATION_OCTET_STREAM);
         FastJsonConfig config = new FastJsonConfig();
         config.setDateFormat("yyyy-MM-dd HH:mm:ss");
