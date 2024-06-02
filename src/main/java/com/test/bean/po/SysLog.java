@@ -1,9 +1,7 @@
 package com.test.bean.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
@@ -15,6 +13,12 @@ import lombok.Data;
 @TableName(value ="sys_log")
 @Data
 public class SysLog implements Serializable {
+
+    public SysLog(String logType, Long time) {
+        this.logType = logType;
+        this.time = time;
+    }
+
     /**
      * ID
      */
@@ -74,6 +78,7 @@ public class SysLog implements Serializable {
     /**
      * 创建日期
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     @TableField(exist = false)
