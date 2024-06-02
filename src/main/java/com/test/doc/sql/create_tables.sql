@@ -159,3 +159,25 @@ INSERT INTO play_history (user_id, song_id, play_date, platform, duration_second
                                                                                        (8, 8, '2024-04-08 09:40:00', 'Mobile', 260),
                                                                                        (9, 9, '2024-04-09 16:25:00', 'Web', 230),
                                                                                        (10, 10, '2024-04-10 13:15:00', 'Mobile', 280);
+
+-- ----------------------------
+-- Table structure for sys_log
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_log`;
+CREATE TABLE `sys_log` (
+                           `log_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                           `description` varchar(255) DEFAULT NULL COMMENT '描述',
+                           `log_type` varchar(10) DEFAULT NULL COMMENT '日志类型',
+                           `method` varchar(255) DEFAULT NULL COMMENT '方法名',
+                           `params` text DEFAULT NULL COMMENT '参数',
+                           `request_ip` varchar(255) DEFAULT NULL COMMENT '请求ip',
+                           `time` bigint(20) DEFAULT NULL COMMENT '请求耗时',
+                           `username` varchar(255) DEFAULT NULL COMMENT '操作用户',
+                           `address` varchar(255) DEFAULT NULL COMMENT '地址',
+                           `browser` varchar(255) DEFAULT NULL COMMENT '浏览器',
+                           `exception_detail` text DEFAULT NULL COMMENT '异常详细',
+                           `create_time` datetime DEFAULT NULL COMMENT '创建日期',
+                           PRIMARY KEY (`log_id`) USING BTREE,
+                           KEY `log_create_time_index` (`create_time`),
+                           KEY `inx_log_type` (`log_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3537 ROW_FORMAT=COMPACT COMMENT='系统日志';
