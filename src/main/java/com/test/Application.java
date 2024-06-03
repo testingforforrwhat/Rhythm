@@ -22,6 +22,16 @@ import static com.test.task.DbDocCreat.createDbDoc;
  *
  * 这些派生注解有助于提高代码的可读性和语义清晰度，尽管在功能上它们和 @Component 是一样的。
  *
+ *
+ * @Configuration 注解用于标记一个类为配置类，其中包含了用来配置应用程序上下文的信息。
+ * 配置类主要用于定义 Bean 的配置和依赖关系，提供了一种将多个 @Bean 方法组织在一起的方式。
+ * Spring 在启动时会扫描 @Configuration 类，并为其中的 @Bean 方法创建和注册 Bean。
+ *
+ * @Bean 注解用于标记一个方法，该方法返回一个对象实例，该对象将被 Spring 容器管理并注册为 Bean。
+ * 通常情况下，@Bean 注解用在配置类（即标记了@Configuration的类）的方法上，用来注册需要被 Spring 管理的 Bean。
+ * 每个被 @Bean 注解标记的方法都会返回一个单独的 Bean 实例。方法的返回值（对象）注册为 Spring 上下文中的 Bean。
+ * 单例保证： Spring 确保每个 @Bean 方法只会被调用一次，保证 Bean 的单例性（如果默认是单例作用域）。
+ *
  */
 @EnableScheduling
 @EnableWebMvc
