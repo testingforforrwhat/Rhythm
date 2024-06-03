@@ -18,7 +18,7 @@ import static com.test.task.DbDocCreat.createDbDoc;
  *
  * Spring 根据 @ComponentScan 注解扫描指定包下的类，寻找任何被 @Component、@Service、@Repository 或 @Controller 标记的类。
  *
- * 对于找到的每个类，Spring 容器通过反射实例化对象，并将这些对象注册到应用上下文中作为 Bean。
+ * 对于找到的每个类，Spring 容器通过反射实例化对象，并将这些对象注册到应用上下文中作为 Bean。否则只能手动new()
  *
  * 这些派生注解有助于提高代码的可读性和语义清晰度，尽管在功能上它们和 @Component 是一样的。
  *
