@@ -23,7 +23,7 @@ import static com.test.task.DbDocCreat.createDbDoc;
  * 这些派生注解有助于提高代码的可读性和语义清晰度，尽管在功能上它们和 @Component 是一样的。
  *
  *
- * @Configuration 注解用于标记一个类为配置类，其中包含了用来配置应用程序上下文的信息。
+ * @Configuration 注解用于标记一个类为配置类，告知其中包含了用来配置应用程序上下文的信息。
  * 配置类主要用于定义 Bean 的配置和依赖关系，提供了一种将多个 @Bean 方法组织在一起的方式。
  * Spring 在启动时会扫描 @Configuration 类，并为其中的 @Bean 方法创建和注册 Bean。
  *
