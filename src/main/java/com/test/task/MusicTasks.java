@@ -69,10 +69,14 @@ public class MusicTasks {
             // 指定要播放的音频文件
             String filename = songName;
             System.out.println(filename);
-            File file = new File(
-                    ResourceUtils.getURL("classpath:").getPath() +
-                            "static/audio/" + filename
-            );
+
+            String filePath = ResourceUtils.getURL("classpath:").getPath() +
+                    "static/audio/" + filename;
+            // 绝对路径前面多了一个/ 去除
+            String fileNewPath = filePath.substring(1);
+            System.out.println("fileNewPath: " + fileNewPath);
+
+            File file = new File( fileNewPath );
             System.out.println(file);
 
             byte[] bytes = FileUtils.readFileToByteArray(file);
