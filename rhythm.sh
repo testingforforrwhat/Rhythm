@@ -11,3 +11,8 @@ lsof -i :8001
 
 tail -f -n 10 out.log
 
+
+cd /usr/local/zookeeper/bin
+./zkServer.sh status
+./zkServer.sh start
+
