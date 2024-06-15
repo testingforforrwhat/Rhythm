@@ -15,7 +15,8 @@ tail -f -n 10 out.log
 cd /usr/local/redis
 ls -ltr
 ps -elf | grep redis
-./redis-server ./redis.conf
+cd /usr/local/redis/bin
+./redis-server ../conf/redis.conf
 ps -elf | grep redis
 
 cd /usr/local/zookeeper/bin
