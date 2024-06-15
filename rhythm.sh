@@ -16,3 +16,9 @@ cd /usr/local/zookeeper/bin
 ./zkServer.sh status
 ./zkServer.sh start
 
+cd /usr/local/kafka/bin/
+
+./kafka-server-start.sh /usr/local/kafka/config/server.properties &
+
+./kafka-topics.sh --list --bootstrap-server 127.0.0.1:9092
+
