@@ -25,7 +25,7 @@ cd /usr/local/zookeeper/bin
 
 cd /usr/local/kafka/bin/
 
-./kafka-server-start.sh /usr/local/kafka/config/server.properties &
+./kafka-server-start.sh -daemon /usr/local/kafka/config/server.properties
 
 ./kafka-topics.sh --list --bootstrap-server 127.0.0.1:9092
 
