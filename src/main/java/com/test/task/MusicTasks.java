@@ -26,6 +26,10 @@ public class MusicTasks {
     @Resource
     private RedisUtil redisUtil;
 
+    /**
+     *
+     * 时间间隔 1min，将歌曲播放次数统计数据更新到 数据库
+     */
     @Scheduled(fixedRate = 60000) // 每分钟运行一次
     @Transactional
     public void updatePlayCounts() {
@@ -52,6 +56,10 @@ public class MusicTasks {
         }
     }
 
+    /**
+     *
+     * 每天，查询有序集合中计数最高的前十个元素（歌曲）并将Top10的歌曲音频数据更新到 Redis 缓存
+     */
     @Scheduled(cron = "0 0 0 * * *") // 每天凌晨执行
     @Transactional
     public void setTopTenPlayCache() throws IOException {
@@ -89,7 +97,7 @@ public class MusicTasks {
 
     /**
      *
-     * 每周定时清除redis相关key,数据累加到sum
+     * 每周定时清除redis相关key; `music_play_count_week`数据累加到`music_play_count`字段
      */
     @Scheduled(cron = "0 0 0 * * MON") // 每周一凌晨执行
     @Transactional
