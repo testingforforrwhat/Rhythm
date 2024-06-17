@@ -84,6 +84,11 @@ public class RedisAspect {
             logger.info("Redis ==> 去Redis中查询缓存数据！ ");
             Object cacheData = redisUtil.get(key);
 
+            // 如果第一个键为空，再尝试使用备用键
+            if (cacheData == null) {
+                cacheData = redisUtil.get(keyTopTen);
+            }
+
             // 步骤二：判断缓存数据是否存在
             if (cacheData != null) {
                 // 2.1 缓存命中，直接返回缓存数据
