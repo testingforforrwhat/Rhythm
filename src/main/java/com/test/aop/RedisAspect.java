@@ -40,6 +40,7 @@ public class RedisAspect {
     @Resource
     private AudioParserUtils audioParserUtils;
 
+
     /**
      *
      * 常见的切点表达式包括：
@@ -70,6 +71,11 @@ public class RedisAspect {
         keyMap.put( "signature" , joinPoint.getSignature().toString() );
         keyMap.put( "arguments" , joinPoint.getArgs() );
         String key = JSON.toJSONString( keyMap );
+
+        String filenameTopTen = musicMapper.selectById(Arrays.stream(joinPoint.getArgs()).iterator().next().toString()).getMusicFile();
+        System.out.println(filenameTopTen);
+        String songNameTopTen = filenameTopTen;
+        String keyTopTen = "audio:file:playcountByWeekByMusicId:" + songNameTopTen;
 
         while( true ) {
 
