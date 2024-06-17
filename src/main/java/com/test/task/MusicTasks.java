@@ -13,6 +13,7 @@ import org.springframework.util.ResourceUtils;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Set;
 
 @Component
@@ -88,7 +89,7 @@ public class MusicTasks {
             System.out.println(file);
 
             byte[] bytes = FileUtils.readFileToByteArray(file);
-            redisUtil.set("audio:file:playcountByWeekByMusicId:" + songName, bytes);
+            redisUtil.set( "audio:file:playcountByWeekByMusicId:" + songName, Arrays.toString(bytes) );
 
 
 
