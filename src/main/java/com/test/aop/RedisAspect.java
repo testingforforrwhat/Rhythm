@@ -98,7 +98,7 @@ public class RedisAspect {
                 audioParserUtils.incrementPlayCount(Arrays.stream(joinPoint.getArgs()).iterator().next().toString());
 
                 String filename = musicMapper.selectById(Arrays.stream(joinPoint.getArgs()).iterator().next().toString()).getMusicFile();
-                System.out.println(filename);
+                System.out.println("filename: " + filename);
                 logger.info("filename ==> " + filename);
                 ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
                 zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + Arrays.stream(joinPoint.getArgs()).iterator().next().toString()));
