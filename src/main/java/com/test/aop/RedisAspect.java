@@ -73,7 +73,7 @@ public class RedisAspect {
         String key = JSON.toJSONString( keyMap );
 
         String filenameTopTen = musicMapper.selectById(Arrays.stream(joinPoint.getArgs()).iterator().next().toString()).getMusicFile();
-        System.out.println(filenameTopTen);
+        System.out.println("filenameTopTen: " + filenameTopTen);
         String songNameTopTen = filenameTopTen;
         String keyTopTen = "audio:file:playcountByWeekByMusicId:" + songNameTopTen;
 
