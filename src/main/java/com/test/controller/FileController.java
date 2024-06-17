@@ -92,12 +92,12 @@ public class FileController {
         System.out.println("fileNewPath: " + fileNewPath);
 
         // 指定 转移目标文件
-        File target = new File( filePath );
+        File target = new File(fileNewPath);
 
         // 将 上传文件 从临时目录 转移到 目标文件夹
         multipartFile.transferTo( target );
 
-        return null;
+        return "File upload successful: " + fileNewPath;
     }
 
     @GetMapping("/download")
