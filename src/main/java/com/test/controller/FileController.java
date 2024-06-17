@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.UUID;
 
+import static com.test.task.DbDocCreat.createDbDoc;
+
 @RestController
 @RequestMapping("/file")
 public class FileController {
@@ -95,9 +97,15 @@ public class FileController {
         File target = new File(fileNewPath);
 
         // 将 上传文件 从临时目录 转移到 目标文件夹
-        multipartFile.transferTo( target );
+//        multipartFile.transferTo( target );
 
-        return "File upload successful: " + fileNewPath;
+        // 上传的文件保存在 src/main/resources/static/audio/ 目录
+        String currentDirectory = System.getProperty("user.dir");  // 当前工作目录是指程序启动时所在的目录
+        System.out.println("currentDirectory: " + currentDirectory);
+        String targetLocalDirectory = currentDirectory + "/src/main/resources/static/audio/" + filename;
+        multipartFile.transferTo(new File(targetLocalDirectory));
+
+        return "File upload successful: " + fileNewPath +", " + targetLocalDirectory;
     }
 
     @GetMapping("/download")
