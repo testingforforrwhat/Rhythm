@@ -86,6 +86,7 @@ public class RedisAspect {
 
             // 如果第一个键为空，再尝试使用备用键
             if (cacheData == null) {
+                System.out.println("第一个键为空，尝试使用备用键");
                 cacheData = redisUtil.get(keyTopTen);
             }
 
