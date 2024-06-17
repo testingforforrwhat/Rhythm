@@ -103,6 +103,7 @@ public class FileController {
         String currentDirectory = System.getProperty("user.dir");  // 当前工作目录是指程序启动时所在的目录
         System.out.println("currentDirectory: " + currentDirectory);
         String targetLocalDirectory = currentDirectory + "/src/main/resources/static/audio/" + filename;
+        System.out.println("targetLocalDirectory: " + targetLocalDirectory);
         multipartFile.transferTo(new File(targetLocalDirectory));
 
         return "File upload successful: " + fileNewPath +", " + targetLocalDirectory;
