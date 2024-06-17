@@ -86,7 +86,7 @@ public class FileController {
 
 
         String filePath = ResourceUtils.getURL("classpath:").getPath() +
-                "static/uploads/" + filename;
+                "static/audio/" + filename;
         // 绝对路径前面多了一个/ 去除
         String fileNewPath = filePath.substring(1);
         System.out.println("fileNewPath: " + fileNewPath);
