@@ -36,7 +36,7 @@ public class UploadAudioFileCacheConsumer {
     public void consume(ConsumerRecord<String,String> record, Acknowledgment acknowledgment) {
         // 延迟处理消息，假设数据库主从同步时间为1秒，再加500毫秒
         System.out.println("==> 延迟处理消息，等待数据库主从同步..., 时间为1秒，再加500毫秒");
-        long delay = 1500L;
+        long delay = 15000L;
 
         scheduler.schedule(() -> {
             try {
