@@ -15,6 +15,7 @@ import com.test.utils.RedisUtil;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -128,7 +129,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @return
      */
     @Override
-    public boolean updateMusic(String music_id, String filename) {
+    public boolean updateMusic(Integer music_id, String filename) {
 
         System.out.println(music_id);
         // 创建用于更新的UpdateWapper
@@ -312,7 +313,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @return
      */
     @Override
-    public Object uploadAudioFileByMusicId(MultipartFile multipartFile, String music_id) throws IOException {
+    public Object uploadAudioFileByMusicId( @RequestParam("multipartFile") MultipartFile multipartFile, Integer music_id) throws IOException {
 
         System.out.println( "参数名称 = " + multipartFile.getName() );
         System.out.println( "文件类型 = " + multipartFile.getContentType() );

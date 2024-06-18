@@ -6,6 +6,7 @@ import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -52,7 +53,7 @@ public interface MusicService extends IService<Music> {
      * @param music_id
      * @return
      */
-    boolean updateMusic(String music_id, String filename);
+    boolean updateMusic(Integer music_id, String filename);
 
     /**
      * 删除音乐
@@ -87,6 +88,6 @@ public interface MusicService extends IService<Music> {
      * @param music_id
      * @return
      */
-    Object uploadAudioFileByMusicId( MultipartFile multipartFile, @PathVariable String music_id ) throws IOException;
+    Object uploadAudioFileByMusicId( @RequestParam("multipartFile") MultipartFile multipartFile, @PathVariable Integer music_id ) throws IOException;
 
 }
