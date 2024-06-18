@@ -330,7 +330,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String[] numbers = {theParameter};
 
         Map<String,Object> keyMap = new HashMap<>();
-        keyMap.put( "signature" , musicControllerClass.getMethod("playAudio",String.class).toString() );
+        keyMap.put( "signature" , "String com.test.controller.music.MusicController.playAudio(String)" );
         keyMap.put( "arguments" , numbers );
         String key = JSON.toJSONString( keyMap );
         System.out.println("待删除的redis key: " + key);
