@@ -222,23 +222,40 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
     @Override
     public String playAudio(String music_id) throws IOException {
-        // 指定要播放的音频文件
-        String filename = musicMapper.selectById(music_id).getMusicFile();
-        System.out.println(filename);
+        String filename = null;
 
-        String filePath = ResourceUtils.getURL("classpath:").getPath() +
-                "static/audio/" + filename;
-        // 绝对路径前面多了一个/ 去除
-        String fileNewPath = filePath.substring(1);
-        System.out.println("fileNewPath: " + fileNewPath);
-        Path audioFilePath = Paths.get( fileNewPath );
+            // 指定要播放的音频文件
+            filename = musicMapper.selectById(music_id).getMusicFile();
+            System.out.println(filename);
 
-        audioParserUtils.incrementPlayCount(music_id);
+            String filePath = ResourceUtils.getURL("classpath:").getPath() +
+                    "static/audio/" + filename;
+            // 绝对路径前面多了一个/ 去除
+            String fileNewPath = filePath.substring(1);
+            System.out.println("fileNewPath: " + fileNewPath);
+            Path audioFilePath = Paths.get(fileNewPath);
 
-        ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
-        zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
+            File file = new File(
+                    fileNewPath
+            );
+            System.out.println(file);
 
-        return Arrays.toString(Files.readAllBytes(audioFilePath));
+            if (file.exists()) {
+                audioParserUtils.incrementPlayCount(music_id);
+
+                ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
+                zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
+
+                return Arrays.toString(Files.readAllBytes(audioFilePath));
+            }
+            else {
+
+                System.out.println( "Error loading file " + filename);
+
+                return "Error loading file " + filename;
+
+            }
+
     }
 
     @Override
