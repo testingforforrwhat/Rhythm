@@ -11,6 +11,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
+/**
+ *
+ * 实现消息队列消费者读取到消息后延迟一段时间再处理，可以使用以下几种方法：
+ *
+ * 线程睡眠：简单直接的方法是让当前线程睡眠一段时间。但不推荐生产环境使用，因为它会阻塞线程。
+ * 调度任务：使用调度任务框架，如 ScheduledExecutorService 来调度任务。
+ * 消息队列特性：某些消息队列（如 RabbitMQ 和 Kafka）本身支持延迟队列或延迟消息特性。
+ *
+ */
 @Service
 public class UploadAudioFileCacheConsumer {
 
