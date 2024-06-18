@@ -40,6 +40,7 @@ public class UploadAudioFileCacheConsumer {
         scheduler.schedule(() -> {
             try {
                 // 再次删除缓存（保证双删）
+                System.out.println("==> 再次删除缓存（保证双删）");
                 Integer music_id = Integer.valueOf(JSON.parseObject( record.key() , String.class ));
                 cacheService.deleteCache(music_id);
                 // 确认消息
