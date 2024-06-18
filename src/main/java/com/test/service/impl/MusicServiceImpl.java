@@ -304,6 +304,18 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
     }
 
+    /**
+     * uploadAudioFileByMusicId
+     *
+     * @param multipartFile
+     * @param music_id
+     * @return
+     */
+    @Override
+    public Object uploadAudioFileByMusicId(MultipartFile multipartFile, String music_id) {
+        return null;
+    }
+
 }
 
 

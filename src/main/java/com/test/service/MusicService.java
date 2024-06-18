@@ -5,6 +5,7 @@ import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -79,5 +80,13 @@ public interface MusicService extends IService<Music> {
      * @return
      */
     String uploadAudioFile( MultipartFile multipartFile ) throws IOException;
+
+    /**
+     * uploadAudioFileByMusicId
+     * @param multipartFile
+     * @param music_id
+     * @return
+     */
+    Object uploadAudioFileByMusicId( MultipartFile multipartFile, @PathVariable String music_id );
 
 }
