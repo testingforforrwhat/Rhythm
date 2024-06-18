@@ -223,7 +223,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     @Override
     public String playAudio(String music_id) throws IOException {
         String filename = null;
-
+        try {
             // 指定要播放的音频文件
             filename = musicMapper.selectById(music_id).getMusicFile();
             System.out.println(filename);
@@ -248,14 +248,11 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
                 return Arrays.toString(Files.readAllBytes(audioFilePath));
             }
-            else {
 
-                System.out.println( "Error loading file " + filename);
-
-                return "Error loading file " + filename;
-
-            }
-
+        } catch (Exception e) {
+            throw new RuntimeException("Error loading file " + filename, e);
+        }
+        return null;
     }
 
     @Override
