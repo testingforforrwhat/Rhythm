@@ -315,6 +315,18 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     @Override
     public Object uploadAudioFileByMusicId( MultipartFile multipartFile, Integer music_id) throws IOException {
 
+        /**
+         *
+         * **第一次删除缓存**：在更新数据库之前删除缓存。
+         *
+         */
+
+        //todo 上传文件,更新数据库字段
+        /**
+         *
+         * **更新数据库**：上传文件,更新数据库字段。
+         */
+
         System.out.println( "参数名称 = " + multipartFile.getName() );
         System.out.println( "文件类型 = " + multipartFile.getContentType() );
         System.out.println( "原文件名 = " + multipartFile.getOriginalFilename() );
@@ -359,6 +371,15 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
         updateMusic(music_id,filename);
 
+
+        // todo  上传文件,更新数据库字段完成，发送一条消息到消息队列请求再次删除缓存
+        /**
+         *
+         * **发送消息到消息队列**：上传文件,更新数据库字段完成，发送一条消息到消息队列请求再次删除缓存。
+         *
+         * 消息队列消费者读取到消息，延迟一段时间 (延迟时间设置为，数据库主从同步的时间，再加几百毫秒) ,  消息队列的消费者再次删除缓存。
+         *
+         */
 
         return "File upload successful: " + fileNewPath +", " + targetLocalDirectory;
     }
