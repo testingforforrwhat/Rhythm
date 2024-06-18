@@ -1,16 +1,16 @@
 package com.test.controller;
 
+import com.test.service.MusicService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,6 +21,11 @@ import static com.test.task.DbDocCreat.createDbDoc;
 @RestController
 @RequestMapping("/file")
 public class FileController {
+
+
+    @Resource
+    private MusicService musicService;
+
 
     @PostMapping("/upload")
     public Object upload( MultipartFile multipartFile ) throws IOException {
@@ -107,6 +112,14 @@ public class FileController {
         multipartFile.transferTo(new File(targetLocalDirectory));
 
         return "File upload successful: " + fileNewPath +", " + targetLocalDirectory;
+    }
+
+    @PostMapping("/upload/audioFile/{music_id}")
+    public Object uploadAudioFileByMusicId( MultipartFile multipartFile, @PathVariable String music_id ) throws IOException {
+
+        musicService.uploadAudioFile( multipartFile );
+
+        return null;
     }
 
     @GetMapping("/download")

@@ -5,6 +5,7 @@ import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,4 +65,12 @@ public interface MusicService extends IService<Music> {
     String playAudio(String music_id) throws IOException;
 
     byte[] convertAudioToBlob(File file) throws IOException;
+
+    /**
+     * uploadAudioFile
+     * @param multipartFile
+     * @return
+     */
+    String uploadAudioFile( MultipartFile multipartFile ) throws IOException;
+
 }
