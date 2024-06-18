@@ -122,6 +122,17 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     }
 
     /**
+     * 编辑音乐, uploadAudioFileByMusicId, update `music_file`字段
+     *
+     * @param music_id
+     * @return
+     */
+    @Override
+    public boolean updateMusic(String music_id) {
+        return false;
+    }
+
+    /**
      * 删除音乐
      *
      * @param musicId

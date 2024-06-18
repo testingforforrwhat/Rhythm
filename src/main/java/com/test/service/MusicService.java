@@ -47,6 +47,13 @@ public interface MusicService extends IService<Music> {
     boolean updateMusic(MusicUpdateBo musicUpdateBo);
 
     /**
+     * 编辑音乐, uploadAudioFileByMusicId, update `music_file`字段
+     * @param music_id
+     * @return
+     */
+    boolean updateMusic(String music_id);
+
+    /**
      * 删除音乐
      * @param musicId
      * @return
