@@ -51,7 +51,7 @@ public interface MusicService extends IService<Music> {
      * @param music_id
      * @return
      */
-    boolean updateMusic(String music_id);
+    boolean updateMusic(String music_id, String filename);
 
     /**
      * 删除音乐

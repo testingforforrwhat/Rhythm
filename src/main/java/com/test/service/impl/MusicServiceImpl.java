@@ -128,8 +128,22 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @return
      */
     @Override
-    public boolean updateMusic(String music_id) {
-        return false;
+    public boolean updateMusic(String music_id, String filename) {
+
+        System.out.println(music_id);
+        // 创建用于更新的UpdateWapper
+        UpdateWrapper<Music> updateWrapper = new UpdateWrapper<>();
+        // 设置需要更新的字段 和更新条件
+        updateWrapper.set("music_file", filename)
+                .eq("music_id", music_id);
+
+        System.out.println("updateWrapper:" + updateWrapper);
+        int update = musicMapper.update(new Music(), updateWrapper);
+        System.out.println("update `music_file`字段:" + filename);
+        // 因为这个方法需要将更新过后的数据返回 所以可以再次查询数据库
+        Music music = musicMapper.selectById(music_id);
+        return update > 0 ? true : false;
+
     }
 
     /**
