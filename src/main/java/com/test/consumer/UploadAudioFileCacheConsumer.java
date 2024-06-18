@@ -30,6 +30,16 @@ public class UploadAudioFileCacheConsumer {
     @Resource
     private CacheService cacheService;
 
+    /**
+     *
+     *         // CPU密集型任务线程池
+     *         ExecutorService cpuIntensivePool = Executors.newFixedThreadPool(4);  // 固定线程数
+     *         // I/O密集型任务线程池
+     *         ExecutorService ioIntensivePool = Executors.newCachedThreadPool();   // 动态线程数
+     *         // 轻量级短期任务线程池
+     *         ExecutorService shortTaskPool = Executors.newSingleThreadExecutor(); // 单线程池
+     *
+     */
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @KafkaListener(topics = "uploadAudioFileCacheDelete-topic", groupId = "my-group")
