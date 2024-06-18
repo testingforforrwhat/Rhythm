@@ -1,9 +1,11 @@
 package com.test.consumer;
 
 import com.test.service.CacheService;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  * 消息队列特性：某些消息队列（如 RabbitMQ 和 Kafka）本身支持延迟队列或延迟消息特性。
  *
  */
-@Service
+@Component
 public class UploadAudioFileCacheConsumer {
 
     @Resource
@@ -30,14 +32,15 @@ public class UploadAudioFileCacheConsumer {
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @KafkaListener(topics = "uploadAudioFileCacheDelete-topic", groupId = "my-group")
-    public void consume(String key, Acknowledgment acknowledgment) {
+    public void consume(ConsumerRecord<String,String> record, Acknowledgment acknowledgment) {
         // 延迟处理消息，假设数据库主从同步时间为1秒，再加500毫秒
         long delay = 1500L;
 
         scheduler.schedule(() -> {
             try {
                 // 再次删除缓存（保证双删）
-                cacheService.deleteCache(key);
+                Integer music_id = null;
+                cacheService.deleteCache(music_id);
                 // 确认消息
                 acknowledgment.acknowledge();
             } catch (Exception e) {

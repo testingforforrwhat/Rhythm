@@ -5,9 +5,9 @@ public interface CacheService {
     /**
      * 删除缓存
      *
-     * @param key
+     * @param music_id
      * @return
      */
-     boolean deleteCache(String key);
+     boolean deleteCache(Integer music_id);
 
 }
