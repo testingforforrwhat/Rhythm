@@ -71,6 +71,7 @@ public class RedisAspect {
         keyMap.put( "signature" , joinPoint.getSignature().toString() );
         keyMap.put( "arguments" , joinPoint.getArgs() );
         String key = JSON.toJSONString( keyMap );
+        System.out.println("Redis Key 生成: " + key);
 
         String filenameTopTen = musicMapper.selectById(Arrays.stream(joinPoint.getArgs()).iterator().next().toString()).getMusicFile();
         System.out.println("filenameTopTen: " + filenameTopTen);
