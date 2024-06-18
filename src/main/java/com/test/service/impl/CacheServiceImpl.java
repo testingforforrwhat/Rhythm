@@ -40,6 +40,7 @@ public class CacheServiceImpl implements CacheService {
         String key = JSON.toJSONString( keyMap );
         String key_redis_lock_Mutex = "redis_lock_Mutex-" + JSON.toJSONString( keyMap );
         System.out.println("待删除的redis key: " + key);
+        System.out.println("待删除的redis key: " + key_redis_lock_Mutex);
 
         // delete key
         redisUtil.del(key);
