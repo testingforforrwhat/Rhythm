@@ -39,6 +39,8 @@ public class UploadAudioFileCacheConsumer {
      *         // 轻量级短期任务线程池
      *         ExecutorService shortTaskPool = Executors.newSingleThreadExecutor(); // 单线程池
      *
+     *
+     *         线程池的嵌套  一个线程池中创建使用另一个线程池
      */
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
