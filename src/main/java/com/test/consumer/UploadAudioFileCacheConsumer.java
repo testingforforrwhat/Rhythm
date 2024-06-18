@@ -1,5 +1,6 @@
 package com.test.consumer;
 
+import com.alibaba.fastjson.JSON;
 import com.test.service.CacheService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UploadAudioFileCacheConsumer {
         scheduler.schedule(() -> {
             try {
                 // 再次删除缓存（保证双删）
-                Integer music_id = null;
+                Integer music_id = Integer.valueOf(JSON.parseObject( record.key() , String.class ));
                 cacheService.deleteCache(music_id);
                 // 确认消息
                 acknowledgment.acknowledge();

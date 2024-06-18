@@ -16,6 +16,7 @@ import com.test.mapper.MusicMapper;
 import com.test.utils.AudioParserUtils;
 import com.test.utils.RedisUtil;
 import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,6 +53,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
     @Resource
     private CacheService cacheService;
+
+    @Resource
+    private KafkaTemplate<String,String> kafkaTemplate;
 
 
     /**
@@ -396,6 +400,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
         System.out.println("==> 上传文件,更新数据库字段完成，发送一条消息到消息队列请求再次删除缓存");
 
+        kafkaTemplate.send( "uploadAudioFileCacheDelete-topic" , JSON.toJSONString( music_id ) , null );
 
         return "File upload successful: " + fileNewPath +", " + targetLocalDirectory;
     }
