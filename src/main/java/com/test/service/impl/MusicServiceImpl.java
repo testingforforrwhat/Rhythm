@@ -394,6 +394,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
          *
          */
 
+        System.out.println("==> 传文件,更新数据库字段完成，发送一条消息到消息队列请求再次删除缓存");
+
+
         return "File upload successful: " + fileNewPath +", " + targetLocalDirectory;
     }
 
