@@ -312,8 +312,54 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @return
      */
     @Override
-    public Object uploadAudioFileByMusicId(MultipartFile multipartFile, String music_id) {
-        return null;
+    public Object uploadAudioFileByMusicId(MultipartFile multipartFile, String music_id) throws IOException {
+
+        System.out.println( "参数名称 = " + multipartFile.getName() );
+        System.out.println( "文件类型 = " + multipartFile.getContentType() );
+        System.out.println( "原文件名 = " + multipartFile.getOriginalFilename() );
+        System.out.println( "文件大小 = " + multipartFile.getSize() );
+
+        // 判断 上传的文件类型 是否是音频文件
+        if( ! multipartFile.getContentType().startsWith("audio/") ){
+            System.out.println( "==> 上传的文件不是音频文件，上传失败" );
+            return null;
+        }
+
+        // 判断 上传的文件尺寸
+        if( multipartFile.getSize() > 20 * 1024 * 1024 ){
+            System.out.println( "==> 上传的文件最多20MB，上传失败" );
+            return null;
+        }
+
+        // 给 上传文件 生成服务器端 文件名
+        String filename = UUID.randomUUID().toString() +
+                multipartFile.getOriginalFilename().substring( multipartFile.getOriginalFilename().lastIndexOf(".") );
+
+
+        String filePath = ResourceUtils.getURL("classpath:").getPath() +
+                "static/audio/" + filename;
+        // 绝对路径前面多了一个/ 去除
+        String fileNewPath = filePath.substring(1);
+        System.out.println("fileNewPath: " + fileNewPath);
+
+        // 指定 转移目标文件
+        File target = new File(fileNewPath);
+
+        // 将 上传文件 从临时目录 转移到 目标文件夹
+//        multipartFile.transferTo( target );
+
+        // 上传的文件保存在 src/main/resources/static/audio/ 目录
+        String currentDirectory = System.getProperty("user.dir");  // 当前工作目录是指程序启动时所在的目录
+        System.out.println("currentDirectory: " + currentDirectory);
+        String targetLocalDirectory = currentDirectory + "/src/main/resources/static/audio/" + filename;
+        System.out.println("targetLocalDirectory: " + targetLocalDirectory);
+        multipartFile.transferTo(new File(targetLocalDirectory));
+
+
+        updateMusic(music_id,filename);
+
+
+        return "File upload successful: " + fileNewPath +", " + targetLocalDirectory;
     }
 
 }

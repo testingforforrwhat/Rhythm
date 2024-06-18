@@ -117,9 +117,8 @@ public class FileController {
     @PostMapping("/upload/audioFile/{music_id}")
     public Object uploadAudioFileByMusicId( MultipartFile multipartFile, @PathVariable String music_id ) throws IOException {
 
-        musicService.uploadAudioFile( multipartFile );
+        return musicService.uploadAudioFileByMusicId(multipartFile,music_id);
 
-        return null;
     }
 
     @GetMapping("/download")

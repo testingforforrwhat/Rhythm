@@ -87,6 +87,6 @@ public interface MusicService extends IService<Music> {
      * @param music_id
      * @return
      */
-    Object uploadAudioFileByMusicId( MultipartFile multipartFile, @PathVariable String music_id );
+    Object uploadAudioFileByMusicId( MultipartFile multipartFile, @PathVariable String music_id ) throws IOException;
 
 }
