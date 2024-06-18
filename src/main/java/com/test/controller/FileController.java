@@ -93,7 +93,7 @@ public class FileController {
      */
     @PostMapping("/upload/audioFile/{music_id}")
     @ResponseBody
-    public Object uploadAudioFileByMusicId( @RequestParam("multipartFile") MultipartFile multipartFile, @PathVariable("music_id") Integer music_id ) throws IOException {
+    public Object uploadAudioFileByMusicId( @RequestParam("multipartFile") MultipartFile multipartFile, @PathVariable("music_id") Integer music_id ) throws IOException, NoSuchMethodException {
 
         return musicService.uploadAudioFileByMusicId(multipartFile,music_id);
 

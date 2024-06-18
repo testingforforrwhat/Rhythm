@@ -1,6 +1,7 @@
 package com.test.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
@@ -8,6 +9,7 @@ import com.test.bean.bo.MusicAddBo;
 import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
+import com.test.controller.music.MusicController;
 import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
 import com.test.utils.AudioParserUtils;
@@ -25,9 +27,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
 * @author 23194
@@ -313,13 +313,28 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @return
      */
     @Override
-    public Object uploadAudioFileByMusicId( MultipartFile multipartFile, Integer music_id) throws IOException {
+    public Object uploadAudioFileByMusicId( MultipartFile multipartFile, Integer music_id) throws IOException, NoSuchMethodException {
 
         /**
          *
          * **第一次删除缓存**：在更新数据库之前删除缓存。
          *
          */
+
+        // 步骤一：去Redis中删除缓存数据
+        // Redis Key 生成规则：方法签名+实参数据
+
+        Class<MusicController> musicControllerClass = MusicController.class;
+
+        String theParameter = String.valueOf(music_id);
+        String[] numbers = {theParameter};
+
+        Map<String,Object> keyMap = new HashMap<>();
+        keyMap.put( "signature" , musicControllerClass.getMethod("playAudio",String.class).toString() );
+        keyMap.put( "arguments" , numbers );
+        String key = JSON.toJSONString( keyMap );
+        System.out.println("待删除的redis key: " + key);
+
 
         //todo 上传文件,更新数据库字段
         /**
