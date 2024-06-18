@@ -333,12 +333,15 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         keyMap.put( "signature" , "String com.test.controller.music.MusicController.playAudio(String)" );
         keyMap.put( "arguments" , numbers );
         String key = "redis_lock_Mutex-" + JSON.toJSONString( keyMap );
+        String key_redis_lock_Mutex = "redis_lock_Mutex-" + JSON.toJSONString( keyMap );
         System.out.println("待删除的redis key: " + key);
 
         // delete key
         System.out.println("第一次删除缓存");
         redisUtil.del(key);
         System.out.println("Cache deleted Redis keys: " + key);
+        redisUtil.del(key_redis_lock_Mutex);
+        System.out.println("Cache deleted Redis keys: " + key_redis_lock_Mutex);
 
 
         //todo 上传文件,更新数据库字段
