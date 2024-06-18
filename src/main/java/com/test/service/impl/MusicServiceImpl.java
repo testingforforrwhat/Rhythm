@@ -335,6 +335,10 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String key = "redis_lock_Mutex-" + JSON.toJSONString( keyMap );
         System.out.println("待删除的redis key: " + key);
 
+        // delete key
+        redisUtil.del(key);
+        System.out.println("Cache deleted Redis keys: " + key);
+
 
         //todo 上传文件,更新数据库字段
         /**
