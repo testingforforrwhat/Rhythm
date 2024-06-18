@@ -313,7 +313,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @return
      */
     @Override
-    public Object uploadAudioFileByMusicId( @RequestParam("multipartFile") MultipartFile multipartFile, Integer music_id) throws IOException {
+    public Object uploadAudioFileByMusicId( MultipartFile multipartFile, Integer music_id) throws IOException {
 
         System.out.println( "参数名称 = " + multipartFile.getName() );
         System.out.println( "文件类型 = " + multipartFile.getContentType() );
