@@ -336,6 +336,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         System.out.println("待删除的redis key: " + key);
 
         // delete key
+        System.out.println("第一次删除缓存");
         redisUtil.del(key);
         System.out.println("Cache deleted Redis keys: " + key);
 
