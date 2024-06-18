@@ -327,7 +327,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
         // 步骤一：去Redis中删除缓存数据
 
-        System.out.println("第一次删除缓存");
+        System.out.println("==> 第一次删除缓存");
 
         cacheService.deleteCache(music_id);
 
@@ -337,6 +337,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
          *
          * **更新数据库**：上传文件,更新数据库字段。
          */
+
+        System.out.println("==> 上传文件,更新数据库字段");
 
         System.out.println( "参数名称 = " + multipartFile.getName() );
         System.out.println( "文件类型 = " + multipartFile.getContentType() );
