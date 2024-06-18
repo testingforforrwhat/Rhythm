@@ -74,6 +74,23 @@ public class FileController {
 
     }
 
+    /**
+     *
+     * 'Required request part 'multipartFile' is not present'
+     *
+     * value值即选择的文件重新选择. 问题消失。  问题在于我之前并未变更该文件选择, 且一开始是可以upload, 突然出现问题。
+     *
+     * https://blog.csdn.net/yigeshaoziwei/article/details/136688851
+     * https://blog.csdn.net/u013231332/article/details/105624361
+     * https://cloud.tencent.com/developer/article/1880260
+     * https://juejin.cn/post/7168369943421911047
+     * https://www.cnblogs.com/tobycold/p/17867856.html
+     *
+     * @param multipartFile
+     * @param music_id
+     * @return
+     * @throws IOException
+     */
     @PostMapping("/upload/audioFile/{music_id}")
     @ResponseBody
     public Object uploadAudioFileByMusicId( @RequestParam("multipartFile") MultipartFile multipartFile, @PathVariable("music_id") Integer music_id ) throws IOException {
