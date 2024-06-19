@@ -289,13 +289,15 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
                 return Arrays.toString(inputStream.readAllBytes());
             } else {
+
                 System.out.println("File does not exist.");
+
+                return "File does not exist.";
             }
 
         } catch (Exception e) {
             throw new RuntimeException("Error loading file " + filename, e);
         }
-        return null;
     }
 
     @Override
