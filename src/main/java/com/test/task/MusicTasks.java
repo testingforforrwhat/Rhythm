@@ -94,6 +94,7 @@ public class MusicTasks {
 
             System.out.println("fileNewPath: " + fileNewPath);
 
+            // 创建文件对象
             File file = new File( fileNewPath );
             System.out.println(file);
 
