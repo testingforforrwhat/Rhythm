@@ -15,9 +15,9 @@ import java.sql.SQLException;
  *
  * @ControllerAdvice和@RestControllerAdvice可以干净地将异常处理逻辑与控制器逻辑分离，为不同类型的异常提供一致的处理方式。
  *
- * @ControllerAdvice 返回视图（通常是 JSP、Thymeleaf 等）
+ * @ControllerAdvice 返回视图（通常是 JSP、Thymeleaf 等） (视图名称(返回String)或模型(返回ModelAndView对象))
  *
- * @RestControllerAdvice 返回对象序列化为的JSON或XML
+ * @RestControllerAdvice  = @ControllerAdvice + @ResponseBody  返回对象序列化为的JSON或XML
  *
  */
 @Slf4j
