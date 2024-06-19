@@ -221,7 +221,7 @@ public class MusicController {
     @RedisCache( duration = 60 * 60 )
     @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ResponseBody
-    public Object playAudio(@PathVariable String music_id) throws IOException {
+    public String playAudio(@PathVariable String music_id) throws IOException {
 
         return musicService.playAudio(music_id);
     }
