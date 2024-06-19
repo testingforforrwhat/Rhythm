@@ -15,6 +15,8 @@ import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
 import com.test.utils.AudioParserUtils;
 import com.test.utils.RedisUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -57,6 +59,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     @Resource
     private KafkaTemplate<String,String> kafkaTemplate;
 
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     /**
      * 根据music_id查询对应信息
@@ -249,7 +253,12 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             );
             System.out.println(file);
 
-            if (file.exists()) {
+
+            // 使用 ResourceLoader 来加载资源
+            org.springframework.core.io.Resource resource = resourceLoader.getResource(fileNewPath);
+            System.out.println("org.springframework.core.io.Resource: " + resource);
+
+            if (resource.exists() || file.exists()) {
 
                 System.out.println("文件存在");
 
