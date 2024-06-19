@@ -10,6 +10,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.sql.SQLException;
 
+
+/**
+ *
+ * @ControllerAdvice和@RestControllerAdvice可以干净地将异常处理逻辑与控制器逻辑分离，为不同类型的异常提供一致的处理方式。
+ *
+ * @ControllerAdvice 返回视图（通常是 JSP、Thymeleaf 等）
+ *
+ * @RestControllerAdvice 返回对象序列化为的JSON或XML
+ *
+ */
 @Slf4j
 @RestControllerAdvice
 public class RestExceptionHandler {
