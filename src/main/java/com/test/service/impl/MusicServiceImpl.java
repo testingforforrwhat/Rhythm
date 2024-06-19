@@ -264,6 +264,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             // 我们将使用 ClassLoader.getResourceAsStream 方法读取资源文件。这样即便资源被打包在 JAR 文件内，也能够正常读取。
             /**
              *
+             * caution: 资源路径应当是相对类路径的路径。
+             * 例如，如果 src/main/resources/static/test.wav ，那么你应该使用 static/test.wav 。
+             *
              * https://blog.csdn.net/qq_16992475/article/details/123014242
              * https://zhuanlan.zhihu.com/p/642832661
              * https://zhuanlan.zhihu.com/p/513229512
