@@ -262,6 +262,16 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             // springboot 打 jar 包后读取不到文件。这通常是因为 JAR 包本质上是一个压缩文件，
             // 如果我们直接用文件系统路径读文件，而不是使用类路径读取，就会发生该问题。
             // 我们将使用 ClassLoader.getResourceAsStream 方法读取资源文件。这样即便资源被打包在 JAR 文件内，也能够正常读取。
+            /**
+             *
+             * https://blog.csdn.net/qq_16992475/article/details/123014242
+             * https://zhuanlan.zhihu.com/p/642832661
+             * https://zhuanlan.zhihu.com/p/513229512
+             * https://cloud.tencent.com/developer/article/1885522
+             * https://blog.csdn.net/laodanqiu/article/details/130563161
+             * https://blog.csdn.net/marakaih/article/details/137825573
+             *
+             */
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/audio/" + filename);
             System.out.println("inputStream: " + inputStream);
 
