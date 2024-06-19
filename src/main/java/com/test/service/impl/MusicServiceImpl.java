@@ -258,7 +258,11 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             org.springframework.core.io.Resource resource = resourceLoader.getResource(fileNewPath);
             System.out.println("org.springframework.core.io.Resource: " + resource);
 
-            if (resource.exists() || file.exists()) {
+            // 获取资源的输入流
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/audio/" + filename);
+            System.out.println("inputStream: " + inputStream);
+
+            if (inputStream != null || file.exists()) {
 
                 System.out.println("文件存在");
 
