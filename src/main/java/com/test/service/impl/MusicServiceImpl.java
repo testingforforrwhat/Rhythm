@@ -235,6 +235,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             String fileNewPath = null;
             if (filePath.startsWith("/")) {
                 fileNewPath = filePath.substring(1);
+            } else {
+                fileNewPath = filePath;
             }
             System.out.println("fileNewPath: " + fileNewPath);
             Path audioFilePath = Paths.get(fileNewPath);
@@ -315,6 +317,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String fileNewPath = null;
         if (filePath.startsWith("/")) {
             fileNewPath = filePath.substring(1);
+        } else {
+            fileNewPath = filePath;
         }
         System.out.println("fileNewPath: " + fileNewPath);
 
@@ -395,6 +399,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String fileNewPath = null;
         if (filePath.startsWith("/")) {
             fileNewPath = filePath.substring(1);
+        } else {
+            fileNewPath = filePath;
         }
         System.out.println("fileNewPath: " + fileNewPath);
 

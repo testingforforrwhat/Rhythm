@@ -86,6 +86,8 @@ public class MusicTasks {
             String fileNewPath = null;
             if (filePath.startsWith("/")) {
                 fileNewPath = filePath.substring(1);
+            } else {
+                fileNewPath = filePath;
             }
 
             System.out.println("fileNewPath: " + fileNewPath);
