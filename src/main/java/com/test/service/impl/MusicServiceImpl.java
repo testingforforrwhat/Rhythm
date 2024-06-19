@@ -250,6 +250,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             System.out.println(file);
 
             if (file.exists()) {
+
+                System.out.println("文件存在");
+
                 audioParserUtils.incrementPlayCount(music_id);
 
                 ZSetOperations<String, Object> zSetOps = redisUtil.zSet();
