@@ -235,6 +235,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             String fileNewPath = null;
             if (filePath.startsWith("/")) {
                 fileNewPath = filePath.substring(1);
+            } else if (filePath.startsWith("file:") ) {
+                fileNewPath = filePath.replaceFirst("^file:", "");
             } else {
                 fileNewPath = filePath;
             }
@@ -317,6 +319,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String fileNewPath = null;
         if (filePath.startsWith("/")) {
             fileNewPath = filePath.substring(1);
+        } else if (filePath.startsWith("file:") ) {
+            fileNewPath = filePath.replaceFirst("^file:", "");
         } else {
             fileNewPath = filePath;
         }
@@ -399,6 +403,8 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String fileNewPath = null;
         if (filePath.startsWith("/")) {
             fileNewPath = filePath.substring(1);
+        } else if (filePath.startsWith("file:") ) {
+            fileNewPath = filePath.replaceFirst("^file:", "");
         } else {
             fileNewPath = filePath;
         }
