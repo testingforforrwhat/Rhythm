@@ -10,6 +10,7 @@ import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.test.controller.music.MusicController;
+import com.test.exception.ResultData;
 import com.test.service.CacheService;
 import com.test.service.MusicService;
 import com.test.mapper.MusicMapper;
@@ -225,7 +226,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
     }
 
     @Override
-    public String playAudio(String music_id) throws IOException {
+    public Object playAudio(String music_id) throws IOException {
         String filename = null;
         try {
             // 指定要播放的音频文件
@@ -292,7 +293,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
                 System.out.println("File does not exist.");
 
-                return "File does not exist.";
+                return ResultData.fail(999,"File does not exist.") ;
             }
 
         } catch (Exception e) {

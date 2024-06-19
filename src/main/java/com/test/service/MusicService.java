@@ -71,7 +71,7 @@ public interface MusicService extends IService<Music> {
 
     byte[] loadAudioAsResource(String music_id);
 
-    String playAudio(String music_id) throws IOException;
+    Object playAudio(String music_id) throws IOException;
 
     byte[] convertAudioToBlob(File file) throws IOException;
 
