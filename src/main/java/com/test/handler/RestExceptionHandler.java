@@ -29,6 +29,14 @@ public class RestExceptionHandler {
      * 默认sql异常处理。
      * @param e_sql the e_sql
      * @return ResultData
+     *
+     * @ExceptionHandler,统一处理某一类异常
+     *
+     * 在Spring Boot应用中，可以使用 @ExceptionHandler 注解来统一处理某一类异常。
+     * @ExceptionHandler 可以直接应用于例如controller内部的方法，该方式仅对该controller内的方法有效。
+     * 或者通过 @ControllerAdvice 注解来将其提升到全局范围，以便对全局范围内的异常进行处理。
+     *
+     *
      */
     @ExceptionHandler(SQLException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
