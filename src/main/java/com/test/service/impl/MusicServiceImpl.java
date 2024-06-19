@@ -231,7 +231,11 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             String filePath = ResourceUtils.getURL("classpath:").getPath() +
                     "static/audio/" + filename;
             // 绝对路径前面多了一个/ 去除
-            String fileNewPath = filePath.substring(1);
+            // 确保 filePath 不以斜杠开头
+            String fileNewPath = null;
+            if (filePath.startsWith("/")) {
+                fileNewPath = filePath.substring(1);
+            }
             System.out.println("fileNewPath: " + fileNewPath);
             Path audioFilePath = Paths.get(fileNewPath);
 
@@ -307,7 +311,11 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String filePath = ResourceUtils.getURL("classpath:").getPath() +
                 "static/audio/" + filename;
         // 绝对路径前面多了一个/ 去除
-        String fileNewPath = filePath.substring(1);
+        // 确保 filePath 不以斜杠开头
+        String fileNewPath = null;
+        if (filePath.startsWith("/")) {
+            fileNewPath = filePath.substring(1);
+        }
         System.out.println("fileNewPath: " + fileNewPath);
 
         // 指定 转移目标文件
@@ -383,7 +391,11 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         String filePath = ResourceUtils.getURL("classpath:").getPath() +
                 "static/audio/" + filename;
         // 绝对路径前面多了一个/ 去除
-        String fileNewPath = filePath.substring(1);
+        // 确保 filePath 不以斜杠开头
+        String fileNewPath = null;
+        if (filePath.startsWith("/")) {
+            fileNewPath = filePath.substring(1);
+        }
         System.out.println("fileNewPath: " + fileNewPath);
 
         // 指定 转移目标文件
