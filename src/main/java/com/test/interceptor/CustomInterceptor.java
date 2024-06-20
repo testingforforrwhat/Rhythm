@@ -17,7 +17,7 @@ public class CustomInterceptor implements HandlerInterceptor {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             String methodName = handlerMethod.getMethod().getName();
             String className = handlerMethod.getBeanType().getName();
-            System.out.println("Handling method: " + className + "." + methodName);
+            System.out.println("==> 捕获http请求的方法信息 Handling method: " + className + "." + methodName);
         }
         return true; // 继续处理请求
     }
