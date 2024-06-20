@@ -294,10 +294,13 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                 zSetOps.add("audio:topSongsByPlaycount", filename, (Integer) redisUtil.get("audio:playcountByWeekByMusicId:" + music_id));
 
                 if (inputStream != null) {
+                    System.out.println("return inputStream.readAllBytes()");
                     return Arrays.toString(inputStream.readAllBytes());
                 } else if (file.exists()) {
+                    System.out.println("return Files.readAllBytes(audioFilePath)");
                     return Arrays.toString(Files.readAllBytes(audioFilePath));
                 } else {
+                    System.out.println("return Files.readAllBytes(file_setLocation.toPath())");
                     return Arrays.toString(Files.readAllBytes(file_setLocation.toPath()));
                 }
 
