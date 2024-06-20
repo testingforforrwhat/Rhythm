@@ -61,8 +61,14 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
             return objectMapper.writeValueAsBytes(ResultData.success(o));
         }
         if(o == null ){
+            System.out.println("mediaType: " + mediaType);
+            System.out.println("methodParameter: " + methodParameter);
+            System.out.println("methodParameter.getMethod(): " + methodParameter.getMethod());
             return objectMapper.writeValueAsString(ResultData.fail(204,"return null: "));
         }
+//        if(o == null && o.getClass().getMethod().getName() == "playAudio" ){
+//            return objectMapper.writeValueAsString(ResultData.fail(204,"return null: "));
+//        }
         return ResultData.success(o);
     }
 }
