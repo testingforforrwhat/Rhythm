@@ -126,7 +126,8 @@ public class RedisAspect {
                 // ==> 缓存穿透 => 判断 将MySQL中查询到的数据是否为null
                 if (returnValue == null) {
                     // ==> 缓存穿透 => 对null空值，依然生成缓存，生命周期较短。为了避免缓存穿透。
-                    redisUtil.set(key, "null", 5);
+                    logger.info("MySQL中查询到的数据为null 对null空值，依然生成缓存，生命周期较短。为了避免缓存穿透。");
+                    redisUtil.set(key, "null", 50);
                 } else {
                     // ==> 缓存穿透 => 正常生成缓存
                     redisUtil.set(

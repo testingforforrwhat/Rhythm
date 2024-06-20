@@ -290,9 +290,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
                 return Arrays.toString(inputStream.readAllBytes());
             } else {
 
-                System.out.println("File does not exist.");
+                System.out.println("File does not exist: " + filename);
 
-                return "File does not exist.";
+                return null;
             }
 
         } catch (Exception e) {
