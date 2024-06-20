@@ -255,9 +255,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             File file_setLocation = new File(
                     System.getProperty("user.dir") + "/src/main/resources/static/audio/" + filename
             );
-            System.out.println(file);
+            System.out.println("file: " + file);
 
-            System.out.println(file);
+            System.out.println("file_setLocation: " + file_setLocation);
 
 
             // 使用 ResourceLoader 来加载资源
