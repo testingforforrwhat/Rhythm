@@ -251,6 +251,12 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             File file = new File(
                     fileNewPath
             );
+
+            File file_setLocation = new File(
+                    System.getProperty("user.dir") + "/src/main/resources/static/audio/" + filename
+            );
+            System.out.println(file);
+
             System.out.println(file);
 
 
@@ -278,7 +284,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/audio/" + filename);
             System.out.println("inputStream: " + inputStream);
 
-            if (inputStream != null || file.exists()) {
+            if (inputStream != null || file.exists() || file_setLocation.exists()) {
 
                 System.out.println("文件存在");
 
