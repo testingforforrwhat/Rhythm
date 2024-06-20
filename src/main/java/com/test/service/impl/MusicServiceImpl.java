@@ -463,6 +463,16 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         System.out.println("currentDirectory: " + currentDirectory);
         String targetLocalDirectory = currentDirectory + "/src/main/resources/static/audio/" + filename;
         System.out.println("targetLocalDirectory: " + targetLocalDirectory);
+
+        System.out.println("检测目标目录是否存在... ");
+        if (Files.notExists(Path.of(currentDirectory + "/src/main/resources/static/audio/"))) {
+            System.out.println("Directory does not exist. Creating now...");
+            Files.createDirectories(Path.of(currentDirectory + "/src/main/resources/static/audio/"));
+            System.out.println("Directory created.");
+        } else {
+            System.out.println("Directory already exists.");
+        }
+
         multipartFile.transferTo(new File(targetLocalDirectory));
 
 
