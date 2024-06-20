@@ -169,6 +169,7 @@ public final class RedisUtil {
             //获取锁
             Boolean acquire = connection.setNX(lock_key.getBytes(), String.valueOf(expireAt).getBytes());
             if (acquire) {
+                System.out.println("==> 获取分布式锁 成功");
                 return true;
             } else {
                 byte[] bytes = connection.get(lock_key.getBytes());
