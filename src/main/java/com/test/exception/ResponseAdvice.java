@@ -60,6 +60,9 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
         if(o instanceof byte[] ){
             return objectMapper.writeValueAsBytes(ResultData.success(o));
         }
+        if(o == null ){
+            return objectMapper.writeValueAsString(ResultData.fail(204,"File does not exist: "));
+        }
         return ResultData.success(o);
     }
 }
