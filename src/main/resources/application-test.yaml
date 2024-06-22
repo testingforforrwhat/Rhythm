@@ -107,7 +107,19 @@ management:
     web:
       exposure:
         include: "*"
+      cors:
+        allowedOrigins: http://ip:8002/
+        allowed-methods: GET,POST
   # 配置显示健康检查详细信息
   endpoint:
     health:
       show-details: always
+
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        host:
+    swagger-ui:
+      base-url:
