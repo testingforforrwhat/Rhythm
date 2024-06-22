@@ -39,17 +39,17 @@
 - 文档：Swagger UI
 - 构建工具：Maven
 
-|   | 系统组件   | 采用技术            | 官网                                                                                         |
-|---|--------|-----------------|--------------------------------------------------------------------------------------------|
-| 1 | 基础框架   | Spring Boot     | https://spring.io/projects/spring-boot                                                     |
-| 2 | ORM 框架 | MyBatis-Plus    | https://baomidou.com                                                                       |
-| 3 | 工具类库   | hutool          | https://hutool.cn                                                                          |
-| 4 | 访问控制   | Spring Security | https://spring.io/projects/spring-security                                                 |
-| 5 | 日志记录   | Logback         | https://logback.qos.ch/                                                                    |
-| 6 | 数据库连接池 | Druid           | https://developer.aliyun.com/article/1395248                                                |
-| 7 | 前端框架   | Vue3            | https://cli.vuejs.org/                                                |
-| 8 | 前端Ui框架 | Element         | https://element.eleme.cn/#/zh-CN/component/quickstart <br> http://element-plus.org/zh-CN/component/overview.html                                                |
-| 9 | 前端部署   | Nginx           | https://nginx.org/                                                |
+|   | 系统组件   | 采用技术            | 官网                                                                                                               |
+|---|--------|-----------------|------------------------------------------------------------------------------------------------------------------|
+| 1 | 基础框架   | Spring Boot     | https://spring.io/projects/spring-boot                                                                           |
+| 2 | ORM 框架 | MyBatis-Plus    | https://baomidou.com                                                                                             |
+| 3 | 工具类库   | hutool          | https://hutool.cn                                                                                                |
+| 4 | 访问控制   | Spring Security | https://spring.io/projects/spring-security                                                                       |
+| 5 | 日志记录   | Logback         | https://logback.qos.ch/                                                                                          |
+| 6 | 数据库连接池 | Druid           | https://developer.aliyun.com/article/1395248                                                                     |
+| 7 | 前端框架   | Vue3            | https://cli.vuejs.org/ <br> https://v2.cn.vuejs.org/v2/api/                                                      |
+| 8 | 前端Ui框架 | Element         | https://element.eleme.cn/#/zh-CN/component/quickstart <br> http://element-plus.org/zh-CN/component/overview.html |
+| 9 | 前端部署   | Nginx           | https://nginx.org/                                                                                               |
 
 ### **2.2. 系统架构**
 
