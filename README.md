@@ -47,7 +47,7 @@
 | 4 | 访问控制   | Spring Security | https://spring.io/projects/spring-security                                                                       |
 | 5 | 日志记录   | Logback         | https://logback.qos.ch/                                                                                          |
 | 6 | 数据库连接池 | Druid           | https://developer.aliyun.com/article/1395248                                                                     |
-| 7 | 前端框架   | Vue3            | https://cli.vuejs.org/ <br> https://v2.cn.vuejs.org/v2/api/                                                      |
+| 7 | 前端框架   | Vue3            | https://v2.cn.vuejs.org/v2/api/ <br> https://cn.vuejs.org/api/general.html                                                      |
 | 8 | 前端Ui框架 | Element         | https://element.eleme.cn/#/zh-CN/component/quickstart <br> http://element-plus.org/zh-CN/component/overview.html |
 | 9 | 前端部署   | Nginx           | https://nginx.org/                                                                                               |
 
