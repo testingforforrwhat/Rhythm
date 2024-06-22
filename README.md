@@ -17,7 +17,7 @@
 
 **开发文档：**  [doc]()
 
-**演示地址：**  [demo]()
+**演示地址：**  [demo](http://81.68.159.172/)
 
 **账号密码：** `admin / 123456`
 
@@ -69,7 +69,7 @@
 [数据库设计文档](https://testingforforrwhat.github.io/rhythm_blog/2024/05/22/rhythm_Database%20design%20document._1.0.0/)
 
 
-## **3. API 设计**
+## **3. [API 设计](http://81.68.159.172/swagger-api/swagger-ui/index.html)**
 
 ### **3.1 用户管理**
 
@@ -180,7 +180,7 @@ Rhythm
 ## **5. 部署与监控**
 
 - 部署：使用 Docker 容器化部署服务，便于在不同环境下快速部署。
-- 监控：使用 Spring Boot Actuator 监控应用健康状况。
+- 监控：使用 [Spring Boot Actuator](http://81.68.159.172/actuator-api/) 监控应用健康状况。
 
 ## **6. 其它注意事项**
 
