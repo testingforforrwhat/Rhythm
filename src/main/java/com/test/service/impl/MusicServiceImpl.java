@@ -346,7 +346,6 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @param multipartFile
      * @return
      */
-    @Transactional  // 如果数据库更新操作失败，事务会回滚，Kafka消息不会发送
     @Override
     public String uploadAudioFile(MultipartFile multipartFile) throws IOException {
 
@@ -410,6 +409,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @param music_id
      * @return
      */
+    @Transactional  // 如果数据库更新操作失败，事务会回滚，Kafka消息不会发送
     @Override
     public Object uploadAudioFileByMusicId( MultipartFile multipartFile, Integer music_id) throws IOException, NoSuchMethodException {
 
@@ -494,6 +494,14 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
         multipartFile.transferTo(new File(targetLocalDirectory));
 
 
+        // 使用乐观锁更新数据库
+        // 在实际的数据库应用中，乐观锁通常会依赖一个版本号字段，该字段会随着每次更新而增加。在更新数据时，将这个版本号一同传递。程序会检查版本号是否匹配来确定数据是否被别的线程修改
+        System.out.println("使用乐观锁更新数据库...");
+        Boolean existingAudioFile = musicMapper.selectById(music_id).getMusicFile().isEmpty();
+        // 当Optional中有值时
+        Optional<Boolean> optionalTrue = Optional.of(existingAudioFile);
+        boolean value = optionalTrue.orElseThrow(() -> new RuntimeException("AudioFile not found"));
+        System.out.println("Value: " + value); // 输出: Value: false
         updateMusic(music_id,filename);
 
 
