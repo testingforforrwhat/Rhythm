@@ -31,7 +31,7 @@ public class MusicTasks {
      *
      * 时间间隔 1min，将歌曲播放次数统计数据更新到 数据库
      */
-    @Scheduled(fixedRate = 60000) // 每分钟运行一次
+    @Scheduled(fixedRate = 600000) // 每分钟运行一次
     @Transactional
     public void updatePlayCounts() {
         // 获取与指定模式匹配的所有键
