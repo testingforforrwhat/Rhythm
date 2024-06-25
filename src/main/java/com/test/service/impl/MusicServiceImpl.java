@@ -502,6 +502,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
 
         // 使用乐观锁更新数据库
         // 在实际的数据库应用中，乐观锁通常会依赖一个版本号字段，该字段会随着每次更新而增加。在更新数据时，将这个版本号一同传递。程序会检查版本号是否匹配来确定数据是否被别的线程修改
+        // https://baomidou.com/plugins/optimistic-locker/
         System.out.println("使用乐观锁更新数据库...");
         Boolean existingAudioFile = musicMapper.selectById(music_id).getMusicFile().isEmpty();
         // 当Optional中有值时
