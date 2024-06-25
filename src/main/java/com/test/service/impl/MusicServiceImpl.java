@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
@@ -409,6 +411,10 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @param music_id
      * @return
      */
+    @Retryable(
+            value = RuntimeException.class,
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 1000))
     @Transactional  // 如果数据库更新操作失败，事务会回滚，Kafka消息不会发送
     @Override
     public Object uploadAudioFileByMusicId( MultipartFile multipartFile, Integer music_id) throws IOException, NoSuchMethodException {
