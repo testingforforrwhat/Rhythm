@@ -20,6 +20,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -345,6 +346,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music>
      * @param multipartFile
      * @return
      */
+    @Transactional  // 如果数据库更新操作失败，事务会回滚，Kafka消息不会发送
     @Override
     public String uploadAudioFile(MultipartFile multipartFile) throws IOException {
 
