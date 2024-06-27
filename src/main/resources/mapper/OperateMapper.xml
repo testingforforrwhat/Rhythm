@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.OperateMapper">
+
+    <resultMap id="BaseResultMap" type="com.test.bean.po.Operate">
+            <id property="operateId" column="operate_id" jdbcType="INTEGER"/>
+            <result property="operateName" column="operate_name" jdbcType="VARCHAR"/>
+            <result property="operateUrl" column="operate_url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        operate_id,operate_name,operate_url
+    </sql>
+</mapper>
