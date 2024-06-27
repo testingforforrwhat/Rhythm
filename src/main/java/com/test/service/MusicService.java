@@ -5,9 +5,12 @@ import com.test.bean.bo.MusicSearchBo;
 import com.test.bean.bo.MusicUpdateBo;
 import com.test.bean.po.Music;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -46,6 +49,13 @@ public interface MusicService extends IService<Music> {
     boolean updateMusic(MusicUpdateBo musicUpdateBo);
 
     /**
+     * 编辑音乐, uploadAudioFileByMusicId, update `music_file`字段
+     * @param music_id
+     * @return
+     */
+    boolean updateMusic(Integer music_id, String filename);
+
+    /**
      * 删除音乐
      * @param musicId
      * @return
@@ -59,7 +69,25 @@ public interface MusicService extends IService<Music> {
      * */
     List<Music> listByBo(MusicSearchBo musicSearchBo);
 
-    ResponseEntity<byte[]> loadAudioAsResource(String music_id);
+    byte[] loadAudioAsResource(String music_id);
+
+    String playAudio(String music_id) throws IOException;
 
     byte[] convertAudioToBlob(File file) throws IOException;
+
+    /**
+     * uploadAudioFile
+     * @param multipartFile
+     * @return
+     */
+    String uploadAudioFile( MultipartFile multipartFile ) throws IOException;
+
+    /**
+     * uploadAudioFileByMusicId
+     * @param multipartFile
+     * @param music_id
+     * @return
+     */
+    Object uploadAudioFileByMusicId( MultipartFile multipartFile, Integer music_id ) throws IOException, NoSuchMethodException;
+
 }

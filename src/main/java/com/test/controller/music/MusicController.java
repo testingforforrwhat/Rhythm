@@ -1,22 +1,28 @@
 package com.test.controller.music;
 
 
+import com.test.annotation.RedisCache;
 import com.test.bean.bo.*;
+import com.test.mapper.MusicMapper;
 import com.test.service.MusicService;
+import com.test.utils.AudioParserUtils;
+import com.test.utils.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
+import javax.annotation.Resource;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 @Controller
 @Api(tags = "音乐模块")
@@ -186,11 +192,37 @@ public class MusicController {
 
     @ResponseBody
     @GetMapping("/audio/{music_id}")
-    public ResponseEntity<byte[]> getAudio(@PathVariable String music_id) throws IOException {
-        ResponseEntity<byte[]> file = musicService.loadAudioAsResource(music_id);
-        System.out.println(file);
+    public String getAudio(@PathVariable String music_id) {
+        byte[] audioBytes = musicService.loadAudioAsResource(music_id);
+        System.out.println("audioStream.readAllBytes(): " + audioBytes);
+        // 打印读取的音频数组
+        System.out.println("audioStream.readAllBytes(): " + Arrays.toString(audioBytes));
+        System.out.println("读取音频文件成功，字节数组长度：" + audioBytes.length);
 
-        return file;
+//        // 实例化响应报文头对象
+//        HttpHeaders headers = new HttpHeaders();
+//        // 设置响应报文头，指示浏览器以流式方式播放音频
+//        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+//        System.out.println(headers);
+//        System.out.println(HttpStatus.OK);
+//
+//        // 返回响应报文
+//        return new ResponseEntity<>(
+//                audioStream.readAllBytes(),  // 响应报文体
+//                headers,                              // 响应报文头
+//                HttpStatus.OK                          // 响应状态
+//        );
+
+        return Arrays.toString(audioBytes);
+
     }
 
+
+    @RedisCache( duration = 60 * 60 )
+    @GetMapping(value = "/playAudio/{music_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @ResponseBody
+    public String playAudio(@PathVariable String music_id) throws IOException {
+
+        return musicService.playAudio(music_id);
+    }
 }
