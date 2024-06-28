@@ -12,4 +12,5 @@
     <sql id="Base_Column_List">
         role_id,role_name
     </sql>
+    <select id="getListByOperateUrl" resultType="com.test.bean.po.Role"></select>
 </mapper>

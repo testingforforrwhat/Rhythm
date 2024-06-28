@@ -3,6 +3,8 @@ package com.test.mapper;
 import com.test.bean.po.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
 * @author 23194
 * @description 针对表【role】的数据库操作Mapper
@@ -11,6 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface RoleMapper extends BaseMapper<Role> {
 
+    List<Role> getListByOperateUrl(String requestUrl);
 }
 
 
