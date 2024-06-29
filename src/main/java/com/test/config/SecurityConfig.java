@@ -70,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/configuration/ui",
                         "/configuration/security",
                         "/api/music",
+                        "/api/music/**",
                         "/api/playAudio/**");
     }
 
@@ -89,7 +90,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .and()
                 .formLogin()
-                .loginPage("/index/login")
                 .loginProcessingUrl("/index/loginDo")
                 .usernameParameter("admin_name")
                 .passwordParameter("admin_pass")
