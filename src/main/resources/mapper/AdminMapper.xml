@@ -15,4 +15,9 @@
         admin_id,admin_name,admin_pass,
         admin_nickname
     </sql>
+    <select id="getOneByName" resultType="com.test.bean.po.Admin">
+        select *
+        from rhythm.admin
+        where admin_name =#{username}
+    </select>
 </mapper>

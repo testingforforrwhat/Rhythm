@@ -26,9 +26,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        QueryWrapper<Admin> wrapper = new QueryWrapper<>();
-        wrapper.equals(username);
-        Admin admin = adminMapper.selectOne(wrapper);
+        Admin admin = adminMapper.getOneByName( username );
         if( admin == null ){
             throw new UsernameNotFoundException("账户名称或密码错误！请重新填写！");
         }

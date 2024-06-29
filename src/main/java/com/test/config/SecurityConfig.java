@@ -90,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .and()
                 .formLogin()
-                .loginPage("/index/login")
+                .loginPage("/login")             // spring security            使用框架的登录页
                 .loginProcessingUrl("/index/loginDo")
                 .usernameParameter("admin_name")
                 .passwordParameter("admin_pass")
