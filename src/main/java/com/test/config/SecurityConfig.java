@@ -69,7 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/v2/api-docs",
                         "/configuration/ui",
                         "/configuration/security",
-                        "/api/**");
+                        "/api/music",
+                        "/api/playAudio/**");
     }
 
     @Override
