@@ -49,6 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         // 配置例外路径
+        /**
+         *
+         * 在Spring Security中，web.ignoring().antMatchers() 方法用于配置Spring Security完全忽略的请求路径。
+         * 被忽略的路径将不会经过Spring Security的过滤器链。
+         * 这对于静态资源、API文档等路径非常有用，因为这些路径通常不需要身份验证。
+         *
+         */
         web.ignoring().antMatchers("/login",
                         "/index/login",
                         "/common/**","/img/**",
@@ -61,7 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/v2/api-docs",
                         "/configuration/ui",
-                        "/configuration/security");
+                        "/configuration/security",
+                        "/api/**");
     }
 
     @Override
