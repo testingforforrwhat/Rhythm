@@ -79,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 配置Security
         http.headers().frameOptions().disable() // 允许iframe嵌套
                 .and()
-          		.authorizeRequests()
+          		.authorizeRequests()  // 开启权限认证
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O o) {
