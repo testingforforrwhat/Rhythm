@@ -15,6 +15,6 @@ public class LoginErrorHandle implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)
             throws IOException, ServletException {
         // 登录失败  重定向到登录表单
-        response.sendRedirect("/index/login");
+        response.sendRedirect("/login");
     }
 }
