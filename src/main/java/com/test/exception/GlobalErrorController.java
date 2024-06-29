@@ -1,4 +1,4 @@
-package com.test.controller;
+package com.test.exception;
 
 import com.test.exception.ResultData;
 import org.springframework.boot.web.servlet.error.ErrorController;
