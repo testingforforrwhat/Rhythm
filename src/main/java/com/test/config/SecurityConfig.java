@@ -115,6 +115,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
                 .antMatchers("/hello").authenticated() // 需要认证的路径
+
+                /**
+                 *
+                 * 使用自定义的安全元数据源（SecurityMetadataSource）和访问决策管理器（AccessDecisionManager）注入Spring Security过滤器链
+                 * ObjectPostProcessor定制FilterSecurityInterceptor
+                 *
+                 * FilterSecurityInterceptor可以实现自定义的权限控制机制
+                 *
+                 */
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O o) {
@@ -127,7 +136,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()  // 定义登录页面
                 .formLogin()  // 开启表单登陆验证  http://127.0.0.1:8001/hello
                 .loginPage("/login")  // 登陆表单页面的url路径  post             // spring security            使用框架的登录页
-                .loginProcessingUrl("/login")  // 登陆表单处理方法的url路径  get
                 .usernameParameter("admin_name")
                 .passwordParameter("admin_pass")
                 .failureHandler( loginErrorHandle )
