@@ -141,13 +141,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("admin_pass")
                 .failureHandler( loginErrorHandle )
                 .successHandler( loginSuccessHandle )
-                .permitAll()
+                .permitAll()  // 允许所有用户访问登录页
 
                 .and()
                 .logout()
                 .logoutUrl("/index/logout")
                 .logoutSuccessHandler( logoutSuccessHandle )
-                .permitAll()
+                .permitAll()  // 允许所有用户访问注销页
 
                 .and()
                 .csrf()
