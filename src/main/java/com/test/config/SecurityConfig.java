@@ -97,6 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
           		.authorizeRequests()  // 开启权限认证
+                .antMatchers("/hello").authenticated() // 需要认证的路径
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O o) {
