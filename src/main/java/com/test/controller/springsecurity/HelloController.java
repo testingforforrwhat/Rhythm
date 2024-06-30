@@ -11,8 +11,8 @@ public class HelloController {
         return "hello"; // 返回视图名为 hello 的模板
     }
 
-//    @GetMapping("/login")
-//    public String login() {
-//        return "login"; // 返回视图名为 login 的模板
-//    }
+    @GetMapping("/login")
+    public String login() {
+        return "login"; // 返回视图名为 login 的模板
+    }
 }
