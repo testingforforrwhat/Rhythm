@@ -94,7 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      *
      * @EnableWebSecurity  URL级别
-     * @EnableGlobalMethodSecurity(prePostEnabled = true)  启用方法级别的安全性
+     * @EnableGlobalMethodSecurity(prePostEnabled = true)  启用方法级别的安全性，使得可以在方法上使用注解进行基于角色的访问控制
      *
      * @EnableGlobalMethodSecurity(prePostEnabled = true)注解允许使用@PreAuthorize和@PostAuthorize等注解来控制方法级别的访问。
      *
