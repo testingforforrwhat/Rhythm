@@ -90,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     }
                 })
 
-                .and()
+                .and()  // 定义登录页面
                 .formLogin()  // 开启表单登陆验证
                 .loginPage("/login")  // 登陆表单页面的url路径             // spring security            使用框架的登录页
                 .loginProcessingUrl("/index/loginDo")  // 登陆表单处理方法的url路径
