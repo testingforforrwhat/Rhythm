@@ -96,7 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable() // 允许iframe嵌套
 
                 .and()
-          		.authorizeRequests()  // 开启权限认证
+          		.authorizeRequests()  // spring security    自动读取url            开启权限认证
                 .antMatchers("/hello").authenticated() // 需要认证的路径
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
