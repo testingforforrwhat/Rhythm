@@ -90,6 +90,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/playAudio/**");
     }
 
+
+    /**
+     *
+     * @EnableWebSecurity  URL级别
+     * @EnableGlobalMethodSecurity(prePostEnabled = true)  启用方法级别的安全性
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 配置Security
