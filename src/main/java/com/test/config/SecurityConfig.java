@@ -95,7 +95,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/configuration/security",
                         "/api/music",
                         "/api/music/**",
-                        "/api/playAudio/**");
+                        "/api/playAudio/**",
+                        "/swagger-ui.html",
+                        "/swagger-ui.html");
     }
 
 
@@ -151,7 +153,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .usernameParameter("username")
 //                .passwordParameter("password")
 //                .failureHandler( loginErrorHandle )
-//                .successHandler( loginSuccessHandle )
+                .successHandler( loginSuccessHandle )
                 .permitAll();  // 允许所有用户访问登录页
 //
 //                .and()

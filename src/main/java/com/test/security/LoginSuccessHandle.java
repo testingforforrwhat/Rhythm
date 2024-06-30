@@ -15,6 +15,6 @@ public class LoginSuccessHandle implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {
         // 登录成功 重定向到首页
-        response.sendRedirect("/");
+        response.sendRedirect("/hello");
     }
 }
