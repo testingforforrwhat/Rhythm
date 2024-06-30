@@ -28,7 +28,7 @@
             <pattern>${log_pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>debug</level>
+            <level>DEBUG</level>
             <!--设置高于这个级别的打印-->
             <onMatch>ACCEPT</onMatch>
             <!--低于这个级别不显示-->
