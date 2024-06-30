@@ -122,6 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
+                .antMatchers("/login", "/error/**", "/css/**", "/js/**").permitAll() // 这些路径不需要认证
                 .antMatchers("/hello").authenticated() // 需要认证的路径
 
                 /**
@@ -132,15 +133,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                  * FilterSecurityInterceptor可以实现自定义的权限控制机制
                  *
                  */
-                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
-                    @Override
-                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
-                        o.setSecurityMetadataSource(permissionAuthority);  // 自定义SecurityMetadataSource实现复杂的安全需求(即基于数据库)
-                        o.setAccessDecisionManager(permissionValid);  // 自定义AccessDecisionManager实现复杂的安全需求(即基于数据库)
-                        return o;
-                    }
-                })
-                .anyRequest().authenticated()  // 所有请求都需要经过认证
+//                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+//                    @Override
+//                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
+//                        o.setSecurityMetadataSource(permissionAuthority);  // 自定义SecurityMetadataSource实现复杂的安全需求(即基于数据库)
+//                        o.setAccessDecisionManager(permissionValid);  // 自定义AccessDecisionManager实现复杂的安全需求(即基于数据库)
+//                        return o;
+//                    }
+//                })
+//                .anyRequest().authenticated()  // 所有请求都需要经过认证
 
                 .and()  // 定义登录页面
                 .formLogin()  // 开启表单登陆验证  http://127.0.0.1:8001/hello
