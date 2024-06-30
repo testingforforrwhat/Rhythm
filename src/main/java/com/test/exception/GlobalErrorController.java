@@ -22,7 +22,7 @@ public class GlobalErrorController implements ErrorController {
      */
     @RequestMapping("/error")
     public ResultData<Object> handleError() {
-        return ResultData.fail(500,"An error occurred. Please try again later.");
+        return ResultData.fail(500,"An error occurred. Please try again later..");
     }
 
     @Override
