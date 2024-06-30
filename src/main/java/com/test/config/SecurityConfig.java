@@ -132,6 +132,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         return o;
                     }
                 })
+                .anyRequest().authenticated()  // 所有请求都需要经过认证
 
                 .and()  // 定义登录页面
                 .formLogin()  // 开启表单登陆验证  http://127.0.0.1:8001/hello
