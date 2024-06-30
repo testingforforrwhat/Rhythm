@@ -41,9 +41,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
         // 配置登录验证方式
-        auth.userDetailsService(adminService)
-            .passwordEncoder(new BCryptPasswordEncoder());
+        // Spring Security 可以同时使用基于内存的用户存储和基于数据库的用户存储
+        auth
+            .userDetailsService(adminService)  // 基于数据库的认证
+            .passwordEncoder(new BCryptPasswordEncoder())
+
+            .and()  // 基于内存的认证
+            .inMemoryAuthentication()
+
+            .withUser("user")
+            .password(new BCryptPasswordEncoder().encode("password"))
+            .roles("USER")
+
+            .and()
+            .withUser("admin")
+            .password(new BCryptPasswordEncoder().encode("admin_password"))
+            .roles("ADMIN");
+
     }
 
     @Override
