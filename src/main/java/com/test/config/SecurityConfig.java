@@ -15,6 +15,12 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 
 import javax.annotation.Resource;
 
+
+/**
+ *
+ * 通过同时使用@EnableWebSecurity和@EnableGlobalMethodSecurity(prePostEnabled = true)，你可以确保整个应用程序的Web安全性和方法级别的安全性得到全面的控制。
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
