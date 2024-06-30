@@ -78,6 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // 配置Security
         http.headers().frameOptions().disable() // 允许iframe嵌套
+
                 .and()
           		.authorizeRequests()  // 开启权限认证
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
@@ -88,6 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         return o;
                     }
                 })
+
                 .and()
                 .formLogin()  // 开启表单登陆验证
                 .loginPage("/login")  // 登陆表单页面的url路径             // spring security            使用框架的登录页
@@ -97,11 +99,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler( loginErrorHandle )
                 .successHandler( loginSuccessHandle )
                 .permitAll()
+
                 .and()
                 .logout()
                 .logoutUrl("/index/logout")
                 .logoutSuccessHandler( logoutSuccessHandle )
                 .permitAll()
+
                 .and()
                 .csrf()
                 .disable()
