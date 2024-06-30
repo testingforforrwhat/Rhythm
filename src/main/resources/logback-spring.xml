@@ -5,7 +5,7 @@
     <!--日志输出到控制台-->
 
     <!--日志格式-->
-    <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [%thread] %-5level %c %M %L %m%n"/>
+    <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [线程名称:][%thread] %-5level [日志记录器的名称，通常是类的全名:]%c [方法名:]%M [行号:]%L [日志消息:]%m%n"/>
     <property name="log_path" value="${user.dir}/src/main/java/com/test/log" />
 
 <!--    class="ch.qos.logback.core.ConsoleAppender"                    <appender-->
@@ -28,7 +28,7 @@
             <pattern>${log_pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
+            <level>debug</level>
             <!--设置高于这个级别的打印-->
             <onMatch>ACCEPT</onMatch>
             <!--低于这个级别不显示-->
