@@ -166,13 +166,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler( loginErrorHandle )
                 .successHandler( loginSuccessHandle )
                 .permitAll()  // 允许所有用户访问登录页
-//
-//                .and()
-//                .logout()
-//                .logoutUrl("/index/logout")
-//                .logoutSuccessHandler( logoutSuccessHandle )
-//                .permitAll()  // 允许所有用户访问注销页
-//
+
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler( logoutSuccessHandle )
+                .permitAll()  // 允许所有用户访问注销页
+
                 .and()
                 .csrf()
                 .disable()
