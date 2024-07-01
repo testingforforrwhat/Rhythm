@@ -1,7 +1,9 @@
 package com.test.controller.springsecurity;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -21,12 +23,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("/hello")
+    @ResponseBody  // Ensures this method returns plain text
     public String hello() {
-        return "hello"; // 返回视图名为 hello 的模板
+        return "hello"; // 返回hello字符串   不返回视图
     }
 
     @GetMapping("/login")
     public String login() {
         return "login"; // 返回视图名为 login 的模板
     }
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("title", "Home Page");
+        model.addAttribute("message", "Welcome to the secured page!");
+        return "home";
+    }
+
 }
