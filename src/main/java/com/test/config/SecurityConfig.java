@@ -189,7 +189,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(permissionErrorHandle)
 
                 .and()
-                .cors();
+                .cors();  // Enable CORS support
 
     }
 }
