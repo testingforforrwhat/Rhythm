@@ -53,14 +53,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 配置登录验证方式
         // Spring Security 可以同时使用基于内存的用户存储和基于数据库的用户存储
         auth
-            .userDetailsService(adminService)  // 基于数据库的认证
-            .passwordEncoder(new BCryptPasswordEncoder())
-
-            .and()  // 基于内存的认证
+//            .userDetailsService(adminService)  // 基于数据库的认证
+//            .passwordEncoder(new BCryptPasswordEncoder())
+//
+//            .and()  // 基于内存的认证
             .inMemoryAuthentication()
 
             .withUser("user")
-            .password("user")
+            .password(new BCryptPasswordEncoder().encode("user"))
             .roles("USER")
 
             .and()
@@ -148,13 +148,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()  // 定义登录页面
                 .formLogin()  // 开启表单登陆验证  http://127.0.0.1:8001/hello
-//                .loginPage("/login")  // 登陆表单页面的url路径  post             // spring security            使用框架的登录页
-//                .loginProcessingUrl("/login")  // 登陆表单处理方法的url路径  get
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .failureHandler( loginErrorHandle )
+                .loginPage("/login")  // 登陆表单页面的url路径  post             // spring security            使用框架的登录页
+                .loginProcessingUrl("/perform_login")  // 登陆表单处理方法的url路径  get
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .failureHandler( loginErrorHandle )
                 .successHandler( loginSuccessHandle )
-                .permitAll();  // 允许所有用户访问登录页
+                .permitAll()  // 允许所有用户访问登录页
 //
 //                .and()
 //                .logout()
@@ -162,10 +162,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .logoutSuccessHandler( logoutSuccessHandle )
 //                .permitAll()  // 允许所有用户访问注销页
 //
-//                .and()
-//                .csrf()
-//                .disable()
-//                .exceptionHandling()
-//                .accessDeniedHandler(permissionErrorHandle);
+                .and()
+                .csrf()
+                .disable()
+                .exceptionHandling()
+                .accessDeniedHandler(permissionErrorHandle);
     }
 }
