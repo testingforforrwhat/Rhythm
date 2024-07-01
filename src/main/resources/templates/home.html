@@ -6,5 +6,18 @@
 </head>
 <body>
 <h1 th:text="${message}">Welcome to the secured page!</h1>
+
+<nav>
+  <a href="/">Home</a>
+  <!-- 导航链接 -->
+
+  <!-- 登出链接 -->
+  <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+  <form id="logout-form" action="/logout" method="POST" style="display: none;">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  </form>
+</nav>
+
 </body>
 </html>
