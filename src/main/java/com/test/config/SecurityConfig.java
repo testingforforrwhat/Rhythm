@@ -14,8 +14,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 
 
 /**
@@ -136,7 +140,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
                 .antMatchers("/login", "/error/**", "/css/**", "/login.html","/actuator/**").permitAll() // 这些路径不需要认证
-                //.antMatchers("/actuator/**").hasRole("user")
+                .antMatchers("/actuator/**").hasRole("user")
                 .antMatchers("/hello").authenticated() // 需要认证的路径
                 .anyRequest().authenticated() // 别的所有请求都需要认证
 
@@ -192,4 +196,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors();  // Enable CORS support
 
     }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedOrigins(Arrays.asList("http://localhost:8002"));  // Replace with your frontend URL
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
 }
