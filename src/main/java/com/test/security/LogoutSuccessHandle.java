@@ -14,6 +14,7 @@ public class LogoutSuccessHandle implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         // 安全退出 重定向到 登录表单页面
+        System.out.println("安全退出 重定向到 登录表单页面");
         response.sendRedirect("/login");
     }
 }
