@@ -2,6 +2,7 @@ package com.test.config;
 
 import com.test.security.*;
 import com.test.service.AdminService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import javax.annotation.Resource;
@@ -60,14 +62,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .inMemoryAuthentication()
 
             .withUser("user")
-            .password(new BCryptPasswordEncoder().encode("user"))
+            .password(passwordEncoder().encode("user"))
             .roles("USER")
 
             .and()
             .withUser("admin")
-            .password(new BCryptPasswordEncoder().encode("admin_password"))
+            .password(passwordEncoder().encode("admin_password"))
             .roles("ADMIN");
 
+    }
+
+    /**
+     * 确保所有的密码编码和解码使用同一个 BCryptPasswordEncoder 实例
+     * @return
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
