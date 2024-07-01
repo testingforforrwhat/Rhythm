@@ -167,6 +167,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler( loginSuccessHandle )
                 .permitAll()  // 允许所有用户访问登录页
 
+                /**
+                 *
+                 * 在大多数应用程序中，用户需要通过点击“登出”按钮或链接来触发登出请求。这个按钮或链接通常会指向 Spring Security 配置的 /logout URL。
+                 *
+                 * 为了实现这一功能，通常在前端页面中添加一个登出按钮或链接，并将其指向 /logout。
+                 * 当用户点击这个按钮或链接时，会向服务器发送 /logout 请求，Spring Security 会自动处理这个请求并执行登出
+                 *
+                 */
                 .and()
                 .logout()
                 .logoutUrl("/logout")  // 访问 /logout 进行登出，Spring Security 会自动处理登出请求
