@@ -169,7 +169,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout()
-                .logoutUrl("/logout")
+                .logoutUrl("/logout")  // 访问 /logout 进行登出，Spring Security 会自动处理登出请求
                 .logoutSuccessHandler( logoutSuccessHandle )
                 .permitAll()  // 允许所有用户访问注销页
 
