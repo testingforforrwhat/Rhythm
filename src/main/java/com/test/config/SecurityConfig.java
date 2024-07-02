@@ -140,9 +140,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
                 .antMatchers("/login", "/error/**", "/css/**", "/login.html","/actuator/**").permitAll() // 这些路径不需要认证
-                .antMatchers("/actuator/**").hasRole("user")
+                //.antMatchers("/actuator/**").hasRole("user")
                 .antMatchers("/hello").authenticated() // 需要认证的路径
                 .anyRequest().authenticated() // 别的所有请求都需要认证
+                //.and()
+                //.httpBasic()  // 使用 HTTP Basic 认证
 
                 /**
                  *
