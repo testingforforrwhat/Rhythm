@@ -19,7 +19,7 @@ import java.util.UUID;
 import static com.test.task.DbDocCreat.createDbDoc;
 
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/api")
 public class FileController {
 
 
@@ -27,7 +27,7 @@ public class FileController {
     private MusicService musicService;
 
 
-    @PostMapping("/upload")
+    @PostMapping("/file/upload")
     public Object upload( MultipartFile multipartFile ) throws IOException {
 
         System.out.println( "参数名称 = " + multipartFile.getName() );
@@ -67,7 +67,7 @@ public class FileController {
         return null;
     }
 
-    @PostMapping("/upload/audioFile")
+    @PostMapping("/file/upload/audioFile")
     public Object uploadAudioFile( MultipartFile multipartFile ) throws IOException {
 
         return musicService.uploadAudioFile(multipartFile);
@@ -91,7 +91,7 @@ public class FileController {
      * @return
      * @throws IOException
      */
-    @PostMapping("/upload/audioFile/{music_id}")
+    @PostMapping("/file/upload/audioFile/{music_id}")
     @ResponseBody
     public Object uploadAudioFileByMusicId( @RequestParam("multipartFile") MultipartFile multipartFile, @PathVariable("music_id") Integer music_id ) throws IOException, NoSuchMethodException {
 
