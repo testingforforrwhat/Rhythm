@@ -112,7 +112,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/music/**",
                         "/api/playAudio/**",
                         "/swagger-ui.html",
-                        "/swagger-ui.html");
+                        "/swagger-ui.html",
+                        "/api/users/login",
+                        "/api/users/regist",
+                        "/sms/validate/**");
     }
 
 
@@ -204,7 +207,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList("http://localhost:8002"));  // Replace with your frontend URL
+        config.setAllowedOrigins(Arrays.asList("http://localhost:8080","http://localhost:8002"));  // Replace with your frontend URL
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         source.registerCorsConfiguration("/**", config);
