@@ -4,8 +4,10 @@
     <!--确保 Logback 配置文件的命名为 logback-spring.xml，Spring Boot 将自动加载该配置文件-->
     <!--日志输出到控制台-->
 
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+
     <!--日志格式-->
-    <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss SSS} [线程名称:][%thread] %-5level [日志记录器的名称，通常是类的全名:]%c [方法名:]%M [行号:]%L [日志消息:]%m%n"/>
+    <property name="log_pattern" value="%clr(%d{yyyy-MM-dd HH:mm:ss SSS}){faint} %clr([线程名称:][%thread]){magenta} %clr(%-5level) %clr([日志记录器的名称，通常是类的全名:]%c){cyan} %clr([方法名:]%M){blue} %clr([行号:]%L){green} [日志消息:]%m%n"/>
     <property name="log_path" value="${user.dir}/src/main/java/com/test/log" />
 
 <!--    class="ch.qos.logback.core.ConsoleAppender"                    <appender-->
