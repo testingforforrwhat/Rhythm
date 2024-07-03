@@ -30,11 +30,8 @@
             <pattern>${log_pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--你将会看到DEBUG级别及其以上的日志消息被正确输出和显示（包括INFO、WARN和ERROR日志消息）-->
             <level>DEBUG</level>
-            <!--设置高于这个级别的打印-->
-            <onMatch>ACCEPT</onMatch>
-            <!--低于这个级别不显示-->
-            <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
 
@@ -111,8 +108,11 @@
         </encoder>
         <file>${log_path}/debug.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <!--你将会看到DEBUG级别及其以上的日志消息被正确输出和显示（包括INFO、WARN和ERROR日志消息）-->
             <level>DEBUG</level>
+            <!--设置高于这个级别的打印-->
+            <onMatch>ACCEPT</onMatch>
+            <!--低于这个级别不显示-->
+            <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
 
