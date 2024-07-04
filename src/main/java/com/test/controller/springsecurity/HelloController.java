@@ -1,8 +1,19 @@
 package com.test.controller.springsecurity;
 
+import com.test.bean.bo.UsersLoginBo;
+import com.test.exception.ResultData;
+import com.test.service.AdminService;
+import com.test.service.UsersService;
+import com.test.utils.JwtTokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +33,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class HelloController {
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private AdminService adminService;
+
     @GetMapping("/hello")
     @ResponseBody  // Ensures this method returns plain text
     public String hello() {
@@ -31,6 +48,37 @@ public class HelloController {
     @GetMapping("/login")
     public String login() {
         return "login"; // 返回视图名为 login 的模板
+    }
+
+    @PostMapping("/springSecurity/login")
+    @ResponseBody
+    public ResultData loginBySpringSecurity(UsersLoginBo usersLoginBo) {
+
+        String username = usersLoginBo.getUserLoginName();
+        String password = usersLoginBo.getUserLoginPass();
+
+        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+        Authentication authentication = authenticationManager.authenticate(authRequest);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // 调用业务逻辑层的 客户登录功能
+        String token = JwtTokenUtil.generateToken(username);
+        // 实例化 DTO 对象，封装响应报文体
+//        DTO dto = new DTO();
+        // 判断 登录是否成功
+        if( token == null ){
+            // 登录失败
+//            dto.setCode( 401 );
+//            dto.setMessage( "手机号或密码错误，请重新填写" );
+            return ResultData.fail(500,"请登录");
+        }else{
+            // 登录成功
+//            dto.setCode( 200 );
+//            dto.setMessage( "登录成功" );
+//            dto.setData( token );
+            return ResultData.success(token);
+        }
+
     }
 
     @GetMapping("/home")
