@@ -12,5 +12,15 @@
     <sql id="Base_Column_List">
         role_id,role_name
     </sql>
-    <select id="getListByOperateUrl" resultType="com.test.bean.po.Role"></select>
+    <select id="getListByOperateUrl" resultType="com.test.bean.po.Role">
+        SELECT
+            d.*
+        FROM
+            `operate` a
+                INNER JOIN `permission_operate` b on a.operate_id = b.operate_id
+                INNER JOIN `role_permission` c on b.permission_id = c.permission_id
+                INNER JOIN `role` d on c.role_id = d.role_id
+        WHERE
+            a.operate_url = #{requestUrl}
+    </select>
 </mapper>
