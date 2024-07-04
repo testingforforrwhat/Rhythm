@@ -1,0 +1,12 @@
+insert into rhythm.permission_operate (permission_id, operate_id) values (73, 73);
+insert into rhythm.permission_operate (permission_id, operate_id) values (74, 74);
+insert into rhythm.permission_operate (permission_id, operate_id) values (75, 75);
+insert into rhythm.permission_operate (permission_id, operate_id) values (76, 76);
+insert into rhythm.permission_operate (permission_id, operate_id) values (77, 77);
+insert into rhythm.permission_operate (permission_id, operate_id) values (78, 78);
+insert into rhythm.permission_operate (permission_id, operate_id) values (79, 79);
+insert into rhythm.permission_operate (permission_id, operate_id) values (80, 80);
+insert into rhythm.permission_operate (permission_id, operate_id) values (81, 81);
+insert into rhythm.permission_operate (permission_id, operate_id) values (82, 82);
+insert into rhythm.permission_operate (permission_id, operate_id) values (83, 83);
+insert into rhythm.permission_operate (permission_id, operate_id) values (84, 84);

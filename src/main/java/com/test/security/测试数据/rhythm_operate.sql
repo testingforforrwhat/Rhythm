@@ -1,0 +1,12 @@
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (73, '添加音乐分类', '/api/categories/add');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (74, '删除音乐分类', '/api/categories/delete');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (75, null, '/api/categories');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (76, '查询每个音乐分类', '/api/categories/query');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (77, '查询当前所有音乐分类', '/api/categories/queryAll');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (78, '编辑音乐分类', '/api/categories/update');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (79, '添加音乐', '/api/music/add');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (80, '删除音乐', '/api/categories/delete');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (81, null, '/api/music');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (82, '查询每个音乐', '/api/music/query');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (83, '查询当前所有音乐', '/api/music/queryAll');
+insert into rhythm.operate (operate_id, operate_name, operate_url) values (84, '编辑音乐', '/api/music/update');
