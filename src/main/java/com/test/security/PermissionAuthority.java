@@ -23,6 +23,7 @@ public class PermissionAuthority implements FilterInvocationSecurityMetadataSour
 
         // 获取请求的URL
         String requestUrl = ( (FilterInvocation) object ).getRequestUrl();
+        System.out.println("当前请求的URL: " + requestUrl);
 
         // 根据URL获取可以访问角色列表
         List<Role> roleList = roleMapper.getListByOperateUrl(requestUrl);
