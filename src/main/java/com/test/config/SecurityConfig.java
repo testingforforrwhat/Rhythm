@@ -59,6 +59,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 配置登录验证方式
         // Spring Security 可以同时使用基于内存的用户存储和基于数据库的用户存储
+        /**
+         *
+         * 　用户根据实际情况设置这7个方法的返回值。因为默认情况下不需要开发者自己进行密码角色等信息的比对，开发者只需要提供相关信息即可，
+         *  例如getPassword()方法返回的密码和用户输入的登录密码不匹配，会自动抛出BadCredentialsException异常，
+         *     isAccountNonExpired()方法返回了false，会自动抛出AccountExpiredException异常
+         *     getAuthorities()方法用来获取当前用户所具有的角色信息，本案例中，用户所具有的角色存储在roles属性中，因此该方法直接遍历roles属性，然后构造SimpleGrantedAuthority集合并返回
+         *
+         */
         auth
             .userDetailsService(adminService)  // 基于数据库的认证
             .passwordEncoder(passwordEncoder());
@@ -79,6 +87,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 确保所有的密码编码和解码使用同一个 BCryptPasswordEncoder 实例
+     *
+     * 最新版本的Spring Security中，NoOpPasswordEncoder的构造方法被设置为了私有，不能直接实例化，
+     *
+     * NoOpPasswordEncoder 应该通过其工厂方法 getInstance() 获取实例，而不能直接通过new关键字创建实例
+     *
      * @return
      */
     @Bean
