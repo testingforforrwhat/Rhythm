@@ -16,6 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ *
+ * 实现一个过滤器，以在每个请求中验证 JWT 令牌
+ *
+ */
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
