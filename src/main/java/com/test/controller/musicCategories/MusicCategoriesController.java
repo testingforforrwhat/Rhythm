@@ -28,12 +28,12 @@ public class MusicCategoriesController {
 
     /**
      * @param category_id
-     * @return GET http://127.0.0.1:8001/api/categories/{category_id}
+     * @return GET http://127.0.0.1:8001/api/categories/query/{category_id}
      * 根据ad_id查询对应信息
      */
     @ResponseBody
     @ApiOperation("查询每个音乐分类")
-    @GetMapping("/categories/{category_id}")
+    @GetMapping("/categories/query/{category_id}")
     public Object getMusicCategoriesById(@ApiParam(value = "分类ID",required = true)  @PathVariable("category_id") Integer category_id){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
@@ -49,12 +49,12 @@ public class MusicCategoriesController {
 
     /**
      * 查询当前所有音乐分类
-     * GET http://127.0.0.1:8001/api/categories
+     * GET http://127.0.0.1:8001/api/categories/queryAll
      * @return
      */
     @ResponseBody
     @ApiOperation("查询当前所有音乐分类")
-    @GetMapping("/categories")
+    @GetMapping("/categories/queryAll")
     public Object list(){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
@@ -71,12 +71,12 @@ public class MusicCategoriesController {
 
     /**
      * 添加音乐分类
-     * Post http://127.0.0.1:8001/api/categories
+     * Post http://127.0.0.1:8001/api/categories/add
      * @param musicCategoriesAddBo
      * @return
      */
     @ResponseBody
-    @PostMapping("/categories")
+    @PostMapping("/categories/add")
     @ApiOperation("添加音乐分类")
     public Object addMusicCategoriesAddBo( @RequestBody MusicCategoriesAddBo musicCategoriesAddBo){
         System.out.println( musicCategoriesAddBo );
@@ -102,12 +102,12 @@ public class MusicCategoriesController {
 
     /**
      * 编辑音乐分类
-     * Patch http://127.0.0.1:8001/api/categories
+     * Patch http://127.0.0.1:8001/api/categories/update
      * @param musicCategoriesUpdateBo
      * @return
      */
     @ResponseBody
-    @PatchMapping("/categories")
+    @PatchMapping("/categories/update")
     @ApiOperation("编辑音乐分类")
     public Object editMusicCategoriesAddBo( MusicCategoriesUpdateBo musicCategoriesUpdateBo){
         System.out.println( musicCategoriesUpdateBo );
@@ -133,12 +133,12 @@ public class MusicCategoriesController {
 
     /**
      * 删除音乐分类
-     * Delete http://127.0.0.1:8001/api/categories/{category_id}
+     * Delete http://127.0.0.1:8001/api/categories/delete/{category_id}
      * @param category_id
      * @return
      */
     @ResponseBody
-    @DeleteMapping("/categories/{category_id}")
+    @DeleteMapping("/categories/delete/{category_id}")
     @ApiOperation("删除音乐分类")
     public Object deleteMusicCategory( @ApiParam(value = "分类ID",required = true)  @PathVariable("category_id") Integer category_id){
 //        // 实例化 响应报文体
