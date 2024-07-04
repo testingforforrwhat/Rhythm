@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.web.cors.CorsConfiguration;
@@ -59,20 +60,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 配置登录验证方式
         // Spring Security 可以同时使用基于内存的用户存储和基于数据库的用户存储
         auth
-//            .userDetailsService(adminService)  // 基于数据库的认证
-//            .passwordEncoder(new BCryptPasswordEncoder())
-//
+            .userDetailsService(adminService)  // 基于数据库的认证
+            .passwordEncoder(passwordEncoder());
+
 //            .and()  // 基于内存的认证
-            .inMemoryAuthentication()
-
-            .withUser("user")
-            .password(passwordEncoder().encode("user"))
-            .roles("USER")
-
-            .and()
-            .withUser("admin")
-            .password(passwordEncoder().encode("admin_password"))
-            .roles("ADMIN");
+//            .inMemoryAuthentication()
+//
+//            .withUser("user")
+//            .password(passwordEncoder().encode("user"))
+//            .roles("USER")
+//
+//            .and()
+//            .withUser("admin")
+//            .password(passwordEncoder().encode("admin_password"))
+//            .roles("ADMIN");
 
     }
 
@@ -82,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
 
     @Override
