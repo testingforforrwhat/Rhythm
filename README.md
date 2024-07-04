@@ -15,7 +15,7 @@
 - 广告管理
 - 安全和权限
 
-**开发文档：**  [doc]()
+**开发文档：**  [doc](https://testingforforrwhat.github.io/rhythm_doc/)
 
 **演示地址：**  [demo](http://81.68.159.172/)
 
