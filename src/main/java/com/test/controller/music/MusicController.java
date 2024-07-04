@@ -37,12 +37,12 @@ public class MusicController {
 
     /**
      * @param music_id
-     * @return GET http://127.0.0.1:8001/api/music/{music_id}
+     * @return GET http://127.0.0.1:8001/api/music/query/{music_id}
      * 根据music_id查询对应信息
      */
     @ResponseBody
     @ApiOperation("查询每个音乐")
-    @GetMapping("/music/{music_id}")
+    @GetMapping("/music/query/{music_id}")
     public Object getMusicById(@ApiParam(value = "音乐ID",required = true)  @PathVariable("music_id") Integer music_id){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
@@ -58,12 +58,12 @@ public class MusicController {
 
     /**
      * 查询当前所有音乐
-     * GET http://127.0.0.1:8001/api/music
+     * GET http://127.0.0.1:8001/api/music/queryAll
      * @return
      */
     @ResponseBody
     @ApiOperation("查询当前所有音乐")
-    @GetMapping("/music")
+    @GetMapping("/music/queryAll")
     public Object list(){
 //        // 实例化 响应报文体
 //        Map<String,Object> responseBody = new HashMap<>();
@@ -80,7 +80,7 @@ public class MusicController {
 
     /**
      * 查询满足条件的所有音乐
-     * Post http://127.0.0.1:8001/api/music
+     * Post http://127.0.0.1:8001/api/music/search
      * @return
      */
     @ResponseBody
@@ -102,12 +102,12 @@ public class MusicController {
 
     /**
      * 添加音乐
-     * Post http://127.0.0.1:8001/api/music
+     * Post http://127.0.0.1:8001/api/music/add
      * @param musicAddBo
      * @return
      */
     @ResponseBody
-    @PostMapping("/music")
+    @PostMapping("/music/add")
     @ApiOperation("添加音乐")
     public Object addMusicAddBo( MusicAddBo musicAddBo){
         System.out.println( musicAddBo );
@@ -133,12 +133,12 @@ public class MusicController {
 
     /**
      * 编辑音乐
-     * Patch http://127.0.0.1:8001/api/music
+     * Patch http://127.0.0.1:8001/api/music/update
      * @param musicUpdateBo
      * @return
      */
     @ResponseBody
-    @PatchMapping("/music")
+    @PatchMapping("/music/update")
     @ApiOperation("编辑音乐分类")
     public Object editMusicAddBo( MusicUpdateBo musicUpdateBo){
         System.out.println( musicUpdateBo );
@@ -164,12 +164,12 @@ public class MusicController {
 
     /**
      * 删除音乐
-     * Delete http://127.0.0.1:8001/api/music/{music_id}
+     * Delete http://127.0.0.1:8001/api/music/delete/{music_id}
      * @param music_id
      * @return
      */
     @ResponseBody
-    @DeleteMapping("/music/{music_id}")
+    @DeleteMapping("/music/delete/{music_id}")
     @ApiOperation("删除音乐")
     public Object deleteMusicCategory( @ApiParam(value = "音乐ID",required = true)  @PathVariable("music_id") Integer music_id){
 //        // 实例化 响应报文体
