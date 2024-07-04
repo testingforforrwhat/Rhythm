@@ -231,6 +231,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .cors();  // Enable CORS support
 
+        /**
+         * 配置 JWT 过滤器
+         */
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

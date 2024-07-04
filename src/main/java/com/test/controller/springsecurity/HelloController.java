@@ -50,6 +50,13 @@ public class HelloController {
         return "login"; // 返回视图名为 login 的模板
     }
 
+    /**
+     *
+     * 实现一个控制器来处理前端的登录请求，认证成功后生成并返回 JWT 令牌
+     *
+     * @param usersLoginBo
+     * @return
+     */
     @PostMapping("/springSecurity/login")
     @ResponseBody
     public ResultData loginBySpringSecurity(UsersLoginBo usersLoginBo) {
