@@ -67,6 +67,16 @@ public class HelloController {
 
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         System.out.println("authRequest: " + authRequest);
+
+        /**
+         * 此处调用 authenticationManager 的 authenticate 方法来处理认证逻辑。
+         * 它会调用配置的 UserDetailsService 和 PasswordEncoder 来验证用户的身份信息。
+         *
+         * 认证成功后，它会返回一个 Authentication 对象，包含了已认证用户的详细信息和权限。
+         */
+        System.out.println("开始调用配置的 UserDetailsService 和 PasswordEncoder...,  " +
+                "认证成功后，它会返回一个 Authentication 对象，包含了已认证用户的详细信息和权限");
+
         Authentication authentication = authenticationManager.authenticate(authRequest);
         System.out.println("authentication: " + authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
