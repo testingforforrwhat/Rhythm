@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -91,8 +92,26 @@ public class HelloController {
 
         Authentication authentication = authenticationManager.authenticate(authRequest);
         System.out.println("认证成功，返回一个对象 authentication，包含了已认证(authentication)用户的详细信息和权限(authorization)");
-        System.out.println("authentication: " + authentication);
+        System.out.println("authentication: \n" + authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+
+        Authentication authentication_ = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("authentication_  (SecurityContextHolder.getContext().getAuthentication(authentication)): \n" + SecurityContextHolder.getContext().getAuthentication());
+        if (authentication_ != null && authentication.getDetails() instanceof WebAuthenticationDetails) {
+            WebAuthenticationDetails details = (WebAuthenticationDetails) authentication_.getDetails();
+
+            // 获取 IP 地址
+            String remoteAddress = details.getRemoteAddress();
+
+            // 获取会话 ID
+            String sessionId = details.getSessionId();
+
+            // 打印 IP 地址和会话 ID
+            System.out.println("Remote IP Address: " + remoteAddress);
+            System.out.println("Session ID: " + sessionId);
+        }
+
 
         // 调用业务逻辑层的 客户登录功能
         String token = JwtTokenUtil.generateToken(username);
