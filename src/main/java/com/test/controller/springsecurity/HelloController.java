@@ -1,5 +1,6 @@
 package com.test.controller.springsecurity;
 
+import com.test.bean.bo.AdminLoginBo;
 import com.test.bean.bo.UsersLoginBo;
 import com.test.exception.ResultData;
 import com.test.service.AdminService;
@@ -54,15 +55,15 @@ public class HelloController {
      *
      * 实现一个控制器来处理前端的登录请求，认证成功后生成并返回 JWT 令牌
      *
-     * @param usersLoginBo
+     * @param adminLoginBo
      * @return
      */
     @PostMapping("/springSecurity/login")
     @ResponseBody
-    public ResultData loginBySpringSecurity(UsersLoginBo usersLoginBo) {
+    public ResultData loginBySpringSecurity(AdminLoginBo adminLoginBo) {
 
-        String username = usersLoginBo.getUserLoginName();
-        String password = usersLoginBo.getUserLoginPass();
+        String username = adminLoginBo.getAdminName();
+        String password = adminLoginBo.getAdminPass();
 
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = authenticationManager.authenticate(authRequest);
