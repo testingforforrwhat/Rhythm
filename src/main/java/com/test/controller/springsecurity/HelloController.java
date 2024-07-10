@@ -98,6 +98,7 @@ public class HelloController {
 
         Authentication authentication_ = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("authentication_  (SecurityContextHolder.getContext().getAuthentication(authentication)): \n" + SecurityContextHolder.getContext().getAuthentication());
+        System.out.println("authentication_.getDetails(): \n" + authentication_.getDetails());
         if (authentication_ != null && authentication_.getDetails() instanceof WebAuthenticationDetails) {
             WebAuthenticationDetails details = (WebAuthenticationDetails) authentication_.getDetails();
 
