@@ -84,7 +84,7 @@ public class HelloController {
                 "认证成功后，它会返回一个 Authentication 对象，包含了已认证用户的详细信息和权限");
 
         Authentication authentication = authenticationManager.authenticate(authRequest);
-        System.out.println("认证成功，返回一个对象 authentication，包含了已认证用户的详细信息和权限");
+        System.out.println("认证成功，返回一个对象 authentication，包含了已认证(authentication)用户的详细信息和权限(authorization)");
         System.out.println("authentication: " + authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
