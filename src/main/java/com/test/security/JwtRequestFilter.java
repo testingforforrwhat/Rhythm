@@ -62,6 +62,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 // WebAuthenticationDetailsSource 是一个工具类，用于从 HttpServletRequest 中提取详细信息，
                 // 并将其添加到 WebAuthenticationDetails 对象中。这些详细信息通常包括客户端的 IP 地址和会话 ID。
                 //
+                // 我们构建 UsernamePasswordAuthenticationToken 对象来存储认证(authentication)信息
                 // 我们可以使用 WebAuthenticationDetailsSource 为构建的 UsernamePasswordAuthenticationToken 添加额外的请求的上下文信息。这不仅有助于审计和监控，还能帮助我们实现一些特定的安全需求，例如防止多次登录攻击。
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
