@@ -3,7 +3,9 @@ package com.test.security;
 import com.test.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -56,8 +58,29 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         username, null, new ArrayList<>());
+                // 使用 WebAuthenticationDetailsSource 设置请求的详细信息（如 IP 地址、会话 ID 等）
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+
+                Authentication authentication_ = SecurityContextHolder.getContext().getAuthentication();
+                System.out.println("authentication_  (SecurityContextHolder.getContext().getAuthentication(authentication)): \n" + SecurityContextHolder.getContext().getAuthentication());
+                System.out.println("authentication_.getDetails(): \n" + authentication_.getDetails());
+                if (authentication_ != null && authentication_.getDetails() instanceof WebAuthenticationDetails) {
+                    WebAuthenticationDetails details = (WebAuthenticationDetails) authentication_.getDetails();
+
+                    // 获取 IP 地址
+                    String remoteAddress = details.getRemoteAddress();
+
+                    // 获取会话 ID
+                    String sessionId = details.getSessionId();
+
+                    // 打印 IP 地址和会话 ID
+                    System.out.println("Remote IP Address: " + remoteAddress);
+                    System.out.println("Session ID: " + sessionId);
+                }
+
+
             }
         }
 
