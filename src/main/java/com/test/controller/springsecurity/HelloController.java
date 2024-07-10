@@ -13,10 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -60,7 +57,7 @@ public class HelloController {
      */
     @PostMapping("/springSecurity/login")
     @ResponseBody
-    public ResultData loginBySpringSecurity(AdminLoginBo adminLoginBo) {
+    public ResultData loginBySpringSecurity(@RequestBody AdminLoginBo adminLoginBo) {
 
         String username = adminLoginBo.getAdminName();
         String password = adminLoginBo.getAdminPass();
@@ -71,6 +68,7 @@ public class HelloController {
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         System.out.println("authRequest: " + authRequest);
         Authentication authentication = authenticationManager.authenticate(authRequest);
+        System.out.println("authentication: " + authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // 调用业务逻辑层的 客户登录功能
