@@ -40,7 +40,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwtToken = requestTokenHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+                System.out.println("jwtTokenUtil.getUsernameFromToken: " + username);
             } catch (Exception e) {
+                System.out.println("JWT token is invalid or expired");
                 logger.warn("JWT token is invalid or expired");
             }
         } else {
