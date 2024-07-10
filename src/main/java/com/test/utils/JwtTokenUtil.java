@@ -41,6 +41,7 @@ public class JwtTokenUtil {
                     .withSubject(username)
                     .build();
             verifier.verify(token);
+            System.out.println("验证令牌成功");
             return true;
         } catch (JWTVerificationException exception) {
             return false;
