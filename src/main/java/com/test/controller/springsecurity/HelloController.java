@@ -98,7 +98,7 @@ public class HelloController {
 
         Authentication authentication_ = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("authentication_  (SecurityContextHolder.getContext().getAuthentication(authentication)): \n" + SecurityContextHolder.getContext().getAuthentication());
-        if (authentication_ != null && authentication.getDetails() instanceof WebAuthenticationDetails) {
+        if (authentication_ != null && authentication_.getDetails() instanceof WebAuthenticationDetails) {
             WebAuthenticationDetails details = (WebAuthenticationDetails) authentication_.getDetails();
 
             // 获取 IP 地址
