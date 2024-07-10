@@ -6,6 +6,7 @@ import com.test.exception.ResultData;
 import com.test.service.AdminService;
 import com.test.service.UsersService;
 import com.test.utils.JwtTokenUtil;
+import com.test.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -36,6 +39,9 @@ public class HelloController {
 
     @Autowired
     private AdminService adminService;
+
+    @Resource
+    private RedisUtil redisUtil;
 
     @GetMapping("/hello")
     @ResponseBody  // Ensures this method returns plain text
@@ -90,6 +96,10 @@ public class HelloController {
 
         // 调用业务逻辑层的 客户登录功能
         String token = JwtTokenUtil.generateToken(username);
+
+        // 将签发的令牌，存入Redis中。拼接上Authorization的策略（Bearer Token）前缀。
+        redisUtil.set( "Bearer " + token , username , 60 * 24 );
+
         // 实例化 DTO 对象，封装响应报文体
 //        DTO dto = new DTO();
         // 判断 登录是否成功
