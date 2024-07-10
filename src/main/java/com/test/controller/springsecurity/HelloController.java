@@ -65,7 +65,11 @@ public class HelloController {
         String username = adminLoginBo.getAdminName();
         String password = adminLoginBo.getAdminPass();
 
+        System.out.println("username: " + username);
+        System.out.println("password: " + password);
+
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+        System.out.println("authRequest: " + authRequest);
         Authentication authentication = authenticationManager.authenticate(authRequest);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
