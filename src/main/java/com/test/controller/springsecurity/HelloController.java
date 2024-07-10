@@ -93,7 +93,7 @@ public class HelloController {
         Authentication authentication = authenticationManager.authenticate(authRequest);
         System.out.println("认证成功，返回一个对象 authentication，包含了已认证(authentication)用户的详细信息和权限(authorization)");
         System.out.println("authentication: \n" + authentication);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);  // 保存认证对象，这样可以确保后续请求处理中可以获取到当前已认证用户的信息
 
 
         Authentication authentication_ = SecurityContextHolder.getContext().getAuthentication();
