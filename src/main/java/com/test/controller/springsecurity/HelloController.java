@@ -65,6 +65,12 @@ public class HelloController {
         System.out.println("username: " + username);
         System.out.println("password: " + password);
 
+        /**
+         * 这里，我们创建了一个 UsernamePasswordAuthenticationToken 对象，
+         * 它包含了用户提交的用户名和密码。这是 Spring Security 中用于表示认证请求的标准对象。
+         *
+         */
+        System.out.println("正在创建Spring Security 中用于表示认证请求的标准对象 authRequest,它包含了用户提交的用户名和密码...");
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         System.out.println("authRequest: " + authRequest);
 
