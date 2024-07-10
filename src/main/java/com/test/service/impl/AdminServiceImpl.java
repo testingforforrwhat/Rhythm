@@ -26,6 +26,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
+        System.out.println("开始查询数据库... ");
         Admin admin = adminMapper.getOneByName( username );
         System.out.println("根据username查询到的用户账号信息: " + admin);
         if( admin == null ){
