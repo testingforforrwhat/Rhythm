@@ -15,10 +15,11 @@ import java.util.Date;
 public class JwtTokenUtil {
 
     @Value("${jwt.secret}")
-    private static final String SECRET_KEY = null;
+    private static final String SECRET_KEY = "u2J37FcFZrRiLmJKiFZLzOCN4KsoFN4OFJ6pE9HiBsc=";
 
     // 生成令牌
     public static String generateToken(String username) {
+        System.out.println("SECRET_KEY: " + SECRET_KEY);
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
         return JWT.create()
                 .withSubject(username)
