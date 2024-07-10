@@ -74,7 +74,7 @@ public class HelloController {
          *
          * 认证成功后，它会返回一个 Authentication 对象，包含了已认证用户的详细信息和权限。
          */
-        System.out.println("开始调用配置的 UserDetailsService 和 PasswordEncoder...,  " +
+        System.out.println("authenticationManager开始调用配置的 UserDetailsService 和 PasswordEncoder...,  " +
                 "认证成功后，它会返回一个 Authentication 对象，包含了已认证用户的详细信息和权限");
 
         Authentication authentication = authenticationManager.authenticate(authRequest);
