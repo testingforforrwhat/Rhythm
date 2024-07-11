@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,8 @@ public class AdvertisementsController {
      * @return GET http://127.0.0.1:8001/api/ads/postAds/{ad_id}
      * 根据ad_id查询广告信息
      */
+    // 需要Admin角色权限
+    @PreAuthorize("hasRole('admin')")
     @ResponseBody
     @ApiOperation("根据ad_id查询对应信息")
     @GetMapping("/ads/{ad_id}")
