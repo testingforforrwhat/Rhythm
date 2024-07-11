@@ -205,15 +205,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                  * 相反，我们需要提供一个用于身份认证的API端点。
                  * 在后端进行身份验证后，生成一个JWT令牌返回给前端，前端将JWT令牌存储并在每个请求中携带该令牌。
                  */
-                .and()  // 定义登录页面
-                .formLogin()  // 开启表单登陆验证  http://127.0.0.1:8001/hello
-                .loginPage("/login")  // 登陆表单页面的url路径  get             // spring security            使用框架的登录页
-                .loginProcessingUrl("/perform_login")  // 登陆表单处理方法的url路径  post    确保 loginProcessingUrl("/perform_login") 与表单的 action="@{/perform_login}" 一致
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .failureHandler( loginErrorHandle )
-                .successHandler( loginSuccessHandle )
-                .permitAll()  // 允许所有用户访问登录页
+//                .and()  // 定义登录页面
+//                .formLogin()  // 开启表单登陆验证  http://127.0.0.1:8001/hello
+//                .loginPage("/login")  // 登陆表单页面的url路径  get             // spring security            使用框架的登录页
+//                .loginProcessingUrl("/perform_login")  // 登陆表单处理方法的url路径  post    确保 loginProcessingUrl("/perform_login") 与表单的 action="@{/perform_login}" 一致
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .failureHandler( loginErrorHandle )
+//                .successHandler( loginSuccessHandle )
+//                .permitAll()  // 允许所有用户访问登录页
 
                 /**
                  *
@@ -229,6 +229,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler( logoutSuccessHandle )
                 .permitAll()  // 允许所有用户访问注销页
 
+
+                /**
+                 * 添加权限不足异常处理器
+                 */
                 .and()
                 .csrf()
                 .disable()
