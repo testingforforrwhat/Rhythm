@@ -41,6 +41,9 @@ public class PermissionAuthority implements FilterInvocationSecurityMetadataSour
             return SecurityConfig.createList(roles);
         }
         // 避免返回null（任何角色都能访问）
+        // roleList角色列表为空, 当前访问的url不需要权限认证
+        // 直接返回一个元素的 授权列表
+        // 授权列表的唯一的一个授权的授权名称: "PublicPermission"
         return SecurityConfig.createList("PublicPermission");
     }
 
