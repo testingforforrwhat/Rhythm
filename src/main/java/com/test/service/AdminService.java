@@ -1,5 +1,6 @@
 package com.test.service;
 
+import com.test.bean.bo.AdminRegistBo;
 import com.test.bean.po.Admin;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,4 +12,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 */
 public interface AdminService extends IService<Admin>, UserDetailsService {
 
+    int regist(AdminRegistBo adminRegistBo);
 }
