@@ -34,7 +34,7 @@ import java.util.Arrays;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)  // 开启注解权限校验，否则无法识别@PreAuthorize注解
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
