@@ -14,6 +14,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AdminMapper extends BaseMapper<Admin> {
 
     Admin getOneByName(String username);
+
+    int register(Admin admin);
 }
 
 

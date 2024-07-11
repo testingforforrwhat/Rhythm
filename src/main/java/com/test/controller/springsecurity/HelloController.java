@@ -1,6 +1,7 @@
 package com.test.controller.springsecurity;
 
 import com.test.bean.bo.AdminLoginBo;
+import com.test.bean.bo.AdminRegistBo;
 import com.test.bean.bo.UsersLoginBo;
 import com.test.exception.ResultData;
 import com.test.service.AdminService;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +55,28 @@ public class HelloController {
     @GetMapping("/login")
     public String login() {
         return "login"; // 返回视图名为 login 的模板
+    }
+
+
+
+
+    @PostMapping("/springSecurity/register")
+    @ResponseBody
+    public ResultData register(@RequestBody AdminRegistBo adminRegistBo) {
+        // 调用业务逻辑层 的 客户注册功能
+        int result = adminService.regist( adminRegistBo );
+        System.out.println("result: " + result);
+
+        if( result == 1 ){
+            return ResultData.success( "注册成功" );
+        }else if( result == -1 ){
+            return ResultData.fail( 500,"短信验证码校验失败" );
+        }else if( result == -2 ){
+            return ResultData.fail( 500,"该手机号码已注册" );
+        }else {
+            return null;
+        }
+
     }
 
     /**

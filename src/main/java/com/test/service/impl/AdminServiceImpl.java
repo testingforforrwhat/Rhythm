@@ -50,7 +50,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
         admin.setAdminName(adminRegistBo.getAdminName());
         admin.setAdminPass(passwordEncoder.encode(adminRegistBo.getAdminPass()));
         // 将用户实体对象添加到数据库
-        adminMapper.insert( admin );
+        System.out.println("正在将用户实体对象添加到数据库");
+        adminMapper.register( admin );
         return 1;
     }
 }

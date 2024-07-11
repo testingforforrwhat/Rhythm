@@ -11,10 +11,26 @@
             <result property="adminNickname" column="admin_nickname" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap id="AdminWithRolrResultMap" type="com.test.bean.po.Admin">
+        <id property="adminId" column="admin_id" jdbcType="INTEGER"/>
+        <result property="adminName" column="admin_name" jdbcType="VARCHAR"/>
+        <result property="adminPass" column="admin_pass" jdbcType="VARCHAR"/>
+        <result property="adminNickname" column="admin_nickname" jdbcType="VARCHAR"/>
+        <collection property="roleList"
+                    ofType="com.test.bean.po.Role"
+                    column="admin_id"
+                    select=""/>
+    </resultMap>
+
+
     <sql id="Base_Column_List">
         admin_id,admin_name,admin_pass,
         admin_nickname
     </sql>
+
+    <insert id="register">insert into rhythm.admin (admin_name, admin_pass)
+                          VALUES (#{adminName}, #{adminPass})</insert>
+
     <select id="getOneByName" resultType="com.test.bean.po.Admin">
         select *
         from rhythm.admin
