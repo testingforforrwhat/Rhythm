@@ -1,5 +1,6 @@
 package com.test.security;
 
+import com.test.service.AdminService;
 import com.test.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,6 +31,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Resource
     private JwtTokenUtil jwtTokenUtil;
 
+    @Resource
+    private AdminService adminService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -57,7 +61,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 System.out.println("SecurityContextHolder.getContext().getAuthentication(authentication): " + SecurityContextHolder.getContext().getAuthentication());
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        username, null, new ArrayList<>());
+                        username, null, adminService.loadUserByUsername(username).getAuthorities());
                 // 使用 WebAuthenticationDetailsSource 设置请求的详细信息（如 IP 地址、会话 ID 等）
                 // WebAuthenticationDetailsSource 是一个工具类，用于从 HttpServletRequest 中提取详细信息，
                 // 并将其添加到 WebAuthenticationDetails 对象中。这些详细信息通常包括客户端的 IP 地址和会话 ID。
