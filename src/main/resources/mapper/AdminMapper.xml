@@ -11,7 +11,8 @@
             <result property="adminNickname" column="admin_nickname" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="AdminWithRolrResultMap" type="com.test.bean.po.Admin">
+    <!--含有角色信息的管理员 结果映射方案-->
+    <resultMap id="AdminWithRoleResultMap" type="com.test.bean.po.Admin">
         <id property="adminId" column="admin_id" jdbcType="INTEGER"/>
         <result property="adminName" column="admin_name" jdbcType="VARCHAR"/>
         <result property="adminPass" column="admin_pass" jdbcType="VARCHAR"/>
@@ -19,7 +20,7 @@
         <collection property="roleList"
                     ofType="com.test.bean.po.Role"
                     column="admin_id"
-                    select=""/>
+                    select="com.test.mapper.RoleMapper.selectListByAdminId"/>
     </resultMap>
 
 
@@ -31,7 +32,7 @@
     <insert id="register">insert into rhythm.admin (admin_name, admin_pass)
                           VALUES (#{adminName}, #{adminPass})</insert>
 
-    <select id="getOneByName" resultType="com.test.bean.po.Admin">
+    <select id="getOneByName" resultMap="AdminWithRoleResultMap">
         select *
         from rhythm.admin
         where admin_name =#{username}
