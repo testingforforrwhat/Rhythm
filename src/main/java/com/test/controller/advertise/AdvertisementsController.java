@@ -29,7 +29,10 @@ public class AdvertisementsController {
      * 根据ad_id查询广告信息
      */
     // 需要Admin角色权限
-    @PreAuthorize("hasRole('admin')")
+    // Spring Security 默认使用 ROLE_ 前缀来识别角色。
+    // 因此，如果你的角色在数据库中存储的时候，已经包括了 ROLE_ 前缀，那么你在使用 @PreAuthorize 的时候也需要带上这个前缀，
+    // 否则,无论是在数据库中还是在代码中，确保角色的命名保持一致。比如：ROLE_test 或者 test
+    @PreAuthorize("hasRole('test')")
     @ResponseBody
     @ApiOperation("根据ad_id查询对应信息")
     @GetMapping("/ads/{ad_id}")
