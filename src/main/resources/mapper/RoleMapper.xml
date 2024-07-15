@@ -23,4 +23,12 @@
         WHERE
             a.operate_url = #{requestUrl}
     </select>
+    <select id="selectListByAdminId" resultType="com.test.bean.po.Role">
+        select a.*
+        from
+            role a
+                INNER JOIN admin_role b on a.role_id = b.role_id
+        where
+            b.admin_id = #{AdminId};
+    </select>
 </mapper>
