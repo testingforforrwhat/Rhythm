@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,7 @@ public class FavoritesController {
      *
      * @return
      */
+    @PreAuthorize("hasRole('用户')")
     @ResponseBody
     @ApiOperation("查询获取当前用户收藏的音乐")
     @GetMapping("/user/{user_id}")

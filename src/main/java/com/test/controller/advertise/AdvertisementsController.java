@@ -40,7 +40,7 @@ public class AdvertisementsController {
      * @param ad_id
      * @return
      */
-    @PreAuthorize("hasRole('用户')")
+    @PreAuthorize("hasRole('系统管理员')")
     @ResponseBody
     @ApiOperation("根据ad_id查询对应信息")
     @GetMapping("/ads/{ad_id}")

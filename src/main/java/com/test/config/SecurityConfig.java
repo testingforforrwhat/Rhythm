@@ -64,6 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
+    @Autowired
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -176,7 +179,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 // 自定义异常处理
                 .exceptionHandling()
-                .authenticationEntryPoint(customAuthenticationEntryPoint)
+                  // 如果请求中未包含有效的 JWT，JwtRequestFilter 不会设置认证，CustomAuthenticationEntryPoint 将截获并返回 401 状态码
+                  .authenticationEntryPoint(customAuthenticationEntryPoint)
+                  // 如果请求中包含有效的 JWT，但用户没有所需的 ADMIN 权限，权限检查会失败，CustomAccessDeniedHandler 将截获并返回 403 状态码
+                  .accessDeniedHandler(customAccessDeniedHandler)
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
                 .antMatchers("/login", "/error/**", "/css/**", "/login.html","/springSecurity/login").permitAll() // 这些路径不需要认证
