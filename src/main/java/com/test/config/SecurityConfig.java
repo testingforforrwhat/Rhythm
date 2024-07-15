@@ -178,7 +178,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.and()
                 //.httpBasic()  // 使用 HTTP Basic 认证
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // 配置无状态会话（通常用于 RESTful API），要求每个请求都携带认证信息（例如，通过 JWT 令牌）
 
 
 
