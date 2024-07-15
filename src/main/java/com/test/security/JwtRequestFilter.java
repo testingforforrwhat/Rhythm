@@ -63,6 +63,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
                 System.out.println("SecurityContextHolder.getContext().getAuthentication(authentication): " + SecurityContextHolder.getContext().getAuthentication());
 
+                System.out.println( "-------JwtRequestFilter, 通过jwt校验,通过登录认证, 开始授权校验  .getAuthorities()  -------");
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         username, null, adminService.loadUserByUsername(username).getAuthorities());
                 // 使用 WebAuthenticationDetailsSource 设置请求的详细信息（如 IP 地址、会话 ID 等）
