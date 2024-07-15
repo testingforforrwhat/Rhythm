@@ -32,6 +32,8 @@ public class Role implements Serializable, GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return getRoleName();
+
+        // 手动添加 `ROLE_` 前缀以匹配 Spring Security 的期望
+        return "ROLE_" + getRoleName();
     }
 }
