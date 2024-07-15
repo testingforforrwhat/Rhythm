@@ -40,6 +40,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         System.out.println( "-------JwtRequestFilter, 开始jwt校验-------");
 
+        // 1. 从请求头中提取 JWT 令牌
         final String requestTokenHeader = request.getHeader("Authorization");
 
         String username = null;
@@ -58,12 +59,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             logger.warn("JWT token does not begin with Bearer String");
         }
 
+        // 2. 如果 SecurityContext 还没有设置认证信息
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             if (jwtTokenUtil.validateToken(jwtToken, username)) {
 
                 System.out.println("SecurityContextHolder.getContext().getAuthentication(authentication): " + SecurityContextHolder.getContext().getAuthentication());
 
                 System.out.println( "-------JwtRequestFilter, 通过jwt校验,通过登录认证, 开始授权校验  .getAuthorities()  -------");
+
+                // 3. 创建包含权限的 UsernamePasswordAuthenticationToken 对象
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         username, null, adminService.loadUserByUsername(username).getAuthorities());
                 // 使用 WebAuthenticationDetailsSource 设置请求的详细信息（如 IP 地址、会话 ID 等）
@@ -72,6 +76,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 //
                 // 我们构建 UsernamePasswordAuthenticationToken 对象来存储认证(authentication)信息
                 // 我们可以使用 WebAuthenticationDetailsSource 为构建的 UsernamePasswordAuthenticationToken 添加额外的请求的上下文信息。这不仅有助于审计和监控，还能帮助我们实现一些特定的安全需求，例如防止多次登录攻击。
+
+                // 4. 将详细信息设置到 UsernamePasswordAuthenticationToken 认证对象中，并更新 SecurityContext
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
