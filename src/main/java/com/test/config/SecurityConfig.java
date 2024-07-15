@@ -182,6 +182,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                   // 如果请求中未包含有效的 JWT，JwtRequestFilter 不会设置认证，CustomAuthenticationEntryPoint 将截获并返回 401 状态码
                   .authenticationEntryPoint(customAuthenticationEntryPoint)
                   // 如果请求中包含有效的 JWT，但用户没有所需的 ADMIN 权限，权限检查会失败，CustomAccessDeniedHandler 将截获并返回 403 状态码
+                  // 在 Spring Security 配置中，如果你配置了多个 .accessDeniedHandler()，只会使用最后一个配置的 AccessDeniedHandler
                   .accessDeniedHandler(customAccessDeniedHandler)
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
