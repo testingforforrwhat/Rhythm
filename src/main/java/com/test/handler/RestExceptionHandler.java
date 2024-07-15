@@ -24,6 +24,9 @@ import java.sql.SQLException;
 @RestControllerAdvice
 public class RestExceptionHandler {
     /**
+     *
+     * 注意避免全局性捕获所有异常（如 Exception.class），这可能会覆盖特定的异常处理（如 AccessDeniedException）
+     *
      * 默认全局异常处理。
      * @param e the e
      * @return ResultData
