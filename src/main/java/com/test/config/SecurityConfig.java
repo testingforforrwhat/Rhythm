@@ -61,6 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtRequestFilter jwtRequestFilter;
 
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -169,6 +172,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 配置Security
         http.headers().frameOptions().disable() // 允许iframe嵌套
 
+                .and()
+                .csrf().disable()
+                // 自定义异常处理
+                .exceptionHandling()
+                .authenticationEntryPoint(customAuthenticationEntryPoint)
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
                 .antMatchers("/login", "/error/**", "/css/**", "/login.html","/springSecurity/login").permitAll() // 这些路径不需要认证
