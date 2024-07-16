@@ -29,6 +29,7 @@ public class PermissionValid implements AccessDecisionManager {
 
             // 获取当前请求的授权角色
             String needRole = attribute.getAttribute();
+            System.out.println("当前url请求的授权角色: " + needRole);
 
             System.out.println( "-------开始认证-------");
             // 判断是否是默认权限
