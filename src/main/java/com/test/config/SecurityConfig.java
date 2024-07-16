@@ -186,14 +186,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                   .accessDeniedHandler(customAccessDeniedHandler)
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
-                .antMatchers("/login", "/error/**", "/css/**", "/login.html","/springSecurity/login").permitAll() // 这些路径不需要认证
-                //.antMatchers("/actuator/**").hasRole("user")
-                .antMatchers("/hello").authenticated() // 需要认证的路径
-                .anyRequest().authenticated() // 别的所有请求都需要认证
+                  .antMatchers("/login", "/error/**", "/css/**", "/login.html","/springSecurity/login").permitAll() // 这些路径不需要认证
+                  //.antMatchers("/actuator/**").hasRole("user")
+                  .antMatchers("/hello").authenticated() // 需要认证的路径
+                  .anyRequest().authenticated() // 别的所有请求都需要认证
                 //.and()
                 //.httpBasic()  // 使用 HTTP Basic 认证
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // 配置无状态会话（通常用于 RESTful API），要求每个请求都携带认证信息（例如，通过 JWT 令牌）
+
 
 
 
@@ -205,14 +204,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                  * FilterSecurityInterceptor可以实现自定义的权限控制机制
                  *
                  */
-//                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
-//                    @Override
-//                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
-//                        o.setSecurityMetadataSource(permissionAuthority);  // 自定义SecurityMetadataSource实现复杂的安全需求(即基于数据库)
-//                        o.setAccessDecisionManager(permissionValid);  // 自定义AccessDecisionManager实现复杂的安全需求(即基于数据库)
-//                        return o;
-//                    }
-//                })
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
+                        o.setSecurityMetadataSource(permissionAuthority);  // 自定义SecurityMetadataSource实现复杂的安全需求(即基于数据库)
+                        o.setAccessDecisionManager(permissionValid);  // 自定义AccessDecisionManager实现复杂的安全需求(即基于数据库)
+                        return o;
+                    }
+                })
 //                .anyRequest().authenticated()  // 所有请求都需要经过认证
 
                 /**
@@ -246,17 +245,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()  // 允许所有用户访问注销页
 
 
-                /**
-                 * 添加权限不足异常处理器
-                 */
-                .and()
-                .csrf()
-                .disable()
-                .exceptionHandling()
-                .accessDeniedHandler(permissionErrorHandle)
+//                /**
+//                 * 添加权限不足异常处理器
+//                 */
+//                .and()
+//                .csrf()
+//                .disable()
+//                .exceptionHandling()
+//                .accessDeniedHandler(permissionErrorHandle)
 
                 .and()
-                .cors();  // Enable CORS support
+                .cors()  // Enable CORS support
+
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);  // 配置无状态会话（通常用于 RESTful API），要求每个请求都携带认证信息（例如，通过 JWT 令牌）
 
         /**
          * 配置 JWT 过滤器

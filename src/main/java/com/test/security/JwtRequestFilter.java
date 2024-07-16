@@ -40,6 +40,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         System.out.println( "-------JwtRequestFilter, 开始jwt校验-------");
 
+        // 打印调试日志
+        System.out.println("Processing request for path: " + request.getServletPath());
+
+        // 忽略 /springSecurity/login 路径
+        if ("/springSecurity/login".equals(request.getServletPath())) {
+            System.out.println("Ignoring filter for path: " + request.getServletPath());
+            chain.doFilter(request, response);
+            return;
+        }
+
         // 1. 从请求头中提取 JWT 令牌
         final String requestTokenHeader = request.getHeader("Authorization");
 

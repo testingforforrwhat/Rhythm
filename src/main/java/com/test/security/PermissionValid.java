@@ -8,6 +8,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -19,12 +20,24 @@ public class PermissionValid implements AccessDecisionManager {
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes)
             throws AccessDeniedException, InsufficientAuthenticationException {
 
+        System.out.println( "-------PermissionValid implements AccessDecisionManager-------");
+
         // 迭代遍历当前请求的URL授权的所有角色
         for( ConfigAttribute attribute : configAttributes ){
 
             // 判断当前账户是否为空
             if (authentication == null) {
                 throw new AccessDeniedException("权限认证失败！");
+            }
+
+            // 增加对路径的检测
+            if (object instanceof FilterInvocation) {
+                FilterInvocation fi = (FilterInvocation) object;
+                String requestUrl = fi.getRequestUrl();
+                if ("/springSecurity/login".equals(requestUrl)) {
+                    // 直接放行 /springSecurity/login
+                    return;
+                }
             }
 
             // 获取当前请求的授权角色

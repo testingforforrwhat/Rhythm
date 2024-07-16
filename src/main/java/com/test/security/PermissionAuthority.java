@@ -21,12 +21,15 @@ public class PermissionAuthority implements FilterInvocationSecurityMetadataSour
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 
+        System.out.println( "-------PermissionAuthority implements FilterInvocationSecurityMetadataSource-------");
+
         // 获取请求的URL
         String requestUrl = ( (FilterInvocation) object ).getRequestUrl();
         System.out.println("当前请求的URL: " + requestUrl);
 
         // 根据URL获取可以访问角色列表
         List<Role> roleList = roleMapper.getListByOperateUrl(requestUrl);
+        System.out.println("根据URL获取可以访问角色列表: " + roleList);
 
         // 判断角色列表是否为空
         if( !roleList.isEmpty() && roleList.size() > 0 ){
