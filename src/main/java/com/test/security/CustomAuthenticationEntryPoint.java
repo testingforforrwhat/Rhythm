@@ -16,6 +16,6 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         System.out.println(" 401 自定义 AuthenticationEntryPoint 来处理未经认证即未登录的请求");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);  // 401 Unauthorized
-        response.getWriter().write("Authentication is required to access this resource.");  // 自定义消息
+        response.getWriter().write("Authentication is required to access this resource, please login.");  // 自定义消息
     }
 }
