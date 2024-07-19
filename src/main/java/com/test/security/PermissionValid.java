@@ -41,7 +41,7 @@ public class PermissionValid implements AccessDecisionManager {
             }
 
             // 获取当前请求的授权角色
-            String needRole = attribute.getAttribute();
+            String needRole = "ROLE_" + attribute.getAttribute();
             System.out.println("当前url请求的授权角色: " + needRole);
 
             System.out.println( "-------开始认证-------");
@@ -56,8 +56,17 @@ public class PermissionValid implements AccessDecisionManager {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             // 迭代遍历当前账户的每一个角色
             for (GrantedAuthority authority : authorities) {
+
+                System.out.println("needRole: " + needRole);
+                System.out.println("authorities: " + authorities);
+                System.out.println("authority: " + authority);
+                System.out.println("authority.getAuthority(): " + authority.getAuthority());
+
                 // 判断当前账户的角色是否和当前循环到的授权角色相同
                 if (authority.getAuthority().equals(needRole)) {
+
+                    System.out.println("当前账户的角色和当前循环到的授权角色相同 " + authority.getAuthority());
+
                     return;
                 }
             }
