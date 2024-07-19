@@ -150,7 +150,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/users/regist",
                         "/sms/validate/**",
                         "/actuator/**",
-                        "/springSecurity/register");
+                        "/springSecurity/register",
+                        "/swagger-ui/**",
+                        "/v3/api-docs");
     }
 
 
