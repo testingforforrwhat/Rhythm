@@ -83,6 +83,18 @@ public class SwaggerConfiguration {
                 .build();
     }
 
+    @Bean
+    public Docket SpringSecurityDoc(){
+        return new Docket(DocumentationType.OAS_30)
+                .groupName("springSecurity模块")
+                .pathMapping("/")
+                .enable(true)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.test"))
+                .paths(PathSelectors.ant("/api/**"))
+                .build();
+    }
 
     /*api信息*/
     private ApiInfo apiInfo(){

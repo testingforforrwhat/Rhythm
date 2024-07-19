@@ -8,6 +8,7 @@ import com.test.service.AdminService;
 import com.test.service.UsersService;
 import com.test.utils.JwtTokenUtil;
 import com.test.utils.RedisUtil;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,6 +36,8 @@ import javax.annotation.Resource;
  *
  */
 @Controller
+@Api(tags = "springSecurity模块")
+@RequestMapping("/api")
 public class HelloController {
 
     @Autowired
