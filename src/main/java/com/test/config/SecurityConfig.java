@@ -152,7 +152,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/actuator/**",
                         "/springSecurity/register",
                         "/swagger-ui/**",
-                        "/v3/api-docs");
+                        "/v3/api-docs",
+                        "/api/springSecurity/register");
     }
 
 
