@@ -188,7 +188,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                   .accessDeniedHandler(customAccessDeniedHandler)
                 .and()
           		.authorizeRequests()  // spring security    自动读取url            开启权限认证
-                  .antMatchers("/login", "/error/**", "/css/**", "/login.html","/springSecurity/login").permitAll() // 这些路径不需要认证
+                  .antMatchers("/login",
+                          "/error/**",
+                          "/css/**",
+                          "/login.html",
+                          "/api/springSecurity/login").permitAll() // 这些路径不需要认证
                   //.antMatchers("/actuator/**").hasRole("user")
                   .antMatchers("/hello").authenticated() // 需要认证的路径
                   .anyRequest().authenticated() // 别的所有请求都需要认证

@@ -44,7 +44,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         System.out.println("Processing request for path: " + request.getServletPath());
 
         // 忽略 /springSecurity/login 路径
-        if ("/springSecurity/login".equals(request.getServletPath())) {
+        if ("/api/springSecurity/login".equals(request.getServletPath())) {
             System.out.println("Ignoring filter for path: " + request.getServletPath());
             chain.doFilter(request, response);
             return;

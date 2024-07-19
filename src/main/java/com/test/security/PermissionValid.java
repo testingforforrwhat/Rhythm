@@ -34,7 +34,7 @@ public class PermissionValid implements AccessDecisionManager {
             if (object instanceof FilterInvocation) {
                 FilterInvocation fi = (FilterInvocation) object;
                 String requestUrl = fi.getRequestUrl();
-                if ("/springSecurity/login".equals(requestUrl)) {
+                if ("/api/springSecurity/login".equals(requestUrl)) {
                     // 直接放行 /springSecurity/login
                     return;
                 }
