@@ -15,11 +15,11 @@ spring:
     # JDBC驱动类签名
     driverClassName: com.mysql.cj.jdbc.Driver
     # 连接数据库URL路径
-    url: jdbc:mysql://url/rhythm?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://${db.url}/rhythm?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     # 数据库账户名称
-    username:
+    username: ${db.username}
     # 数据库账户密码
-    password:
+    password: ${db.password}
     # 获取Connection连接对象的类签名
     type: com.alibaba.druid.pool.DruidDataSource
   web:
@@ -32,16 +32,16 @@ spring:
   # Redis配置
   redis:
     # Redis部署Ip地址
-    host: ip
+    host: ${redisConfig.host}
     # Redis监听端口
     port: 6379
     # Redis登录密码
-    password:
+    password: ${redisConfig.password}
 
   # kafka 配置
   kafka:
     # kafka 服务节点网络域
-    bootstrap-servers: ip:9092
+    bootstrap-servers: ${kafkaConfig.bootstrap-servers}:9092
     # 生产者 配置
     producer:
       # 重试次数
@@ -108,7 +108,7 @@ management:
       exposure:
         include: "*"
       cors:
-        allowedOrigins: http://ip:8002/
+        allowedOrigins: ${actuatorConfig.allowedOrigins}
         allowed-methods: GET,POST
   # 配置显示健康检查详细信息
   endpoint:
