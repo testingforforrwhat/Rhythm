@@ -41,7 +41,14 @@ public class PermissionValid implements AccessDecisionManager {
             }
 
             // 获取当前请求的授权角色
-            String needRole = "ROLE_" + attribute.getAttribute();
+            String attributeValue = attribute.getAttribute();
+            String needRole;
+
+            if ("PublicPermission".equals(attributeValue)) {
+                needRole = attributeValue;
+            } else {
+                needRole = "ROLE_" + attributeValue;
+            }
             System.out.println("当前url请求的授权角色: " + needRole);
 
             System.out.println( "-------开始认证-------");
