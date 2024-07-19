@@ -1,9 +1,12 @@
 package com.test.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.test.bean.bo.AdminRegistBo;
 import com.test.bean.po.Admin;
+import com.test.bean.po.Users;
 import com.test.service.AdminService;
 import com.test.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 23194
@@ -48,6 +52,16 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
 
     @Override
     public int regist(AdminRegistBo adminRegistBo) {
+
+        // 步骤二：手机号码唯一性 校验
+        // 去数据库查询 用户注册的手机号码 是否已经存在
+        List<Admin> adminInfoList = adminMapper.getListByName( adminRegistBo.getAdminName() );
+        System.out.println("根据username查询到的用户账号唯一性信息: " + adminInfoList);
+        if( adminInfoList.size() > 0 ){
+            // 手机号码唯一性 校验失败
+            return -2;
+        }
+
         Admin admin = new Admin();
         // 调用加密器将前端传递过来的密码进行加密
         admin.setAdminName(adminRegistBo.getAdminName());

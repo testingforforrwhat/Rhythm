@@ -37,4 +37,12 @@
         from rhythm.admin
         where admin_name =#{username}
     </select>
+
+    <!--手机号码唯一性 校验
+    数据库查询 用户注册的手机号码 是否已经存在-->
+    <select id="getListByName" resultType="com.test.bean.po.Admin">
+        select *
+        from rhythm.admin
+        where admin_name =#{username}
+    </select>
 </mapper>
