@@ -62,7 +62,7 @@ public class DbDocCreat {
                 //版本
                 .version("1.0.0")
                 //描述
-                .description("数据库设计文档生成")
+                .description("数据库设计文档")
                 //数据源
                 .dataSource(dataSource)
                 //生成配置
