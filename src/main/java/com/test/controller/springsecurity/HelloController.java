@@ -168,7 +168,7 @@ public class HelloController {
 
     @GetMapping( value = {"/","/index"} )
     @ResponseBody
-    @ApiOperation("返回登录认证authentication信息")
+    @ApiOperation("返回 当前登录用户 登录认证authentication信息")
     public ResultData index( Authentication authentication ) {
 
         System.out.println( "Authentication = " + authentication);
