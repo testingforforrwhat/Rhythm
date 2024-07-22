@@ -46,8 +46,8 @@ public class Admin implements Serializable, UserDetails {
 
     // Association 组合关系
     // Collection 聚合关系
-    private List<Role> roleList;
-    private List<Menu> menuList;
+    private List<Role> roleList;  // 登录用户的角色集合
+    private List<Menu> menuList;  // 登录用户的菜单集合
 
     // UserDetails 用户类接口中的抽象方法
     /**
