@@ -179,6 +179,17 @@ public class HelloController {
         return ResultData.success(authentication);
     }
 
+    @GetMapping( value = {"/getMenuList"} )
+    @ResponseBody
+    @ApiOperation("返回 当前登录用户 登录认证authentication信息")
+    public ResultData getMenuList( Authentication authentication ) {
+
+        System.out.println( "Authentication = " + authentication);
+//        Admin admin = (Admin) authentication.getPrincipal();
+//        System.out.println( "admin = " + admin);
+
+        return ResultData.success(authentication.getAuthorities());
+    }
 
     @GetMapping("/home")
     public String home(Model model) {
