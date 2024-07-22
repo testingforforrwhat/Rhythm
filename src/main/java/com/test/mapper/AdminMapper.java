@@ -18,14 +18,14 @@ public interface AdminMapper extends BaseMapper<Admin> {
     /**
      * 根据账号username查询一个含有角色信息的登录用户对象
      * @param username
-     * @return
+     * @return 一个含有角色信息的登录用户实体模型对象
      */
     Admin getOneByName(String username);
 
     /**
      * 根据账号username查询一个含有角色、菜单信息的登录用户对象
      * @param username
-     * @return
+     * @return 一个含有角色、菜单信息的登录用户实体模型对象
      */
     Admin getOneWithRolistMenulistByName(String username);
 
