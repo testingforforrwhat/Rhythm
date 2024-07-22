@@ -8,7 +8,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 
+ * 菜单实体模型类
  * @TableName menu
  */
 @TableName(value ="menu")
