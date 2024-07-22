@@ -18,7 +18,14 @@
 
     <!--根据登录用户编号查询该登录用户拥有的菜单列表-->
     <select id="selectListByAdminId" resultType="com.test.bean.po.Menu">
-
+        select a.*
+        from
+            menu a
+                INNER JOIN `permission_menu` b on a.menu_id = b.menu_id
+                INNER JOIN `role_permission` c on b.permission_id = c.permission_id
+                INNER JOIN `admin_role` d on c.role_id = d.role_id
+        where
+            d.admin_id = #{AdminId};
     </select>
 
 </mapper>
