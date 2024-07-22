@@ -27,7 +27,7 @@ public interface AdminMapper extends BaseMapper<Admin> {
      * @param username
      * @return 一个含有角色、菜单信息的登录用户实体模型对象
      */
-    Admin getOneWithRolistMenulistByName(String username);
+    Admin getOneWithRolelistMenulistByName(String username);
 
     int register(Admin admin);
 
