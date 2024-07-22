@@ -3,6 +3,7 @@ package com.test.controller.springsecurity;
 import com.test.bean.bo.AdminLoginBo;
 import com.test.bean.bo.AdminRegistBo;
 import com.test.bean.bo.UsersLoginBo;
+import com.test.bean.po.Admin;
 import com.test.exception.ResultData;
 import com.test.service.AdminService;
 import com.test.service.UsersService;
@@ -172,6 +173,9 @@ public class HelloController {
     public ResultData index( Authentication authentication ) {
 
         System.out.println( "Authentication = " + authentication);
+//        Admin admin = (Admin) authentication.getPrincipal();
+//        System.out.println( "admin = " + admin);
+
         return ResultData.success(authentication);
     }
 
