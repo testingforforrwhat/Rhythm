@@ -44,7 +44,8 @@ public class Admin implements Serializable, UserDetails {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-
+    // Association 组合关系
+    // Collection 聚合关系
     private List<Role> roleList = new ArrayList<>();
 
     @Override
