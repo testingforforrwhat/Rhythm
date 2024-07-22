@@ -23,6 +23,8 @@
         WHERE
             a.operate_url = #{requestUrl}
     </select>
+
+    <!--根据登录用户编号查询该登录用户拥有的菜单列表-->
     <select id="selectListByAdminId" resultType="com.test.bean.po.Role">
         select a.*
         from
