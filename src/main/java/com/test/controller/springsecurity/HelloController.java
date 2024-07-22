@@ -9,6 +9,7 @@ import com.test.service.UsersService;
 import com.test.utils.JwtTokenUtil;
 import com.test.utils.RedisUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -164,6 +165,16 @@ public class HelloController {
         }
 
     }
+
+    @GetMapping("/index")
+    @ResponseBody
+    @ApiOperation("返回登录认证authentication信息")
+    public ResultData index( Authentication authentication ) {
+
+        System.out.println( "Authentication = " + authentication);
+        return ResultData.success(authentication);
+    }
+
 
     @GetMapping("/home")
     public String home(Model model) {
