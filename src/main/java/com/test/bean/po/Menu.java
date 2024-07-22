@@ -15,23 +15,23 @@ import lombok.Data;
 @Data
 public class Menu implements Serializable {
     /**
-     * 
+     * 菜单编号
      */
     @TableId(type = IdType.AUTO)
     private Integer menuId;
 
     /**
-     * 
+     * 菜单名称
      */
     private String menuName;
 
     /**
-     * 
+     * 菜单url
      */
     private String menuUrl;
 
     /**
-     * 
+     * 父级菜单编号
      */
     private Integer pid;
 
