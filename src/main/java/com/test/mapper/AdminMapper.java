@@ -15,8 +15,18 @@ import java.util.List;
 @Mapper
 public interface AdminMapper extends BaseMapper<Admin> {
 
+    /**
+     * 根据账号username查询一个含有角色信息的登录用户对象
+     * @param username
+     * @return
+     */
     Admin getOneByName(String username);
 
+    /**
+     * 根据账号username查询一个含有角色、菜单信息的登录用户对象
+     * @param username
+     * @return
+     */
     Admin getOneWithRolistMenulistByName(String username);
 
     int register(Admin admin);
