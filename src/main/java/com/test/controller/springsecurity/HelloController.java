@@ -166,7 +166,7 @@ public class HelloController {
 
     }
 
-    @GetMapping("/index")
+    @GetMapping( value = {"/","/index"} )
     @ResponseBody
     @ApiOperation("返回登录认证authentication信息")
     public ResultData index( Authentication authentication ) {
