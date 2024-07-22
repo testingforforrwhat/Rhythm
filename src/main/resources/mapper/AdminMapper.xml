@@ -23,6 +23,21 @@
                     select="com.test.mapper.RoleMapper.selectListByAdminId"/>
     </resultMap>
 
+    <!--含有角色、菜单信息的管理员 结果映射方案-->
+    <resultMap id="AdminWithRoleAndMenuResultMap" type="com.test.bean.po.Admin">
+        <id property="adminId" column="admin_id" jdbcType="INTEGER"/>
+        <result property="adminName" column="admin_name" jdbcType="VARCHAR"/>
+        <result property="adminPass" column="admin_pass" jdbcType="VARCHAR"/>
+        <result property="adminNickname" column="admin_nickname" jdbcType="VARCHAR"/>
+        <collection property="roleList"
+                    ofType="com.test.bean.po.Role"
+                    column="admin_id"
+                    select="com.test.mapper.RoleMapper.selectListByAdminId"/>
+        <collection property="menuList"
+                    ofType="com.test.bean.po.Menu"
+                    column="admin_id"
+                    select="com.test.mapper.MenuMapper.selectListByAdminId"/>
+    </resultMap>
 
     <sql id="Base_Column_List">
         admin_id,admin_name,admin_pass,
