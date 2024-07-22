@@ -53,7 +53,7 @@
         where admin_name =#{username}
     </select>
 
-    <select id="getOneWithRolistMenulistByName" resultType="com.test.bean.po.Admin">
+    <select id="getOneWithRolistMenulistByName" resultMap="AdminWithRoleAndMenuResultMap">
         select *
         from rhythm.admin
         where admin_name =#{username}
