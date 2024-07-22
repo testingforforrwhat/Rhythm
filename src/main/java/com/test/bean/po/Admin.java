@@ -48,6 +48,11 @@ public class Admin implements Serializable, UserDetails {
     // Collection 聚合关系
     private List<Role> roleList = new ArrayList<>();
 
+    // UserDetails 用户类接口中的抽象方法
+    /**
+     * 获取当前用户的授权集合 => 获取当前用户拥有的角色列表
+     * @return
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoleList();
