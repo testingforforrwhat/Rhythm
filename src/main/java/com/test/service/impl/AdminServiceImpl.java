@@ -35,7 +35,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
             throws UsernameNotFoundException {
         System.out.println("开始查询数据库... ");
 
-        // 调用数据访问层 根据账号名称 获取 含有角色列表的管理员对象  resultMap/collection  类的聚合关系
+        // 调用数据访问层 根据账号名称 获取 含有角色列表、菜单列表的管理员对象  resultMap/collection  类的聚合关系
         Admin admin = adminMapper.getOneByName( username );
 
         System.out.println("根据username查询到的用户账号信息: " + admin);
