@@ -14,7 +14,7 @@ import java.util.List;
 public interface RoleMapper extends BaseMapper<Role> {
 
     /**
-     * 根据登录用户编号查询该登录用户拥有的菜单列表
+     * 根据登录用户编号查询该登录用户拥有的角色列表
      * @param AdminId
      * @return
      */
