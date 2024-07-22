@@ -17,6 +17,8 @@ public interface AdminMapper extends BaseMapper<Admin> {
 
     Admin getOneByName(String username);
 
+    Admin getOneWithRolistMenulistByName(String username);
+
     int register(Admin admin);
 
 
@@ -27,6 +29,8 @@ public interface AdminMapper extends BaseMapper<Admin> {
      * @return
      */
     List<Admin> getListByName(String adminName);
+
+
 }
 
 
