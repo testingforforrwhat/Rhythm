@@ -95,6 +95,8 @@ public class HelloController {
     @ResponseBody
     public ResultData loginBySpringSecurity(@RequestBody AdminLoginBo adminLoginBo) {
 
+        System.out.println("--------------- 运行/springSecurity/login ---------------");
+
         String username = adminLoginBo.getAdminName();
         String password = adminLoginBo.getAdminPass();
 
