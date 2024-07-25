@@ -78,7 +78,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
          * 不过，这样的设置主要是对一次请求有效。
          *
          * 在用户成功登录后，通过 SecurityContextHolder.getContext().setAuthentication(authentication) 手动设置认证对象，这在仅当前请求中生效。
-         *
+         * 这意味着，当请求结束时，安全上下文会被清空，认证信息不会自动传播到后续的请求中。
          *
          * 每次请求和每个请求自动认证：通过 JWT(JwtRequestFilter.java) 实现无状态认证，每次请求携带 Token，由后端过滤器验证 Token 并(JwtRequestFilter.java)设置认证对象，从而保证每个请求的认证状态。
          *
