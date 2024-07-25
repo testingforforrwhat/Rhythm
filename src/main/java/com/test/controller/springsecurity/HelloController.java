@@ -147,6 +147,7 @@ public class HelloController {
 
 
         // 调用业务逻辑层的 客户登录功能
+        // 生成 JWT
         String token = JwtTokenUtil.generateToken(username);
 
         // 将签发的令牌，存入Redis中。拼接上Authorization的策略（Bearer Token）前缀。
