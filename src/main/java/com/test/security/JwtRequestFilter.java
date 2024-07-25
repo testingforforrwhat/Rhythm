@@ -92,6 +92,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 System.out.println("SecurityContextHolder.getContext().getAuthentication(authentication): " + SecurityContextHolder.getContext().getAuthentication());
 
                 System.out.println( "-------JwtRequestFilter, 通过jwt校验,通过登录认证, 开始授权校验  .getAuthorities()  -------");
+                System.out.println( "-------adminService.loadUserByUsername(username).getAuthorities()  -------" + adminService.loadUserByUsername(username).getAuthorities());
 
                 // 3. 创建包含权限的 UsernamePasswordAuthenticationToken 对象
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
