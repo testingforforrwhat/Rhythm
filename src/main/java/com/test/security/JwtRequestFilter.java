@@ -70,6 +70,20 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         // 2. 如果 SecurityContext 还没有设置认证信息
+        /**
+         *
+         * 后端通过一个过滤器来拦截所有请求，验证 JWT 并解析其中的信息，然后将解析得到的 Authentication 对象保存到安全上下文中
+         *
+         * SecurityContextHolder.getContext().setAuthentication(authentication); 确实是在登录时手动设置了认证对象。这个操作通常会在用户登录成功时进行，用于确保用户的认证信息正确保存到当前的安全上下文中。
+         * 不过，这样的设置主要是对一次请求有效。
+         *
+         * 在用户成功登录后，通过 SecurityContextHolder.getContext().setAuthentication(authentication) 手动设置认证对象，这在仅当前请求中生效。
+         *
+         *
+         * 每次请求和每个请求自动认证：通过 JWT(JwtRequestFilter.java) 实现无状态认证，每次请求携带 Token，由后端过滤器验证 Token 并(JwtRequestFilter.java)设置认证对象，从而保证每个请求的认证状态。
+         *
+         *
+         */
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             if (jwtTokenUtil.validateToken(jwtToken, username)) {
 
