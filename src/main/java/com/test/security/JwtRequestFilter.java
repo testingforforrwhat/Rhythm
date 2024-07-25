@@ -74,6 +74,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
          *
          * 后端通过一个过滤器来拦截所有请求，验证 JWT 并解析其中的信息，然后将解析得到的 Authentication 对象保存到安全上下文中
          *
+         * 后端通过一个过滤器来拦截所有请求，验证 JWT 并恢复认证信息。
+         *
          * SecurityContextHolder.getContext().setAuthentication(authentication); 确实是在登录时手动设置了认证对象。这个操作通常会在用户登录成功时进行，用于确保用户的认证信息正确保存到当前的安全上下文中。
          * 不过，这样的设置主要是对一次请求有效。
          *
