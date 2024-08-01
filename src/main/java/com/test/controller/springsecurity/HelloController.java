@@ -192,7 +192,7 @@ public class HelloController {
 //        Admin admin = (Admin) authentication.getPrincipal();
 //        System.out.println( "admin = " + admin);
 
-        return ResultData.success(authentication.getAuthorities());
+        return ResultData.success(authentication.getPrincipal());
     }
 
     @GetMapping("/home")
