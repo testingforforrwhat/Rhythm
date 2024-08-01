@@ -189,10 +189,10 @@ public class HelloController {
     public ResultData getMenuList( Authentication authentication ) {
 
         System.out.println( "Authentication = " + authentication);
-//        Admin admin = (Admin) authentication.getPrincipal();
-//        System.out.println( "admin = " + admin);
+        Admin admin = (Admin) authentication.getPrincipal();
+        System.out.println( "admin = " + admin);
 
-        return ResultData.success(authentication.getPrincipal());
+        return ResultData.success(((Admin) authentication.getPrincipal()).getMenuList());
     }
 
     @GetMapping("/home")
