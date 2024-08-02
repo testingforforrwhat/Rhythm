@@ -171,6 +171,23 @@ public class HelloController {
 
     }
 
+    /**
+     *
+     * logout
+     *
+     * 统一通过SecurityContextHolder logout
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/logout")
+    @ResponseBody
+    @ApiOperation("logout")
+    public ResultData<String> logout() {
+        SecurityContextHolder.clearContext();
+        return ResultData.success("logout success");
+    }
+
     @GetMapping( value = {"/","/index"} )
     @ResponseBody
     @ApiOperation("返回 当前登录用户 登录认证authentication信息")
