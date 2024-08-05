@@ -33,6 +33,8 @@ public class GlobalExceptionHandler {
      *
      * 如果存在全局异常处理器，它可能会拦截并处理异常，从而导致自定义的 AccessDeniedHandler 未被调用。
      *
+     * 在使用 Spring 的全局异常处理器（例如 @ControllerAdvice）时，我们需要注意避免全局性捕获所有异常（如 Exception.class），这可能会覆盖特定的异常处理（如 AccessDeniedException）。
+     *
      * @param ex
      * @param model
      * @return
