@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 
     /**
      *
-     * 如果存在全局异常处理器，它可能会拦截并处理异常，从而导致自定义的 AccessDeniedHandler 未被调用。
+     * 如果存在一个全局的异常处理器（例如使用 @ControllerAdvice 和 @ExceptionHandler），它可能会拦截并处理异常，从而导致自定义的 AccessDeniedHandler 未被调用。
      *
      * 我们可以采取以下策略：
      *
