@@ -29,6 +29,14 @@ public class GlobalExceptionHandler {
         return "redirect:/login";
     }
 
+    /**
+     *
+     * 如果存在全局异常处理器，它可能会拦截并处理异常，从而导致自定义的 AccessDeniedHandler 未被调用。
+     *
+     * @param ex
+     * @param model
+     * @return
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception ex, Model model) {
