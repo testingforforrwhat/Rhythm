@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
+/**
+ *
+ * 在使用 Spring 的全局异常处理器（例如 @ControllerAdvice）时，我们需要注意避免全局性捕获所有异常（如 Exception.class），
+ * 这可能会覆盖特定的异常处理（如 AccessDeniedException）。
+ *
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
