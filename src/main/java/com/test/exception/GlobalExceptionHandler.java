@@ -18,12 +18,12 @@ import org.springframework.http.HttpStatus;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(AccessDeniedException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public String handleAccessDeniedException(AccessDeniedException ex, Model model) {
-        model.addAttribute("error", "You do not have permission to access this page.");
-        return "error/403";
-    }
+//    @ExceptionHandler(AccessDeniedException.class)
+//    @ResponseStatus(HttpStatus.FORBIDDEN)
+//    public String handleAccessDeniedException(AccessDeniedException ex, Model model) {
+//        model.addAttribute("error", "You do not have permission to access this page.");
+//        return "error/403";
+//    }
 
     @ExceptionHandler(InsufficientAuthenticationException.class)
     public String handleInsufficientAuthenticationException(InsufficientAuthenticationException ex, Model model) {
@@ -45,10 +45,10 @@ public class GlobalExceptionHandler {
      * @param model
      * @return
      */
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleException(Exception ex, Model model) {
-        model.addAttribute("error", "An unexpected error occurred.");
-        return "error/500";
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public String handleException(Exception ex, Model model) {
+//        model.addAttribute("error", "An unexpected error occurred.");
+//        return "error/500";
+//    }
 }
