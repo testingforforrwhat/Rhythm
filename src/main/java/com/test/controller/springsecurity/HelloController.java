@@ -40,6 +40,7 @@ import javax.annotation.Resource;
 @Controller
 @Api(tags = "springSecurity模块")
 @RequestMapping("/api")
+@CrossOrigin		// 可以在支持跨域的方法或者类添加该注解
 public class HelloController {
 
     @Autowired

@@ -16,6 +16,7 @@ import java.util.Map;
 @Controller
 @Api(tags = "广告模块")
 @RequestMapping("/api")
+@CrossOrigin		// 可以在支持跨域的方法或者类添加该注解
 public class AdvertisementsController {
 
 

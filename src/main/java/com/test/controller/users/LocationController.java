@@ -4,6 +4,7 @@ package com.test.controller.users;
 
 import com.test.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/location")
+@CrossOrigin        // 可以在支持跨域的方法或者类添加该注解
 public class LocationController {
 
     // 依赖项
