@@ -18,6 +18,12 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SwaggerConfiguration {
 
 
+    /**
+     *
+     * http://localhost:8001/swagger-ui/index.html
+     *
+     * @return
+     */
     @Bean
     public Docket advertisementsDoc(){
         return new Docket(DocumentationType.OAS_30)
